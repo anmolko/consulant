@@ -4,54 +4,43 @@
 
 @endsection
 @section('content')
+    @if(count($sliders) > 0)
+        <section class="banner-section-two">
+            <div class="banner-carousel owl-carousel owl-theme">
+                @foreach(@$sliders as $index=>$slider)
+                    <div class="slide-item">
+                    <div class="bg-image" style="background-image: url({{ asset('/images/sliders/'.$slider->image) }});"></div>
+                    <div class="auto-container">
+                        <div class="content-box">
+                            <?php $split = explode(" ", @$slider->heading);?>
+                            <span class="text-last"></span>
+                            <span class="sub-title animate-1">{{preg_replace('/\W\w+\s*(\W*)$/', '$1', @$slider->heading)."\n"}}</span>
+                            <div class="inner">
+                                <h1 class="title animate-2">{{$split[count($split)-1]}}</h1>
+                                <h3 class="animate-3">{{@$slider->subheading ?? ''}}</h3>
+                                @if(@$slider->link)
+                                    <div class="btn-box animate-4">
+                                        <a href="{{@$slider->link ?? ''}}" class="theme-btn btn-style-one"><span class="btn-title">{{@$slider->button ?? 'Start Exploring'}}</span></a>
+                                    </div>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+            </div>
+        </section>
+    @endif
 
-    <section class="banner-section-two">
-        <div class="banner-carousel owl-carousel owl-theme">
-            <!-- Slide Item -->
-            <div class="slide-item">
-                <div class="bg-image" style="background-image: url(images/main-slider/3.jpg);"></div>
-                <div class="auto-container">
-                    <div class="content-box">
-                        <span class="sub-title animate-1">Solutions for all type of visas</span>
-                        <div class="inner">
-                            <h1 class="title animate-2">Trusted</h1>
-                            <h3 class="animate-3">Visa & Immigration Company</h3>
-                            <div class="btn-box animate-4">
-                                <a href="page-about.html" class="theme-btn btn-style-one"><span class="btn-title">Explore now</span></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Slide Item -->
-            <div class="slide-item">
-                <div class="bg-image" style="background-image: url(images/main-slider/2.jpg);"></div>
-                <div class="auto-container">
-                    <div class="content-box">
-                        <span class="sub-title animate-1">Solutions for all type of visas</span>
-                        <div class="inner">
-                            <h1 class="title animate-2">Trusted</h1>
-                            <h3 class="animate-3">Visa & Immigration Company</h3>
-                            <div class="btn-box animate-4">
-                                <a href="page-about.html" class="theme-btn btn-style-one"><span class="btn-title">Explore now</span></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!--END Banner Section Two -->
-    <!-- Features Section Two -->
     <section class="features-section-three">
         <div class="row g-0">
             <!-- Feature Block Three -->
             <div class="feature-block-three col-xl-4 col-lg-6 col-md-12 wow fadeInUp">
                 <div class="inner-box ">
                     <div class="content-box">
-                        <i class="icon flaticon-passport-12"></i>
-                        <span class="sub-title">Apply Online Visa</span>
-                        <h4 class="title"><a href="#">Immigration Process Responsibility</a></h4>
+                        <i class="icon flaticon-group"></i>
+                        <h4 class="title"><a>Our Mission</a></h4>
+                        <span class="sub-title"> {{ ucfirst(@$homepage_info->mission) }}</span>
                     </div>
                 </div>
             </div>
@@ -60,8 +49,8 @@
                 <div class="inner-box ">
                     <div class="content-box">
                         <i class="icon flaticon-group"></i>
-                        <span class="sub-title">Apply Online Visa</span>
-                        <h4 class="title"><a href="#">Quick & Easy Visa Application</a></h4>
+                        <h4 class="title"><a>Our Vision</a></h4>
+                        <span class="sub-title">{{ ucfirst(@$homepage_info->vision) }}</span>
                     </div>
                 </div>
             </div>
@@ -70,62 +59,53 @@
                 <div class="inner-box ">
                     <div class="content-box">
                         <i class="icon flaticon-life-insurance"></i>
-                        <span class="sub-title">Apply Online Visa</span>
-                        <h4 class="title"><a href="#">Skilled & Professional Consultants</a></h4>
+                        <h4 class="title"><a>Our Value</a></h4>
+                        <span class="sub-title">{{ ucfirst(@$homepage_info->value) }}</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <!-- End Features Section-->
-    <!-- About Section Five -->
-    <section class="about-section-five">
-        <div class="auto-container">
-            <div class="anim-icons">
-                <span class="icon icon-object-3"></span>
-            </div>
-            <div class="row">
-                <div class="content-column col-lg-6 col-md-12 order-2 wow fadeInRight" data-wow-delay="600ms">
-                    <div class="inner-column">
-                        <div class="sec-title">
-                            <span class="sub-title">About our company</span>
-                            <h2>Award Winning Visa & Immigration Firm.</h2>
-                            <div class="text">There are many variations of passages of Lorem Ipsum available, but the majory have suffered alteration in some form, by simply free text available in injected humour, or randomised words.</div>
-                        </div>
-                        <div class="info-box">
-                            <div class="inner">
-                                <i class="icon fa fa-check"></i>
-                                <h5 class="title">The Best Visa Services</h5>
-                                <div class="text">There are many variations of passages of Lorem Ipsum available, but the majority have suffered.</div>
+
+    @if(!empty($homepage_info->welcome_description))
+        <section class="about-section-five">
+            <div class="auto-container">
+                <div class="anim-icons">
+                    <span class="icon icon-object-3"></span>
+                </div>
+                <div class="row">
+                    <div class="content-column col-lg-6 col-md-12 order-2 wow fadeInRight" data-wow-delay="600ms">
+                        <div class="inner-column">
+                            <div class="sec-title">
+                                <span class="sub-title">{{$homepage_info->welcome_subheading ?? ''}}</span>
+                                <h2>{{  @$homepage_info->welcome_heading }}</h2>
+                                <div class="text">
+                                    {{ ucfirst(@$homepage_info->welcome_description) }}
+                                </div>
                             </div>
-                        </div>
-                        <div class="btn-box">
-                            <a href="tel:+92(8800)9806" class="info-btn">
-                                <i class="icon fa fa-phone"></i>
-                                <small>Call Anytime</small> + 88 ( 9800 ) 6802
-                            </a>
-                            <a href="page-about.html" class="theme-btn btn-style-one"><span class="btn-title">Explore now</span></a>
+                            @if(@$homepage_info->welcome_link)
+                                <div class="btn-box">
+                                    <a href="tel:{{@$setting_data->phone ?? $setting_data->mobile ?? ''}}" class="info-btn">
+                                        <i class="icon fa fa-phone"></i>
+                                        <small>Call Anytime</small> {{@$setting_data->phone ?? $setting_data->mobile  ?? ''}}
+                                    </a>
+                                    <a href="{{@$homepage_info->welcome_link}}" class="theme-btn btn-style-one"><span class="btn-title">  {{ @$homepage_info->welcome_button }}</span></a>
+                                </div>
+                            @endif
                         </div>
                     </div>
-                </div>
-                <!-- Image Column -->
-                <div class="image-column col-lg-6 col-md-12">
-                    <div class="inner-column wow fadeInLeft">
-                        <figure class="image overlay-anim wow fadeInUp"><img src="images/resource/about-7.jpg" alt=""></figure>
-                        <figure class="stemp bounce-y"><img src="images/resource/stemp-3.png" alt=""></figure>
-                        <div class="experience">
-                            <div class="inner">
-                                <i class="icon flaticon-increase"></i>
-                                <div class="text"><strong>36+</strong> Work Experience</div>
-                            </div>
+                    <!-- Image Column -->
+                    <div class="image-column col-lg-6 col-md-12">
+                        <div class="inner-column wow fadeInLeft">
+                            <figure class="image overlay-anim wow fadeInUp">
+                                <img class="lazy" data-src="{{ @$homepage_info->welcome_image ? asset('/images/home/welcome/'.@$homepage_info->welcome_image):''}}" alt=""></figure>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-    <!--Emd About Section Five -->
-    <!-- Countries Section Three -->
+        </section>
+    @endif
+
     <section class="countries-section-three">
         <div class="anim-icons">
             <span class="icon icon-object-1"></span>

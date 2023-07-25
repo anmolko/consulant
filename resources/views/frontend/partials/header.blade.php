@@ -93,7 +93,8 @@
             <div class="logo-box">
                 <div class="logo">
                     <a href="/">
-                        <img class="lazy" data-src="{{$setting_data->logo ? asset('/images/settings/'.@$setting_data->logo):''}}" alt="" />
+                        <img class="lazy" style="width: 200px;"
+                             data-src="{{$setting_data->logo ? asset('/images/settings/'.@$setting_data->logo):''}}" alt="" />
                     </a>
                 </div>
             </div>
@@ -113,15 +114,17 @@
                                                     <a href="{{get_menu_url($childNav->type, $childNav)}}">
                                                         {{ @$childNav->name ?? @$childNav->title ??''}}
                                                     </a>
-                                                    <ul>
-                                                        @foreach($childNav->children[0] as $key => $lastchild)
-                                                            <li>
-                                                                <a href="{{get_menu_url($lastchild->type, $lastchild)}}" target="{{@$lastchild->target ? '_blank':''}}">
-                                                                    {{ @$lastchild->name ?? @$lastchild->title ?? ''}}
-                                                                </a>
-                                                            </li>
-                                                        @endforeach
-                                                    </ul>
+                                                    @if(@$childNav->children[0])
+                                                        <ul>
+                                                            @foreach(@$childNav->children[0] as $key => $lastchild)
+                                                                <li>
+                                                                    <a href="{{get_menu_url($lastchild->type, $lastchild)}}" target="{{@$lastchild->target ? '_blank':''}}">
+                                                                        {{ @$lastchild->name ?? @$lastchild->title ?? ''}}
+                                                                    </a>
+                                                                </li>
+                                                            @endforeach
+                                                        </ul>
+                                                    @endif
                                                 </li>
                                             @endforeach
                                         </ul>

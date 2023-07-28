@@ -1,5 +1,5 @@
 @extends('backend.layouts.master')
-@section('title', "Edit Course")
+@section('title', "Edit Test Preparation")
 @section('css')
 
     <link href="{{asset('assets/backend/libs/sweetalert2/sweetalert2.min.css')}}" rel="stylesheet" type="text/css" />
@@ -28,13 +28,13 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0">Edit Course</h4>
+                        <h4 class="mb-sm-0">Edit Test Preparation</h4>
 
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
                                 <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Dashboard</a></li>
-                                <li class="breadcrumb-item"><a href="{{route('course.index')}}">Course</a></li>
-                                <li class="breadcrumb-item active">Edit Course</li>
+                                <li class="breadcrumb-item"><a href="{{route('test-preparation.index')}}">Test Preparation</a></li>
+                                <li class="breadcrumb-item active">Edit Test Preparation</li>
                             </ol>
                         </div>
 
@@ -42,7 +42,7 @@
                 </div>
             </div>
             <!-- end page title -->
-            {!! Form::open(['url'=>route('course.update', @$edit->id),'method'=>'put','class'=>'needs-validation','novalidate'=>'','enctype'=>'multipart/form-data']) !!}
+            {!! Form::open(['url'=>route('test-preparation.update', @$edit->id),'method'=>'put','class'=>'needs-validation submit_form','novalidate'=>'','enctype'=>'multipart/form-data']) !!}
 
             <div class="row">
 
@@ -68,59 +68,21 @@
                             </div>
 
                             <div class="mb-3">
-                                <label>Why description</label>
-
-                                <textarea class="form-control" id="ckeditor-classic-blog" name="description" placeholder="Enter description" rows="3">{{ @$edit->description }}</textarea>
+                                <label>Summary</label>
+                                <textarea class="form-control" maxlength="300" name="summary" placeholder="Enter description" rows="3">{{ @$edit->summary }}</textarea>
                                 <div class="invalid-tooltip">
-                                    Please enter description
+                                    Please enter summary
                                 </div>
-
                             </div>
 
                             <div class="mb-3">
-                                <label>living description</label>
+                                <label>Enter Description</label>
+                                <textarea class="form-control" id="task-textarea" name="description" placeholder="Enter description" rows="3">{{ @$edit->description }}</textarea>
+                                <div class="invalid-tooltip">
+                                    Please enter description
+                                </div>
+                            </div>
 
-                                <textarea class="form-control" id="living" name="living" placeholder="Enter living description" rows="3">{{ @$edit->living }}</textarea>
-                                <div class="invalid-tooltip">
-                                    Please enter description
-                                </div>
-
-                            </div>
-                            <div class="mb-3">
-                                <label>Entry requirement description</label>
-                                <textarea class="form-control" id="entry_requirement" name="entry_requirement" placeholder="Enter entry requirements description" rows="3">{{ @$edit->entry_requirement }}</textarea>
-                                <div class="invalid-tooltip">
-                                    Please enter description
-                                </div>
-                            </div>
-                            <div class="mb-3">
-                                <label>Visa requirement description</label>
-                                <textarea class="form-control" id="visa_requirement" name="visa_requirement" placeholder="Enter visa requirement" rows="3">{{ @$edit->visa_requirement }}</textarea>
-                                <div class="invalid-tooltip">
-                                    Please enter description
-                                </div>
-                            </div>
-                            <div class="mb-3">
-                                <label>Education cost description</label>
-                                <textarea class="form-control" id="education_cost" name="education_cost" placeholder="Enter education cost description" rows="3">{{ @$edit->education_cost }}</textarea>
-                                <div class="invalid-tooltip">
-                                    Please enter description
-                                </div>
-                            </div>
-                            <div class="mb-3">
-                                <label>After graduation description</label>
-                                <textarea class="form-control" id="after_graduation" name="after_graduation" placeholder="Enter after graduation description" rows="3">{{ @$edit->after_graduation }}</textarea>
-                                <div class="invalid-tooltip">
-                                    Please enter description
-                                </div>
-                            </div>
-                            <div class="mb-3">
-                                <label>Useful Link description</label>
-                                <textarea class="form-control" id="useful_links" name="useful_links" placeholder="Enter useful links description" rows="3">{{ @$edit->useful_links }}</textarea>
-                                <div class="invalid-tooltip">
-                                    Please enter description
-                                </div>
-                            </div>
                         </div>
                     </div>
                     <!-- end card -->
@@ -191,9 +153,9 @@
                             </div>
                             <div class="card-body">
                                 <div>
-                                    <img  id="current-img"   src="{{ ($edit->image !== null) ? asset('images/course/'.$edit->image) :  asset('images/default-image.jpg') }}" class="position-relative img-fluid img-thumbnail blog-feature-image" >
+                                    <img  id="current-img"   src="{{ ($edit->image !== null) ? asset('images/test_preparation/'.$edit->image) :  asset('images/default-image.jpg') }}" class="position-relative img-fluid img-thumbnail blog-feature-image" >
                                     <input  type="file" accept="image/png, image/jpeg" hidden
-                                            id="profile-foreground-img-file-input" onchange="loadFile(event)" name="image"
+                                            id="profile-foreground-img-file-input" onchange="loadFile(event)" name="image_input"
                                             class="profile-foreground-img-file-input" >
 
                                     {{--                                    <figcaption class="figure-caption">*use image minimum of 1280 x 720px </figcaption>--}}
@@ -224,6 +186,7 @@
 @endsection
 
 @section('js')
+    <script src="{{asset('assets/backend/plugins/ckeditor/ckeditor.js')}}"></script>
     <script src="{{asset('assets/backend/js/pages/form-validation.init.js')}}"></script>
     <!-- Sweet Alerts js -->
     <script src="{{asset('assets/backend/libs/@ckeditor/ckeditor5-build-classic/build/ckeditor.js')}}"></script>
@@ -231,56 +194,30 @@
     <script src="{{asset('assets/backend/libs/sweetalert2/sweetalert2.min.js')}}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    <script src="{{asset('assets/backend/custom_js/blog_credit.js')}}"></script>
 
-    <script type="text/javascript">
-        function createEditor ( elementId ) {
-            return ClassicEditor
-                .create( document.querySelector( '#' + elementId ), {
-                    toolbar : {
-                        items: [
-                            'heading', '|',
-                            'bold', 'italic', 'link', '|',
-                            'outdent', 'indent', '|',
-                            'bulletedList', 'numberedList', '|',
-                            'insertTable', 'blockQuote', '|',
-                            'undo', 'redo'
-                        ],
-                    },
-                    link: {
-                        // Automatically add target="_blank" and rel="noopener noreferrer" to all external links.
-                        addTargetToExternalLinks: true,
-
-                        // Let the users control the "download" attribute of each link.
-                        decorators: [
-                            {
-                                mode: 'manual',
-                                label: 'Downloadable',
-                                attributes: {
-                                    download: 'download'
-                                }
-                            }
-                        ]
-                    },
-                } )
-                .then( editor => {
-                    window.editor = editor;
-                    editor.model.document.on( 'change:data', () => {
-                        $( '#' + elementId).text(editor.getData());
-                    } );
-
-                } )
-                .catch( err => {
-                    console.error( err.stack );
-                } );
-        }
+    <script>
+        var loadFile = function(event) {
+            var image = document.getElementById('profile-foreground-img-file-input');
+            var replacement = document.getElementById('current-img');
+            replacement.src = URL.createObjectURL(event.target.files[0]);
+        };
         $(document).ready(function () {
-            createEditor('living');
-            createEditor('entry_requirement');
-            createEditor('visa_requirement');
-            createEditor('education_cost');
-            createEditor('after_graduation');
-            createEditor('useful_links');
+
+
+            CKEDITOR.replace('task-textarea',{
+                allowedContent: true
+            });
+
+            // $("form.submit_form").on('submit', function (e){
+            //     e.preventDefault();
+            //     if (typeof CKEDITOR !== "undefined"){
+            //         for (instance in CKEDITOR.instances){
+            //             CKEDITOR.instances[instance].updateElement();
+            //         }
+            //     }
+            //     $(".submit_form").submit();
+            // });
+
         });
 
 

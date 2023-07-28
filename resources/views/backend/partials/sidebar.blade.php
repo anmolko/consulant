@@ -56,10 +56,17 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link menu-link @if(\Request::route()->getName() == 'course.index') active @endif" href="{{route('course.index')}}">
-                        <i class=" ri-pen-nib-line"></i> <span data-key="t-widgets">Course</span>
+                    <a class="nav-link menu-link @if(\Request::route()->getName() == 'test-preparation.index') active @endif" href="{{route('course.index')}}">
+                        <i class="ri-pen-nib-line"></i> <span data-key="t-widgets">Course</span>
                     </a>
                 </li>
+
+                <li class="nav-item">
+                    <a class="nav-link menu-link @if(\Request::route()->getName() == 'test-preparation.index') active @endif" href="{{route('test-preparation.index')}}">
+                        <i class="ri-quill-pen-line"></i> <span data-key="t-widgets">Test Preparation</span>
+                    </a>
+                </li>
+
 
                 <li class="nav-item">
                     <a class="nav-link menu-link @if(\Request::route()->getName() == 'services.index') active @endif" href="{{route('services.index')}}">

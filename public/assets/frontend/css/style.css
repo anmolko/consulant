@@ -734,7 +734,7 @@ li {
   margin-top: -60px;
   background-position: center center;
   background-repeat: no-repeat;
-  /*background-image: url(../images/icons/preloader.gif);*/
+  background-image: url(../images/icons/preloader.gif);
   background-size: 200px;
   content: "";
 }
@@ -3447,7 +3447,7 @@ Section Title
   display: inline-block;
   text-align: left;
 }
-.feature-block-three .content-box .icon {
+.feature-block-three .content-box .icon, .feature-block-three .content-box .far {
   position: absolute;
   left: 0;
   top: 20px;
@@ -3458,7 +3458,7 @@ Section Title
   font-size: 64px;
   transition: all 300ms ease;
 }
-.feature-block-three .content-box .icon::after {
+.feature-block-three .content-box .icon::after, , .feature-block-three .content-box .far:after {
   position: absolute;
   left: 30px;
   top: 10px;
@@ -4910,6 +4910,7 @@ Section Title
 }
 .service-block .content-box .read-more i {
   margin-left: 10px;
+  margin-top: 10px;
   color: #73787d;
   font-size: 16px;
   -webkit-transition: all 100ms linear;
@@ -6384,14 +6385,14 @@ Section Title
 ***/
 .training-section {
   position: relative;
-  padding: 120px 0;
+    padding: 0px 0px 80px;
 }
 .training-section .bg-layer {
   position: absolute;
   left: 0;
   bottom: 0;
   width: 100%;
-  max-height: 430px;
+  max-height: 350px;
   height: 100%;
   background-repeat: no-repeat;
   background-position: center;
@@ -7177,14 +7178,14 @@ Section Title
   content: "";
 }
 .call-to-action-two.pull-up {
-  margin-top: -100px;
-  padding-top: 205px;
+  margin-top: 0px;
+  padding: 80px 80px;
 }
 .call-to-action-two .title-box {
   position: relative;
 }
 .call-to-action-two .title-box .title {
-  font-size: 55px;
+  font-size: 45px;
   color: #fff;
   margin-bottom: 40px;
   font-weight: 500;
@@ -7201,7 +7202,7 @@ Section Title
 .call-to-action-two .video-box .inner {
   position: relative;
   padding-left: 130px;
-  padding-top: 70px;
+  padding-top: 30px;
 }
 .call-to-action-two .video-box .play-now-two {
   position: absolute;

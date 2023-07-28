@@ -76,6 +76,11 @@ Route::get('jobs/search/', 'App\Http\Controllers\FrontController@searchJob')->na
 Route::get('/jobs','App\Http\Controllers\FrontController@jobs')->name('job.list');
 Route::get('/jobs/{slug}','App\Http\Controllers\FrontController@jobSingle')->name('job.single');
 
+Route::get('/study-abroad','App\Http\Controllers\FrontController@studyAbroad')->name('study-abroad.list');
+Route::get('/study-abroad/{slug}','App\Http\Controllers\FrontController@studyAbroadSingle')->name('study-abroad.single');
+
+Route::get('/test-preparations','App\Http\Controllers\FrontController@testPreparation')->name('test-preparation.list');
+Route::get('/test-preparations/{slug}','App\Http\Controllers\FrontController@testPreparationSingle')->name('test-preparation.single');
 
 Route::group(['prefix' => 'auth', 'middleware' => ['auth']], function () {
     Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
@@ -252,6 +257,18 @@ Route::group(['prefix' => 'auth', 'middleware' => ['auth']], function () {
     Route::delete('/course/{course}', 'App\Http\Controllers\CourseController@destroy')->name('course.destroy');
     Route::get('/course/{course}/edit', 'App\Http\Controllers\CourseController@edit')->name('course.edit');
     Route::patch('/course/{id}/update', 'App\Http\Controllers\CourseController@updateStatus')->name('course-status.update');
+
+    //End course
+
+    //test preparations
+
+    Route::get('/test-preparation', 'App\Http\Controllers\TestPreparationController@index')->name('test-preparation.index');
+    Route::get('/test-preparation/create', 'App\Http\Controllers\TestPreparationController@create')->name('test-preparation.create');
+    Route::post('/test-preparation', 'App\Http\Controllers\TestPreparationController@store')->name('test-preparation.store');
+    Route::put('/test-preparation/{id}', 'App\Http\Controllers\TestPreparationController@update')->name('test-preparation.update');
+    Route::delete('/test-preparation/{test-preparation}', 'App\Http\Controllers\TestPreparationController@destroy')->name('test-preparation.destroy');
+    Route::get('/test-preparation/{id}/edit', 'App\Http\Controllers\TestPreparationController@edit')->name('test-preparation.edit');
+    Route::patch('/test-preparation/{id}/update', 'App\Http\Controllers\TestPreparationController@updateStatus')->name('test-preparation-status.update');
 
     //End course
 

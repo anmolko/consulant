@@ -48,7 +48,7 @@
             <div class="feature-block-three col-xl-4 col-lg-6 col-md-12 wow fadeInUp" data-wow-delay="400ms">
                 <div class="inner-box ">
                     <div class="content-box">
-                        <i class="icon flaticon-group"></i>
+                        <i class="far fa-flag"></i>
                         <h4 class="title"><a>Our Vision</a></h4>
                         <span class="sub-title">{{ ucfirst(@$homepage_info->vision) }}</span>
                     </div>
@@ -112,7 +112,7 @@
             <div class="auto-container">
                 <div class="sec-title text-center">
                     <span class="sub-title">What we offer</span>
-                    <h2>The categories we provide<br>for you.</h2>
+                    <h2>The services we provide<br>for you.</h2>
                 </div>
 
                 <div class="carousel-outer">
@@ -152,17 +152,13 @@
             <div class="row">
                 <div class="col-lg-8">
                     <div class="title-box">
-                        <h2 class="title">We Counselling Students <br>to Get Study Visa</h2>
-                        <a href="page-about.html" class="theme-btn btn-style-one light"><span class="btn-title">Explore now</span></a>
+                        <h2 class="title">We provide counselling students <br>to get study visa</h2>
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="video-box">
                         <div class="inner">
-                            <a href="https://www.youtube.com/watch?v=Fvae8nxzVz4" class="play-now-two alternate lightbox-image"><i class="icon fa fa-play"></i></a>
-                            <img src="images/icons/icon-arrow.png" alt="" class="arrow">
-                            <h4 class="title style-font">Play Video</h4>
-                            <span class="sub-title">Watch training videos</span>
+                            <a href="{{ route('contact') }}" class="theme-btn btn-style-one light"><span class="btn-title">Contact us</span></a>
                         </div>
                     </div>
                 </div>
@@ -170,62 +166,100 @@
         </div>
     </section>
 
-    <!-- Features Section Four -->
-    <section class="features-section-four">
-        <div class="anim-icons">
-            <span class="icon icon-shape-5"></span>
-        </div>
-        <div class="auto-container">
-            <div class="row">
-                <!-- Content Column -->
-                <div class="content-column col-lg-7 col-md-12 order-2">
-                    <div class="inner-column wow fadeInRight">
-                        <div class="sec-title light">
-                            <i class="sub-title">Countries we offer</i>
-                            <h2>Vizox Provides Services that Our Client Requires.</h2>
-                            <div class="text">Lorem ipsum dolor sit amet, conse ctetur adipisicing elit sed do eiusm od tempor ut labore. Many desktop publishing packages and wpage editors now use Lorem Ipsum as their defamodel text.</div>
+    @if(count($latestcourses) > 0)
+        <section class="services-section">
+            <div class="anim-icons">
+                <span class="icon icon-object-2"></span>
+                <span class="icon icon-object-3"></span>
+            </div>
+            <div class="auto-container">
+                <div class="sec-title">
+                    <div class="row">
+                        <div class="col-lg-7">
+                            <span class="sub-title">Start your journey</span>
+                            <h2>Study Abroad with <br>our programme.</h2>
                         </div>
-                        <div class="image-box">
-                            <figure class="image"><img src="images/resource/feature.jpg" alt=""></figure>
-                            <i class="icon flaticon-passport-16"></i>
+                        <div class="col-lg-5">
+                            <div class="text">Enrolling in Study Abroad Programs offers you the chance to embrace the world as your educational playground.</div>
                         </div>
                     </div>
                 </div>
-                <!-- Features Column -->
-                <div class="features-column col-lg-5 col-md-12 col-sm-12">
-                    <div class="inner-column wow fadeInLeft">
-                        <div class="bg-image" style="background-image: url(images/resource/image-8.jpg)"></div>
-                        <div class="row">
-                            <!-- Feature Block Five  -->
-                            <div class="feature-block-five">
-                                <div class="inner-box">
-                                    <i class="icon flaticon-approved"></i>
-                                    <h5 class="title">Faster Processing</h5>
-                                    <div class="text">Lorem ipsum is simply free dolor sit amet.</div>
+
+                <div class="row">
+                    @foreach(@$latestcourses as $index=>$latest)
+                        <div class="service-block col-lg-4 col-md-6 col-sm-12 wow fadeInUp">
+                            <div class="inner-box">
+                                <div class="image-box">
+                                    <figure class="image"><a href="{{ route('study-abroad.single', $latest->slug) }}">
+                                            <img src="{{ @$latest->image ? asset('/images/course/'.@$latest->image):''}}" alt=""></a>
+                                    </figure>
+                                    <div class="icon-box"><i class="icon fa fa-graduation-cap"></i></div>
                                 </div>
-                            </div>
-                            <!-- Feature Block Five -->
-                            <div class="feature-block-five">
-                                <div class="inner-box">
-                                    <i class="icon flaticon-discount"></i>
-                                    <h5 class="title">Cost-Effective</h5>
-                                    <div class="text">Lorem ipsum is simply free dolor sit amet.</div>
-                                </div>
-                            </div>
-                            <!-- Feature Block Five -->
-                            <div class="feature-block-five">
-                                <div class="inner-box">
-                                    <i class="icon flaticon-help"></i>
-                                    <h5 class="title">Visa Assistance</h5>
-                                    <div class="text">Lorem ipsum is simply free dolor sit amet</div>
+                                <div class="content-box">
+                                    <h5 class="title"><a href="{{ route('study-abroad.single', $latest->slug) }}">
+                                            {{ $latest->title ?? '' }}
+                                        </a></h5>
+                                    <div class="text">
+                                        {{ elipsis( strip_tags($latest->description ?? '') )}}
+                                    </div>
+                                    <a href="{{ route('study-abroad.single',$latest->slug) }}" class="read-more">Read More <i class="fa fa-long-arrow-alt-right"></i></a>
                                 </div>
                             </div>
                         </div>
+                    @endforeach
+                </div>
+            </div>
+        </section>
+    @endif
+
+    @if(count($latesttests) > 0)
+        <section class="training-section-two">
+            <div class="bg-layer"></div>
+            <div class="outer-box pull-up">
+                <div class="auto-container">
+                    <div class="row">
+                        <div class="col-lg-7">
+                            <div class="sec-title">
+                                <span class="sub-title">Training & Tests</span>
+                                <h2>Get the best trainings <br> you deserve.</h2>
+                            </div>
+                        </div>
+                        <div class="col-lg-5">
+                            <div class="video-box">
+                                <div class="inner">
+                                    <a href="{{ route('test-preparation.list') }}" class="theme-btn btn-style-one light"><span class="btn-title">View All</span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        @foreach(@$latestcourses as $index=>$latest)
+                            <div class="training-block-two col-lg-4 col-md-6 col-sm-12">
+                                <div class="inner-box">
+                                    <div class="image-box">
+                                        <figure class="image">
+                                            <a href="{{ route('test-preparation.single', $latest->slug) }}">
+                                                <img src="{{ @$latest->image ? asset('/images/test_preparation/'.@$latest->image):''}}" alt=""></a>
+                                        </figure>
+                                        <div class="info-box">
+                                            <h5 class="title"><a href="{{ route('test-preparation.single', $latest->slug) }}">
+                                                    {{ $latest->title ?? ''}}
+                                                </a></h5>
+                                            <div class="text">
+                                                {{ elipsis( strip_tags($latest->summary ?? '') )}}
+                                            </div>
+                                            <a href="{{ route('test-preparation.single', $latest->slug) }}" class="read-more"><i class="fa fa-long-arrow-alt-right"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    @endif
 
     <section class="training-section-three">
         <div class="auto-container">

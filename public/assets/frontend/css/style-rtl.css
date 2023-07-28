@@ -4078,7 +4078,7 @@ Section Title
 
 .about-section-five .content-column {
   position: relative;
-  margin-bottom: 50px;
+  /*margin-bottom: 50px;*/
   z-index: 1;
 }
 .about-section-five .content-column .inner-column {
@@ -4182,7 +4182,7 @@ Section Title
 
 .about-section-five .image-column {
   position: relative;
-  margin-bottom: 50px;
+  /*margin-bottom: 50px;*/
 }
 .about-section-five .image-column .inner-column {
   position: relative;
@@ -6160,14 +6160,14 @@ Section Title
 ***/
 .training-section {
   position: relative;
-  padding: 0px 0;
+  padding: 0px;
 }
 .training-section .bg-layer {
   position: absolute;
   right: 0;
   bottom: 0;
   width: 100%;
-  max-height: 430px;
+  max-height: 380px;
   height: 100%;
   background-repeat: no-repeat;
   background-position: center;
@@ -6953,7 +6953,7 @@ Section Title
   content: "";
 }
 .call-to-action-two.pull-up {
-  margin-top: -100px;
+  margin-top: 0px;
   padding-top: 205px;
 }
 .call-to-action-two .title-box {

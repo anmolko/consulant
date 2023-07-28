@@ -2,15 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\JobCreateRequest;
-use App\Http\Requests\JobUpdateRequest;
-use App\Models\Client;
+
 use App\Models\Course;
 use App\Models\Job;
-use App\Models\JobCategory;
-use App\Models\ServiceCategory;
-use Carbon\Carbon;
-use CountryState;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -20,6 +14,7 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\DB;
 
 
 class CourseController extends Controller
@@ -146,53 +141,57 @@ class CourseController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $job                        = Course::find($id);
-        $job->name                  = $request->input('name');
-        $job->title                 = $request->input('title');
-        $job->lt_number             = $request->input('lt_number');
-        $job->code                  = strtok($request->input('title'), " ").'-COR-'.rand(1,500);
-        $job->description           = $request->input('description');
-        $job->living                = $request->input('living');
-        $job->entry_requirement     = $request->input('entry_requirement');
-        $job->min_qualification     = $request->input('min_qualification');
-        $job->visa_requirement      = $request->input('visa_requirement');
-        $job->education_cost        = $request->input('education_cost');
-        $job->after_graduation      = $request->input('after_graduation');
-        $job->useful_links          = $request->input('useful_links');
-        $job->meta_tags             = $request->input('meta_tags');
-        $job->meta_description      = $request->input('meta_description');
-        $job->updated_by            = Auth::user()->id;
-        $oldimage                   = $job->image;
-        $thumbimage                 = 'thumb_'.$job->image;
+        $course                        = Course::find($id);
+        DB::beginTransaction();
+        try {
+            $course->title                 = $request->input('title');
+            $course->code                  = strtok($request->input('title'), " ").'-COR-'.rand(1,500);
+            $course->slug                  = $this->model->changeToSlug($request->input('title'));
+            $course->description           = $request->input('description');
+            $course->living                = $request->input('living');
+            $course->entry_requirement     = $request->input('entry_requirement');
+            $course->visa_requirement      = $request->input('visa_requirement');
+            $course->education_cost        = $request->input('education_cost');
+            $course->after_graduation      = $request->input('after_graduation');
+            $course->useful_links          = $request->input('useful_links');
+            $course->meta_title            = $request->input('meta_title');
+            $course->meta_tags             = $request->input('meta_tags');
+            $course->meta_description      = $request->input('meta_description');
+            $course->updated_by            = Auth::user()->id;
+            $oldimage                      = $course->image;
+            $thumbimage                    = 'thumb_'.$course->image;
 
-        if (!empty($request->file('image'))){
-            $image                = $request->file('image');
-            $name                 = uniqid().'_'.$image->getClientOriginalName();
-            $thumb                = 'thumb_'.$name;
-            $path                 = base_path().'/public/images/course/';
-            $thumb_path           = base_path().'/public/images/course/thumb/';
-            $moved                = Image::make($image->getRealPath())->orientate()->save($path.$name);
-            $thumb                = Image::make($image->getRealPath())->fit(370, 190)->orientate()->save($thumb_path.$thumb);
+            if (!empty($request->file('image'))){
+                $image                = $request->file('image');
+                $name                 = uniqid().'_'.$image->getClientOriginalName();
+                $thumb                = 'thumb_'.$name;
+                $path                 = base_path().'/public/images/course/';
+                $thumb_path           = base_path().'/public/images/course/thumb/';
+                $moved                = Image::make($image->getRealPath())->orientate()->save($path.$name);
+                $thumb                = Image::make($image->getRealPath())->fit(370, 190)->orientate()->save($thumb_path.$thumb);
 
-            if ($moved && $thumb){
-                $job->image = $name;
-                if (!empty($oldimage) && file_exists(public_path().'/images/course/'.$oldimage)){
-                    @unlink(public_path().'/images/course/'.$oldimage);
-                }
+                if ($moved && $thumb){
+                    $course->image = $name;
+                    if (!empty($oldimage) && file_exists(public_path().'/images/course/'.$oldimage)){
+                        @unlink(public_path().'/images/course/'.$oldimage);
+                    }
 
-                if (!empty($thumbimage) && file_exists(public_path().'/images/course/thumb/'.$thumbimage)){
-                    @unlink(public_path().'/images/course/thumb/'.$thumbimage);
+                    if (!empty($thumbimage) && file_exists(public_path().'/images/course/thumb/'.$thumbimage)){
+                        @unlink(public_path().'/images/course/thumb/'.$thumbimage);
+                    }
                 }
             }
+
+            $course->update();
+
+            DB::commit();
+            Session::flash('success','Course details was updated Successfully');
+        } catch (\Exception $e) {
+            DB::rollback();
+            dd($e);
+            Session::flash('error','Course details was not updated. Something went wrong.');
         }
 
-        $status                     = $this->model->update();
-        if($status){
-            Session::flash('success','Course details was updated Successfully');
-        }
-        else{
-            Session::flash('error','Something Went Wrong. Course details could not be Updated');
-        }
         return redirect()->route('course.index');
     }
 
@@ -204,7 +203,7 @@ class CourseController extends Controller
      */
     public function destroy($id)
     {
-        $delete       = Job::find($id);
+        $delete       = Course::find($id);
         $rid          = $delete->id;
         $thumbimage   = 'thumb_'.$delete->image;
 

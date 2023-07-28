@@ -6,6 +6,7 @@ use App\Models\Album;
 use App\Models\Blog;
 use App\Models\BlogCategory;
 use App\Models\Career;
+use App\Models\Course;
 use App\Models\Faq;
 use App\Models\Job;
 use App\Models\JobCategory;
@@ -25,6 +26,7 @@ use App\Models\Page;
 use App\Models\Client;
 use App\Models\PageSection;
 use App\Models\SectionGallery;
+use App\Models\TestPreparation;
 use App\Models\VideoGallery;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -80,11 +82,12 @@ class FrontController extends Controller
         $recruitments       = RecruitmentProcess::all();
         $director           = ManagingDirector::orderBy('order', 'asc')->get();
         $today              = date('Y-m-d');
-        $latestJobs         = Job::orderBy('created_at', 'DESC')->where('start_date','<=',$today)->take(3)->get();
+        $latestcourses      = Course::orderBy('created_at', 'DESC')->take(6)->get();
+        $latesttests        = TestPreparation::orderBy('created_at', 'DESC')->take(6)->get();
         $recuruitment_index = [3,7,11,15];
         $legal_data         = get_legal_documents();
 
-        return view('welcome',compact('director','legal_data','today','latestJobs','clients','recruitments','testimonials','clients','latestPosts','latestServices','countries','homepage_info','sliders','recuruitment_index'));
+        return view('welcome',compact('director','legal_data','today','latestcourses','latesttests','clients','recruitments','testimonials','clients','latestPosts','latestServices','countries','homepage_info','sliders','recuruitment_index'));
     }
 
 
@@ -500,6 +503,32 @@ class FrontController extends Controller
         $videoGalleries    = VideoGallery::orderBy('created_at', 'desc')->paginate(9);
 
         return view('frontend.pages.video',compact('videoGalleries'));
+    }
+
+    public function studyAbroad(){
+        $rows    = Course::orderBy('created_at', 'desc')->paginate(9);
+
+        return view('frontend.pages.course.index',compact('rows'));
+    }
+
+    public function studyAbroadSingle($slug){
+        $row                = Course::where('slug', $slug)->first();
+        $latestCourses      = Course::orderBy('created_at', 'DESC')->where('status','publish')->whereNotIn('id',[$row->id])->take(4)->get();
+
+        return view('frontend.pages.course.single',compact('row','latestCourses'));
+    }
+
+    public function testPreparation(){
+        $rows    = TestPreparation::orderBy('created_at', 'desc')->paginate(9);
+
+        return view('frontend.pages.test_preparation.index',compact('rows'));
+    }
+
+    public function testPreparationSingle($slug){
+        $row                = TestPreparation::where('slug', $slug)->first();
+        $latestTests        = TestPreparation::orderBy('created_at', 'DESC')->where('status','publish')->whereNotIn('id',[$row->id])->take(4)->get();
+
+        return view('frontend.pages.test_preparation.single',compact('row','latestTests'));
     }
 
 

@@ -1,5 +1,5 @@
 @extends('backend.layouts.master')
-@section('title', "Course")
+@section('title', "Test Preparation")
 @section('css')
     <link rel="stylesheet" href="{{asset('assets/backend/css/jquery.dataTables.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/backend/custom_css/datatable_style.css')}}">
@@ -14,12 +14,12 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0">Course</h4>
+                        <h4 class="mb-sm-0">Test Preparation</h4>
 
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
                                 <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Dashboard</a></li>
-                                <li class="breadcrumb-item active">Course</li>
+                                <li class="breadcrumb-item active">Test Preparation</li>
                             </ol>
                         </div>
 
@@ -35,13 +35,13 @@
                         <div class="card-header">
                             <div class="row g-4">
                                 <div class="col-sm-auto">
-                                    <h4 class="card-title mb-0">Course List</h4>
+                                    <h4 class="card-title mb-0">Test Preparation List</h4>
 
                                 </div>
                                 <div class="col-sm">
                                     <div class="d-flex justify-content-sm-end">
                                         <div>
-                                            <a href="{{route('course.create')}}" class="btn btn-success"><i class="ri-add-line align-bottom me-1"></i> Add Course</a>
+                                            <a href="{{route('test-preparation.create')}}" class="btn btn-success"><i class="ri-add-line align-bottom me-1"></i> Add Test Preparation</a>
                                         </div>
                                     </div>
                                 </div>
@@ -52,40 +52,40 @@
                             <div class="row" >
 
                                 <div class="table-responsive  mt-3 mb-1">
-                                    <table id="course-index" class="table align-middle table-nowrap table-striped">
+                                    <table id="test-index" class="table align-middle table-nowrap table-striped">
                                         <thead class="table-light">
                                         <tr>
                                             <th>Feature Image</th>
                                             <th>Title</th>
-                                            <th>Code</th>
+                                            <th>Summary</th>
                                             <th>Status</th>
                                             <th class="text-right">Action</th>
                                         </tr>
                                         </thead>
                                         <tbody id="blog-list">
-                                        @if(!empty($courses))
-                                            @foreach($courses as  $course)
-                                                <tr id="job-individual-{{@$course->id}}">
+                                        @if(!empty($rows))
+                                            @foreach($rows as  $test)
+                                                <tr id="test-individual-{{@$test->id}}">
                                                     <td >
 
-                                                        <img src="{{ ($course->image !== null) ? asset('/images/course/'.@$course->image): asset('assets/frontend/images/win.png')}}" alt="{{@$course->slug}}" class="figure-img rounded-circle avatar-lg">
+                                                        <img src="{{ ($test->image !== null) ? asset('/images/test_preparation/'.@$test->image):'' }}" alt="{{@$test->slug}}" class="figure-img rounded-circle avatar-lg">
                                                     </td>
                                                     <td>
-                                                        {{ ucwords(@$course->title) }}
-                                                    </td>
-                                                    <td >
-                                                        {{ ucwords(@$course->code) }}
+                                                        {{ ucwords(@$test->title) }}
                                                     </td>
                                                     <td>
-                                                        <div class="btn-group view-btn" id="course-status-button-{{$course->id}}">
+                                                        {{ elipsis( strip_tags($test->summary ?? '') )}}
+                                                    </td>
+                                                    <td>
+                                                        <div class="btn-group view-btn" id="test-status-button-{{$test->id}}">
                                                             <button class="btn btn-light dropdown-toggle" style="width: 10em;" type="button" id="dropdownMenuClickableInside" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
-                                                                {{ucwords(@$course->status)}}
+                                                                {{ucwords(@$test->status)}}
                                                             </button>
                                                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuClickableInside" style="">
-                                                                @if($course->status == "draft")
-                                                                    <li><a class="dropdown-item change-status" cs-update-route="{{route('course-status.update',$course->id)}}" href="#" cs-status-value="publish">Published</a></li>
+                                                                @if($test->status == "draft")
+                                                                    <li><a class="dropdown-item change-status" cs-update-route="{{route('test-preparation-status.update',$test->id)}}" href="#" cs-status-value="publish">Published</a></li>
                                                                 @else
-                                                                    <li><a class="dropdown-item change-status" cs-update-route="{{route('course-status.update',$course->id)}}" href="#" cs-status-value="draft">Draft</a></li>
+                                                                    <li><a class="dropdown-item change-status" cs-update-route="{{route('test-preparation-status.update',$test->id)}}" href="#" cs-status-value="draft">Draft</a></li>
                                                                 @endif
                                                             </ul>
                                                         </div>
@@ -98,8 +98,8 @@
                                                                     <i class="ri-more-fill fs-17"></i>
                                                                 </a>
                                                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink2">
-                                                                    <li><a class="dropdown-item" href="{{route('course.edit',$course->id)}}"><i class="ri-pencil-fill me-2 align-middle"></i>Edit</a></li>
-                                                                    <li><a class="dropdown-item cs-course-remove" cs-delete-route="{{route('course.destroy',$course->id)}}"><i class="ri-delete-bin-6-line me-2 align-middle"></i>Delete</a></li>
+                                                                    <li><a class="dropdown-item" href="{{route('test-preparation.edit',$test->id)}}"><i class="ri-pencil-fill me-2 align-middle"></i>Edit</a></li>
+                                                                    <li><a class="dropdown-item cs-test-remove" cs-delete-route="{{route('test-preparation.destroy',$test->id)}}"><i class="ri-delete-bin-6-line me-2 align-middle"></i>Delete</a></li>
                                                                 </ul>
                                                             </div>
                                                         </div>
@@ -138,7 +138,7 @@
     <script src="{{asset('assets/backend/plugins/ckeditor/ckeditor.js')}}"></script>
     <script src="{{asset('assets/backend/libs/@ckeditor/ckeditor5-build-classic/build/ckeditor.js')}}"></script>
 
-    <script src="{{asset('assets/backend/custom_js/course.js')}}"></script>
+    <script src="{{asset('assets/backend/custom_js/test-preparation.js')}}"></script>
 
 
 @endsection

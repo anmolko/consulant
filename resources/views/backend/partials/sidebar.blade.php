@@ -56,29 +56,16 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link menu-link @if(\Request::route()->getName() == 'services.index') active @endif" href="{{route('services.index')}}">
-                        <i class="ri-customer-service-2-line"></i> <span data-key="t-widgets">Services</span>
+                    <a class="nav-link menu-link @if(\Request::route()->getName() == 'course.index') active @endif" href="{{route('course.index')}}">
+                        <i class=" ri-pen-nib-line"></i> <span data-key="t-widgets">Course</span>
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link menu-link @if(\Request::route()->getName() == 'jobcategory.index' || \Request::route()->getName() == 'job.index' ||  \Request::route()->getName() == 'job.create' || \Request::route()->getName() == 'job.edit') active @endif" href="#sidebarJobs" data-bs-toggle="collapse" role="button"
-                    aria-expanded="false" aria-controls="sidebarJobs">
-                        <i class="ri-links-line"></i> <span data-key="t-job-mgmt">Job Mgmt.</span>
+                    <a class="nav-link menu-link @if(\Request::route()->getName() == 'services.index') active @endif" href="{{route('services.index')}}">
+                        <i class="ri-customer-service-2-line"></i> <span data-key="t-widgets">Services</span>
                     </a>
-                    <div class="collapse menu-dropdown @if(\Request::route()->getName() == 'jobcategory.index' || \Request::route()->getName() == 'job.index' ) show @endif" id="sidebarJobs">
-                        <ul class="nav nav-sm flex-column">
-                            <li class="nav-item">
-                                <a href="{{route('jobcategory.index')}}" class="nav-link @if(\Request::route()->getName() == 'jobcategory.index') active @endif" data-key="t-job-category">Category</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{route('job.index')}}" class="nav-link @if(\Request::route()->getName() == 'job.index') active @endif" data-key="t-job">Job</a>
-                            </li>
-
-                        </ul>
-                    </div>
                 </li>
-
                 <li class="nav-item">
                     <a class="nav-link menu-link @if(\Request::route()->getName() == 'blogcategory.index' || \Request::route()->getName() == 'blog.index' ||  \Request::route()->getName() == 'blog.create' || \Request::route()->getName() == 'blog.edit' ) active @endif" href="#sidebarBlogs" data-bs-toggle="collapse" role="button"
                        aria-expanded="false" aria-controls="sidebarBlogs">
@@ -122,6 +109,7 @@
                         <i class="ri-hand-heart-line"></i> <span data-key="t-widgets">Testimonial</span>
                     </a>
                 </li>
+
                 <li class="nav-item">
                     <a class="nav-link menu-link @if(\Request::route()->getName() == 'teams.index') active @endif" href="{{route('teams.index')}}">
                         <i class="ri-team-line"></i> <span data-key="t-widgets">Teams</span>

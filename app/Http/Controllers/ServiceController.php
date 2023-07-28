@@ -75,7 +75,7 @@ class ServiceController extends Controller
             $path           = base_path().'/public/images/service/';
             $thumb          = base_path().'/public/images/service/thumb/';
             $moved          = Image::make($image->getRealPath())->fit(850, 450)->orientate()->save($path.$name);
-            $thumb_moved    = Image::make($image->getRealPath())->fit(360, 260)->orientate()->save($thumb.$thumb_name);
+            $thumb_moved    = Image::make($image->getRealPath())->fit(270, 360)->orientate()->save($thumb.$thumb_name);
 
             if ($moved && $thumb_moved){
                 $data['banner_image']=$name;
@@ -149,7 +149,7 @@ class ServiceController extends Controller
                 mkdir($thumb_path, 0777);
             }
             $moved        = Image::make($image->getRealPath())->fit(850, 567)->orientate()->save($path.$name1);
-            $thumb_moved  = Image::make($image->getRealPath())->fit(360, 260)->orientate()->save($thumb_path.$thumb_name);
+            $thumb_moved  = Image::make($image->getRealPath())->fit(270, 360)->orientate()->save($thumb_path.$thumb_name);
 
             if ($moved && $thumb_moved){
                 $service->banner_image= $name1;

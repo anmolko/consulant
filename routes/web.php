@@ -243,6 +243,18 @@ Route::group(['prefix' => 'auth', 'middleware' => ['auth']], function () {
 
     //End of job categories
 
+    //course
+
+    Route::get('/course', 'App\Http\Controllers\CourseController@index')->name('course.index');
+    Route::get('/course/create', 'App\Http\Controllers\CourseController@create')->name('course.create');
+    Route::post('/course', 'App\Http\Controllers\CourseController@store')->name('course.store');
+    Route::put('/course/{course}', 'App\Http\Controllers\CourseController@update')->name('course.update');
+    Route::delete('/course/{course}', 'App\Http\Controllers\CourseController@destroy')->name('course.destroy');
+    Route::get('/course/{course}/edit', 'App\Http\Controllers\CourseController@edit')->name('course.edit');
+    Route::patch('/course/{id}/update', 'App\Http\Controllers\CourseController@updateStatus')->name('course-status.update');
+
+    //End course
+
     //jobs
 
     Route::get('/jobs', 'App\Http\Controllers\JobController@index')->name('job.index');

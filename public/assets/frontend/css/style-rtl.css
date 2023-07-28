@@ -9,15 +9,15 @@ License: copyright commercial
 2. Reset
 3. Global Settings
 4. Main Header / TWO / Three
-5. Sticky Header 
+5. Sticky Header
 6. Mobile Menu
 7. Section Title
 8. Page Title
 9. Main Slider
-10. Banner Section / Two 
+10. Banner Section / Two
 11. About Section / Two / Three / Four / Five
 12. Countries Section / Two / Three
-13. Services Section / Two 
+13. Services Section / Two
 14. Testimonial / Two / Three
 15. Clients Section
 16. Fun Fact Section / Two
@@ -4258,7 +4258,7 @@ Section Title
 ***/
 .countries-section {
   position: relative;
-  padding: 120px 0;
+  padding: 60px 0;
   z-index: 2;
 }
 .countries-section .bg-layer {
@@ -6160,7 +6160,7 @@ Section Title
 ***/
 .training-section {
   position: relative;
-  padding: 120px 0;
+  padding: 0px 0;
 }
 .training-section .bg-layer {
   position: absolute;

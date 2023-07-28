@@ -106,86 +106,48 @@
         </section>
     @endif
 
-    <section class="countries-section-three">
-        <div class="anim-icons">
-            <span class="icon icon-object-1"></span>
-        </div>
-        <div class="outer-box pt-0">
+    @if(count($latestServices) > 0)
+        <section class="training-section">
+            <div class="bg-layer"></div>
             <div class="auto-container">
                 <div class="sec-title text-center">
-                    <span class="sub-title">Countries we offer</span>
-                    <h2>Countries We Support <br>for Immigration.</h2>
+                    <span class="sub-title">What we offer</span>
+                    <h2>The categories we provide<br>for you.</h2>
                 </div>
-                <!--  Countries Carousel -->
-                <div class="row">
-                    <!-- Country Block Three-->
-                    <div class="country-block-three col-lg-4 col-md-6 col-sm-12">
-                        <div class="inner-box">
-                            <div class="content">
-                                <div class="flag"><img src="images/resource/flag-aus.jpg" alt=""></div>
-                                <h5 class="title"><a href="page-country-details.html">Australia</a></h5>
-                                <div class="text">Fusce pretium sem eget mattis.</div>
+
+                <div class="carousel-outer">
+                    <div class="training-carousel owl-carousel owl-theme">
+                        @foreach(@$latestServices as $index=>$service)
+                            <div class="training-block">
+                                <div class="inner-box">
+                                    <div class="image-box">
+                                        <figure class="image">
+                                            <a href="{{route('service.single',$service->slug)}}">
+                                                <img src="{{asset('/images/service/thumb/thumb_'.@$service->banner_image)}}" alt="">
+                                            </a>
+                                        </figure>
+                                        <div class="info-box">
+                                            <h5 class="title"><a href="{{route('service.single',$service->slug)}}"> {{ucwords(@$service->title)}}</a></h5>
+                                            <a href="{{route('service.single',$service->slug)}}" class="read-more"><i class="fa fa-long-arrow-alt-right"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="overlay-content">
+                                        <div class="info-box">
+                                            <h5 class="title"><a href="{{route('service.single',$service->slug)}}"> {{ucwords(@$service->title)}}</a></h5>
+                                            <div class="text">{{ elipsis( strip_tags($service->description) )}}</div>
+                                            <a href="{{route('service.single',$service->slug)}}" class="read-more"><i class="fa fa-long-arrow-alt-right"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <!-- Country Block Three-->
-                    <div class="country-block-three col-lg-4 col-md-6 col-sm-12">
-                        <div class="inner-box">
-                            <div class="content">
-                                <div class="flag"><img src="images/resource/flag-usa.jpg" alt=""></div>
-                                <h5 class="title"><a href="page-country-details.html">United States</a></h5>
-                                <div class="text">Fusce pretium sem eget mattis.</div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Country Block Three-->
-                    <div class="country-block-three col-lg-4 col-md-6 col-sm-12">
-                        <div class="inner-box">
-                            <div class="content">
-                                <div class="flag"><img src="images/resource/flag-dub.jpg" alt=""></div>
-                                <h5 class="title"><a href="page-country-details.html">Dubai</a></h5>
-                                <div class="text">Fusce pretium sem eget mattis.</div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Country Block Three-->
-                    <div class="country-block-three col-lg-4 col-md-6 col-sm-12">
-                        <div class="inner-box">
-                            <div class="content">
-                                <div class="flag"><img src="images/resource/flag-la.jpg" alt=""></div>
-                                <h5 class="title"><a href="page-country-details.html">Los Angeles</a></h5>
-                                <div class="text">Fusce pretium sem eget mattis.</div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Country Block Three-->
-                    <div class="country-block-three col-lg-4 col-md-6 col-sm-12">
-                        <div class="inner-box">
-                            <div class="content">
-                                <div class="flag"><img src="images/resource/flag-in.jpg" alt=""></div>
-                                <h5 class="title"><a href="page-country-details.html">India</a></h5>
-                                <div class="text">Fusce pretium sem eget mattis.</div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Country Block Three-->
-                    <div class="country-block-three col-lg-4 col-md-6 col-sm-12">
-                        <div class="inner-box">
-                            <div class="content">
-                                <div class="flag"><img src="images/resource/flag-turkey.jpg" alt=""></div>
-                                <h5 class="title"><a href="page-country-details.html">Turkey</a></h5>
-                                <div class="text">Fusce pretium sem eget mattis.</div>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
-                <div class="bottom-text">Top Rated By Customers & Immigration Firms With 100% Success Rate.</div>
             </div>
-        </div>
-    </section>
-    <!--End Countries Section -->
-    <!-- Call to Action Two -->
-    <section class="call-to-action-two pull-up" style="background-image: url(images/background/4.jpg)">
+        </section>
+    @endif
+
+    <section class="call-to-action-two pull-up" style="background-image: url( {{ asset('assets/frontend/images/cta/01.jpeg') }})">
         <div class="auto-container">
             <div class="row">
                 <div class="col-lg-8">
@@ -207,128 +169,7 @@
             </div>
         </div>
     </section>
-    <!-- End Call to Action -->
-    <!-- Services Section Two -->
-    <section class="services-section-two">
-        <div class="anim-icons">
-            <span class="icon icon-object-3"></span>
-        </div>
-        <div class="auto-container">
-            <div class="sec-title text-center">
-                <span class="sub-title">What do we offer</span>
-                <h2>Outstanding Immigration <br>Visa Services.</h2>
-            </div>
-            <div class="row">
-                <!-- Service Block Two  -->
-                <div class="service-block-two col-lg-3 col-md-6 col-sm-12 wow fadeInUp">
-                    <div class="inner-box">
-                        <div class="image-box">
-                            <figure class="image"><a href="page-service-details.html"><img src="images/resource/service-4.jpg" alt=""></a></figure>
-                            <div class="icon-box"><i class="icon fa fa-graduation-cap"></i></div>
-                            <div class="content-box">
-                                <h5 class="title"><a href="page-service-details.html">Student Visa</a></h5>
-                                <div class="text">There are many lipsum of passages of available but the have in that not some.</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Service Block Two  -->
-                <div class="service-block-two col-lg-3 col-md-6 col-sm-12 wow fadeInUp">
-                    <div class="inner-box">
-                        <div class="image-box">
-                            <figure class="image"><a href="page-service-details.html"><img src="images/resource/service-5.jpg" alt=""></a></figure>
-                            <div class="icon-box"><i class="icon fa fa-users"></i></div>
-                            <div class="content-box">
-                                <h5 class="title"><a href="page-service-details.html">Family Visa</a></h5>
-                                <div class="text">There are many lipsum of passages of available but the have in that not some.</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Service Block Two  -->
-                <div class="service-block-two col-lg-3 col-md-6 col-sm-12 wow fadeInUp">
-                    <div class="inner-box">
-                        <div class="image-box">
-                            <figure class="image"><a href="page-service-details.html"><img src="images/resource/service-6.jpg" alt=""></a></figure>
-                            <div class="icon-box"><i class="icon fa fa-camera"></i></div>
-                            <div class="content-box">
-                                <h5 class="title"><a href="page-service-details.html">Tourist Visa</a></h5>
-                                <div class="text">There are many lipsum of passages of available but the have in that not some.</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Service Block Two -->
-                <div class="service-block-two col-lg-3 col-md-6 col-sm-12 wow fadeInUp">
-                    <div class="inner-box">
-                        <div class="image-box">
-                            <figure class="image"><a href="page-service-details.html"><img src="images/resource/service-7.jpg" alt=""></a></figure>
-                            <div class="icon-box"><i class="icon fa fa-home"></i></div>
-                            <div class="content-box">
-                                <h5 class="title"><a href="page-service-details.html">Resident Visa</a></h5>
-                                <div class="text">There are many lipsum of passages of available but the have in that not some.</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- End Services Section-->
-    <!-- Why Choose Us Three -->
-    <section class="why-choose-us-three">
-        <div class="anim-icons">
-            <span class="icon icon-object-1"></span>
-        </div>
-        <div class="auto-container">
-            <div class="row">
-                <!-- Content Column -->
-                <div class="content-column col-lg-6 col-md-12">
-                    <div class="inner-column wow fadeInRight">
-                        <div class="sec-title">
-                            <i class="sub-title">/ Why Choose Us</i>
-                            <h2>Best Immigration & Visa Consultations.</h2>
-                            <div class="bold-text">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words.</div>
-                            <div class="text">You need to be sure there isn't anything embarrassing hidden in the middle of text. All the lorem generators on the Internet.</div>
-                        </div>
-                        <ul class="list-style-three two-column">
-                            <li>Nsectetur cing elit.</li>
-                            <li>You’re going passage.</li>
-                            <li>Suspe ndisse suscipit leo.</li>
-                            <li>Lorem ipsum gen on tend.</li>
-                        </ul>
-                        <a href="page-about.html" class="theme-btn btn-style-one"><span class="btn-title">Explore now</span></a>
-                    </div>
-                </div>
-                <!-- Image Column -->
-                <div class="image-column col-lg-6 col-md-12 col-sm-12">
-                    <div class="inner-column">
-                        <div class="image-box">
-                            <figure class="bg-image"><img src="images/resource/image-6.jpg" alt=""></figure>
-                            <figure class="image"><img src="images/resource/image-5.jpg" alt=""></figure>
-                            <div class="info-box">
-                                <i class="icon flaticon-licensing"></i>
-                                <span class="count">4,89000</span>
-                                <div class="text">We Process Clients Visa’s only in 20 Days</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="banner-box-three">
-                <div class="inner-box">
-                    <div class="title-column">
-                        <figure class="image"><img src="images/resource/image-7.jpg" alt=""></figure>
-                        <h3 class="title">Skilled Visa’s in Global Immigration Sumit</h3>
-                    </div>
-                    <div class="text-column">
-                        <div class="text">Lorem ipsum is are many variations of pass of norms and guide an simply free texts affective majority.</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- End Why Choose Us -->
+
     <!-- Features Section Four -->
     <section class="features-section-four">
         <div class="anim-icons">
@@ -385,8 +226,7 @@
             </div>
         </div>
     </section>
-    <!-- End Features Section Four -->
-    <!-- Training Section Three-->
+
     <section class="training-section-three">
         <div class="auto-container">
             <div class="sec-title text-center">
@@ -475,8 +315,7 @@
             </div>
         </div>
     </section>
-    <!-- End training Section Three -->
-    <!-- Process Section Two -->
+
     <section class="process-section-two pt-0">
         <div class="anim-icons full-width">
             <span class="icon icon-cards"></span>

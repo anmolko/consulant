@@ -29,6 +29,7 @@ class Job extends Model
         return Str::slug(base64_encode($name), '-');
     }
 
+
     public function getJobCategories($ids){
         $category_id = explode(",", $ids);
         return implode (", ", array_map(function ($item) {

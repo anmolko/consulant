@@ -72,7 +72,7 @@ class FrontController extends Controller
 
     public function index()
     {
-        $clients            = $this->client->orderBy('created_at', 'asc')->get();
+        $clients            = $this->client->orderBy('created_at', 'asc')->take(15)->get();
         $latestServices     = $this->service->latest()->take(4)->get();
         $countries          = CountryState::getCountries();
         $sliders            = $this->slider->where('status','active')->orderBy('created_at', 'asc')->get();

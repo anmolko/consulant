@@ -13,23 +13,23 @@
             <div class="card ctm-border-radius shadow-sm flex-fill">
                 <div class="card-header">
                     <h4 class="card-title mb-0">
-                        Recruitment Process
+                        Our Work Process
                     </h4>
                 </div>
 
                 <div class="card-body">
                     <div class="form-group mb-3">
-                        <label>Heading <span class="text-muted text-danger">*</span></label>
-                        <input type="text" class="form-control" name="heading[]" maxlength="45" value="{{@$recruitment[0]->heading}}" required />
-                        <div class="invalid-feedback">
-                            Please enter the heading.
-                        </div>
-                    </div>
-                    <div class="form-group mb-3">
-                        <label>Description <span class="text-muted text-danger">*</span></label>
+                        <label>Sub Heading <span class="text-muted text-danger">*</span></label>
                         <input type="text" class="form-control" name="description[]" maxlength="45" value="{{@$recruitment[0]->description}}" />
                         <div class="invalid-feedback">
                             Please enter the subheading.
+                        </div>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label>Heading <span class="text-muted text-danger">*</span></label>
+                        <input type="text" class="form-control" name="heading[]" maxlength="60" value="{{@$recruitment[0]->heading}}" required />
+                        <div class="invalid-feedback">
+                            Please enter the heading.
                         </div>
                     </div>
                     <input type="hidden" class="form-control" value="{{@$recruitment}}" name="recruitment_elements">

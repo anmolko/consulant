@@ -6711,7 +6711,17 @@ Section Title
 ***/
 .training-section-three {
   position: relative;
-  padding: 120px 0;
+  padding: 90px 0;
+  background: var(--bg-theme-color4);
+}
+.training-section-three::before {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-image: url(../images/icons/pattern-12.png);
+    content: "";
 }
 .training-section-three .carousel-outer {
   margin: 0 -200px;

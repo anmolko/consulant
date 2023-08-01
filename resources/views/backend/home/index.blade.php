@@ -83,12 +83,12 @@
                                             Welcome Section                                        </a>
                                     </li>
                                     @if($homesettings !== null)
-                                        <li class="nav-item">
-                                            <a class="nav-link fw-semibold" data-bs-toggle="tab" href="#simple-core-action"
-                                               role="tab">
-                                                Core Values
-                                            </a>
-                                        </li>
+{{--                                        <li class="nav-item">--}}
+{{--                                            <a class="nav-link fw-semibold" data-bs-toggle="tab" href="#simple-core-action"--}}
+{{--                                               role="tab">--}}
+{{--                                                Core Values--}}
+{{--                                            </a>--}}
+{{--                                        </li>--}}
 
                                         <li class="nav-item">
                                             <a class="nav-link fw-semibold" data-bs-toggle="tab" href="#simple-missionvision-action"
@@ -107,7 +107,7 @@
                                         <li class="nav-item">
                                             <a class="nav-link fw-semibold" data-bs-toggle="tab" href="#simple-recruitment-action"
                                                role="tab">
-                                                Recruitment Process
+                                                Our Work Process
                                             </a>
                                         </li>
 
@@ -245,7 +245,7 @@
                         </div>
                         @if($homesettings !== null)
 
-                           @include('backend.home.includes.core_value_tab')
+{{--                           @include('backend.home.includes.core_value_tab')--}}
 
                            @include('backend.home.includes.mission_vision_tab')
 

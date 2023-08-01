@@ -23,14 +23,14 @@ var THEMEMASCOT = {};
       }
     }
   };
-	
+
 	//Hide Loading Box (Preloader)
 	function handlePreloader() {
 		if($('.preloader').length){
 			$('.preloader').delay(200).fadeOut(500);
 		}
 	}
-	
+
 	//Update Header Style and Scroll to Top
 	function headerStyle() {
 		if($('.main-header').length){
@@ -61,7 +61,7 @@ var THEMEMASCOT = {};
 
 	//Mobile Nav Hide Show
 	if($('.mobile-menu').length){
-		
+
 		var mobileMenuContent = $('.main-header .main-menu .navigation').html();
 
 		$('.mobile-menu .navigation').append(mobileMenuContent);
@@ -69,7 +69,7 @@ var THEMEMASCOT = {};
 		$('.mobile-menu .close-btn').on('click', function() {
 			$('body').removeClass('mobile-menu-visible');
 		});
-		
+
 		//Dropdown Button
 		$('.mobile-menu li.dropdown .dropdown-btn').on('click', function() {
 			$(this).prev('ul').slideToggle(500);
@@ -298,9 +298,9 @@ var THEMEMASCOT = {};
 		$('.clients-carousel').owlCarousel({
 			rtl: THEMEMASCOT.isRTL.check(),
 			loop: true,
-			margin: 10,
+			margin: 60,
 			nav: false,
-			smartSpeed: 400,
+			smartSpeed: 600,
 			autoplay: true,
 			navText: ['<span class="fa fa-angle-left"></span>', '<span class="fa fa-angle-right"></span>'],
 			responsive: {
@@ -393,16 +393,16 @@ var THEMEMASCOT = {};
 		});
 	}
 
-	
+
 
 	//Fact Counter + Text Count
 	if($('.count-box').length){
 		$('.count-box').appear(function(){
-	
+
 			var $t = $(this),
 				n = $t.find(".count-text").attr("data-stop"),
 				r = parseInt($t.find(".count-text").attr("data-speed"), 10);
-				
+
 			if (!$t.hasClass("counted")) {
 				$t.addClass("counted");
 				$({
@@ -420,7 +420,7 @@ var THEMEMASCOT = {};
 					}
 				});
 			}
-			
+
 		},{accY: 0});
 	}
 
@@ -500,10 +500,10 @@ var THEMEMASCOT = {};
 		   $('html, body').animate({
 			   scrollTop: $(target).offset().top
 			 }, 1500);
-	
+
 		});
 	}
-	
+
 	// Elements Animation
 	if($('.wow').length){
 		var wow = new WOW(
@@ -708,21 +708,21 @@ var THEMEMASCOT = {};
 	}
 
 
-	
+
 /* ==========================================================================
    When document is Scrollig, do
    ========================================================================== */
-	
+
 	$(window).on('scroll', function() {
 		headerStyle();
 	});
-	
+
 /* ==========================================================================
    When document is loading, do
    ========================================================================== */
-	
+
 	$(window).on('load', function() {
 		handlePreloader();
-	});	
+	});
 
 })(window.jQuery);

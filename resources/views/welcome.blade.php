@@ -261,162 +261,105 @@
         </section>
     @endif
 
-    <section class="training-section-three">
-        <div class="auto-container">
-            <div class="sec-title text-center">
-                <span class="sub-title">Training & Certification</span>
-                <h2>Get the Immigration <br>Trainings you Deserve.</h2>
-            </div>
-            <div class="carousel-outer">
-                <div class="training-carousel owl-carousel owl-theme">
-                    <!-- Training Block Three-->
-                    <div class="training-block-three">
-                        <div class="inner-box">
-                            <div class="image-box">
-                                <figure class="image"><a href="page-course-details.html"><img src="images/resource/course-8.jpg" alt=""></a>
-                                </figure>
-                                <a href="page-course-details.html" class="read-more"><i class="fa fa-long-arrow-alt-right"></i></a>
-                                <div class="info-box">
-                                    <h4 class="title"><a href="page-course-details.html">Citizenship Test</a></h4>
-                                </div>
-                            </div>
-                            <div class="overlay-content">
-                                <div class="info-box">
-                                    <h4 class="title"><a href="page-course-details.html">Citizenship Test</a></h4>
-                                    <div class="text">The Human Rights and Democracy Study Visa Programms</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Training Block -->
-                    <div class="training-block-three">
-                        <div class="inner-box">
-                            <div class="image-box">
-                                <figure class="image"><a href="page-course-details.html"><img src="images/resource/course-9.jpg" alt=""></a>
-                                </figure>
-                                <a href="page-course-details.html" class="read-more"><i class="fa fa-long-arrow-alt-right"></i></a>
-                                <div class="info-box">
-                                    <h4 class="title"><a href="#">Take IELTS</a></h4>
-                                </div>
-                            </div>
-                            <div class="overlay-content">
-                                <div class="info-box">
-                                    <h4 class="title"><a href="page-course-details.html">Take IELTS</a></h4>
-                                    <div class="text">The Human Rights and Democracy Study Visa Programms</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Training Block -->
-                    <div class="training-block-three">
-                        <div class="inner-box">
-                            <div class="image-box">
-                                <figure class="image"><a href="page-course-details.html"><img src="images/resource/course-10.jpg" alt=""></a>
-                                </figure>
-                                <a href="page-course-details.html" class="read-more"><i class="fa fa-long-arrow-alt-right"></i></a>
-                                <div class="info-box">
-                                    <h4 class="title"><a href="page-course-details.html">PTE Coaching</a></h4>
-                                </div>
-                            </div>
-                            <div class="overlay-content">
-                                <div class="info-box">
-                                    <h4 class="title"><a href="page-course-details.html">PTE Coaching</a></h4>
-                                    <div class="text">The Human Rights and Democracy Study Visa Programms</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Training Block -->
-                    <div class="training-block-three">
-                        <div class="inner-box">
-                            <div class="image-box">
-                                <figure class="image"><a href="page-course-details.html"><img src="images/resource/course-11.jpg" alt=""></a>
-                                </figure>
-                                <a href="page-course-details.html" class="read-more"><i class="fa fa-long-arrow-alt-right"></i></a>
-                                <div class="info-box">
-                                    <h4 class="title"><a href="#">TOEFL Coaching</a></h4>
-                                </div>
-                            </div>
-                            <div class="overlay-content">
-                                <div class="info-box">
-                                    <h4 class="title"><a href="page-course-details.html">TOEFL Coaching</a></h4>
-                                    <div class="text">The Human Rights and Democracy Study Visa Programms</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+    @if(count($clients) > 0)
+        <section class="training-section-three">
+            <div class="auto-container">
+                <div class="sec-title text-center">
+                    <span class="sub-title">Our affiliation</span>
+                    <h2>Institutions We Proudly <br>Represent.</h2>
                 </div>
-            </div>
-        </div>
-    </section>
+                <div class="sponsors-outer">
+                    <!--clients carousel-->
+                    @foreach($clients->chunk(5) as $chunk)
+                        <ul class="clients-carousel owl-carousel owl-theme mt-5">
+                            @foreach($chunk as $client)
+                                <li class="slide-item">
+                                    <a href="{{ $client->link ?? '#' }}" target="{{ ($client->link !== null) ? '_blank':'' }}">
+                                        <img src="{{asset('/images/clients/'.@$client->image)}}" alt="">
+                                    </a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    @endforeach
 
-    <section class="process-section-two pt-0">
-        <div class="anim-icons full-width">
-            <span class="icon icon-cards"></span>
-            <span class="icon icon-object-1"></span>
-        </div>
-        <div class="auto-container">
-            <div class="sec-title text-center">
-                <span class="sub-title">Our work process</span>
-                <h2>Get your Visa Approved in <br>4 Simple Steps.</h2>
-            </div>
-            <div class="row">
-                <!-- Process block Two  -->
-                <div class="process-block-two col-xl-3 col-lg-6 col-md-6 col-sm-12 wow fadeInUp">
-                    <div class="inner-box">
-                        <div class="icon-box">
-                            <i class="icon flaticon-interview-1"></i>
-                            <span class="count">01</span>
-                        </div>
-                        <div class="info-box">
-                            <h5 class="title">Interview</h5>
-                            <div class="text">Lorem Ipsum is simply dummy text of the new des printng and type.</div>
-                        </div>
+                    <div class="text-center mt-5">
+                        <a href="{{ route('test-preparation.list') }}" class="theme-btn btn-style-one light"><span class="btn-title">View All</span></a>
                     </div>
-                </div>
-                <!-- Process block Two  -->
-                <div class="process-block-two col-xl-3 col-lg-6 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay="400ms">
-                    <div class="inner-box">
-                        <div class="icon-box">
-                            <i class="icon flaticon-form"></i>
-                            <span class="count">02</span>
-                        </div>
-                        <div class="info-box">
-                            <h5 class="title">Fill Form</h5>
-                            <div class="text">Lorem Ipsum is simply dummy text of the new des printng and type.</div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Process block Two  -->
-                <div class="process-block-two col-xl-3 col-lg-6 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay="800ms">
-                    <div class="inner-box">
-                        <div class="icon-box">
-                            <i class="icon flaticon-documents"></i>
-                            <span class="count">03</span>
-                        </div>
-                        <div class="info-box">
-                            <h5 class="title">Documentation</h5>
-                            <div class="text">Lorem Ipsum is simply dummy text of the new des printng and type.</div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Process block Two -->
-                <div class="process-block-two col-xl-3 col-lg-6 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay="1200ms">
-                    <div class="inner-box">
-                        <div class="icon-box">
-                            <i class="icon flaticon-visa-3"></i>
-                            <span class="count">04</span>
-                        </div>
-                        <div class="info-box">
-                            <h5 class="title">Get Visa</h5>
-                            <div class="text">Lorem Ipsum is simply dummy text of the new des printng and type.</div>
-                        </div>
-                    </div>
+
                 </div>
             </div>
-        </div>
-    </section>
-    <!-- End Team Section Two -->
+        </section>
+    @endif
+
+    @if(@$recruitments[0]->heading)
+        <section class="process-section-two">
+            <div class="anim-icons full-width">
+                <span class="icon icon-cards"></span>
+                <span class="icon icon-object-1"></span>
+            </div>
+            <div class="auto-container">
+                <div class="sec-title text-center">
+                    <span class="sub-title">Our work process</span>
+                    <h2>Achieve your Dreams With These <br> Simple Steps.</h2>
+                </div>
+                <div class="row">
+                    <!-- Process block Two  -->
+                    <div class="process-block-two col-xl-3 col-lg-6 col-md-6 col-sm-12 wow fadeInUp">
+                        <div class="inner-box">
+                            <div class="icon-box">
+                                <i class="icon flaticon-interview-1"></i>
+                                <span class="count">01</span>
+                            </div>
+                            <div class="info-box">
+                                <h5 class="title">Interview</h5>
+                                <div class="text">Lorem Ipsum is simply dummy text of the new des printng and type.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Process block Two  -->
+                    <div class="process-block-two col-xl-3 col-lg-6 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay="400ms">
+                        <div class="inner-box">
+                            <div class="icon-box">
+                                <i class="icon flaticon-form"></i>
+                                <span class="count">02</span>
+                            </div>
+                            <div class="info-box">
+                                <h5 class="title">Fill Form</h5>
+                                <div class="text">Lorem Ipsum is simply dummy text of the new des printng and type.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Process block Two  -->
+                    <div class="process-block-two col-xl-3 col-lg-6 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay="800ms">
+                        <div class="inner-box">
+                            <div class="icon-box">
+                                <i class="icon flaticon-documents"></i>
+                                <span class="count">03</span>
+                            </div>
+                            <div class="info-box">
+                                <h5 class="title">Documentation</h5>
+                                <div class="text">Lorem Ipsum is simply dummy text of the new des printng and type.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Process block Two -->
+                    <div class="process-block-two col-xl-3 col-lg-6 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay="1200ms">
+                        <div class="inner-box">
+                            <div class="icon-box">
+                                <i class="icon flaticon-visa-3"></i>
+                                <span class="count">04</span>
+                            </div>
+                            <div class="info-box">
+                                <h5 class="title">Get Visa</h5>
+                                <div class="text">Lorem Ipsum is simply dummy text of the new des printng and type.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    @endif
+
     <!-- Testimonial Section Three-->
     <section class="testimonial-section-three">
         <div class="bg-layer"></div>

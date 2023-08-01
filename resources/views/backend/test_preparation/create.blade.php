@@ -204,25 +204,9 @@
     };
 
     $(document).ready(function () {
-
-
         CKEDITOR.replace('task-textarea',{
             allowedContent: true
         });
-
-        // $("form.submit_form").on('submit', function (e){
-        //
-        //     e.preventDefault();
-        //     // if (typeof CKEDITOR !== "undefined"){
-        //     //     for (var i in CKEDITOR.instances) {
-        //     //         CKEDITOR.instances[i].updateElement();
-        //     //     }
-        //     // }
-        //
-        //     $(".submit_form").submit();
-        // });
-
-
     });
 </script>
 @endsection

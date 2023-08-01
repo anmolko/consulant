@@ -136,7 +136,7 @@
                     </div>
                     <!-- end card -->
                     <div class="text-end mb-3">
-                        <button type="submit" class="btn btn-success w-sm">Submit</button>
+                        <button type="submit" class="btn btn-success w-sm" id="submit-form">Submit</button>
                     </div>
 
 
@@ -202,23 +202,22 @@
             replacement.src = URL.createObjectURL(event.target.files[0]);
         };
         $(document).ready(function () {
-
-
             CKEDITOR.replace('task-textarea',{
                 allowedContent: true
             });
+        });
 
-            // $("form.submit_form").on('submit', function (e){
-            //     e.preventDefault();
-            //     if (typeof CKEDITOR !== "undefined"){
-            //         for (instance in CKEDITOR.instances){
-            //             CKEDITOR.instances[instance].updateElement();
-            //         }
-            //     }
-            //     $(".submit_form").submit();
-            // });
+        $('#submit-form').click( function(e) {
+            e.preventDefault();
+
+            var editor_data = CKEDITOR.instances['task-textarea'].getData();
+            $('#task-textarea').text(editor_data);
+
+
+            $('.submit_form').submit()
 
         });
+
 
 
     </script>

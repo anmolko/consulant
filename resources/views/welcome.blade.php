@@ -234,13 +234,13 @@
                     </div>
 
                     <div class="row">
-                        @foreach(@$latestcourses as $index=>$latest)
+                        @foreach(@$latesttests as $index=>$latest)
                             <div class="training-block-two col-lg-4 col-md-6 col-sm-12">
                                 <div class="inner-box">
                                     <div class="image-box">
                                         <figure class="image">
                                             <a href="{{ route('test-preparation.single', $latest->slug) }}">
-                                                <img src="{{ @$latest->image ? asset('/images/test_preparation/'.@$latest->image):''}}" alt=""></a>
+                                                <img src="{{ @$latest->image ? asset('/images/test_preparation/thumb/thumb_'.@$latest->image):''}}" alt=""></a>
                                         </figure>
                                         <div class="info-box">
                                             <h5 class="title"><a href="{{ route('test-preparation.single', $latest->slug) }}">

@@ -161,7 +161,7 @@ class TestPreparationController extends Controller
                 }
             }
 
-            $test->update();
+            $test->update($request->all());
 
             DB::commit();
             Session::flash('success','Test Preparation details was updated Successfully');

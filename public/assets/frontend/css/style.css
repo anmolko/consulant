@@ -4051,13 +4051,13 @@ Section Title
 }
 .about-section-three .content-column .inner-column {
   position: relative;
-  padding-left: 70px;
+  padding-left: 15px;
 }
 .about-section-three .content-column .sec-title {
   margin-bottom: 40px;
 }
 .about-section-three .content-column .sec-title .list-style-three {
-  margin-top: 30px;
+  margin-top: 20px;
 }
 .about-section-three .content-column .sec-title .list-style-three li {
   font-weight: 700;
@@ -4120,14 +4120,14 @@ Section Title
   margin-bottom: 0;
 }
 .about-section-three .image-column .inner-column .image-1:before {
-  position: absolute;
-  left: -60px;
-  top: 60px;
-  width: 470px;
-  height: 435px;
-  border: 6px solid var(--border-theme-color2);
-  z-index: 2;
-  content: "";
+    position: absolute;
+    left: -60px;
+    top: 50px;
+    width: 470px;
+    height: 456px;
+    border: 6px solid var(--border-theme-color2);
+    z-index: 2;
+    content: "";
 }
 .about-section-three .image-column .inner-column .image-2 {
   position: absolute;
@@ -4171,13 +4171,13 @@ Section Title
 }
 .about-section-four .content-column .inner-column {
   position: relative;
-  padding: 120px 0;
+  padding: 88px 0;
 }
 .about-section-four .content-column .sec-title {
   margin-bottom: 40px;
 }
 .about-section-four .content-column .sec-title .text {
-  margin-top: 30px;
+  margin-top: 20px;
 }
 .about-section-four .content-column .about-block {
   margin-bottom: 40px;
@@ -4246,7 +4246,7 @@ Section Title
   position: relative;
   min-height: 100px;
   padding-left: 120px;
-  padding-top: 10px;
+  padding-top: 20px;
 }
 .about-section-four .experience .icon {
   position: absolute;
@@ -4266,7 +4266,7 @@ Section Title
   color: var(--theme-color2);
   background-color: var(--bg-theme-color4);
   border-radius: 50%;
-  font-size: 64px;
+    font-size: 45px;
 }
 .about-section-four .experience .text {
   position: relative;
@@ -4274,7 +4274,7 @@ Section Title
   line-height: 26px;
   color: #73787d;
 }
-.about-section-four .experience strong {
+.about-section-four .experience strong, .about-block .text strong{
   position: relative;
   margin-top: 7px;
   font-size: 34px;
@@ -6570,7 +6570,7 @@ Section Title
 .training-section-two .sec-title {
   margin-bottom: 50px;
 }
-.training-section-two .video-box {
+.video-box {
   position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -6579,26 +6579,26 @@ Section Title
       -ms-flex-pack: end;
           justify-content: flex-end;
 }
-.training-section-two .video-box .inner {
+.video-box .inner {
   position: relative;
   padding-left: 130px;
   padding-top: 70px;
 }
-.training-section-two .video-box .play-now-two {
+.video-box .play-now-two {
   position: absolute;
   left: 0;
   top: 0;
 }
-.training-section-two .video-box .arrow {
+.video-box .arrow {
   position: absolute;
   left: 110px;
   top: 0;
 }
-.training-section-two .video-box .title {
+.video-box .title {
   font-weight: 400;
   margin-bottom: 10px;
 }
-.training-section-two .video-box .sub-title {
+.video-box .sub-title {
   font-size: 20px;
   color: #73787d;
 }
@@ -7122,6 +7122,7 @@ Section Title
 .call-to-action {
   position: relative;
   background-color: var(--bg-theme-color3);
+  background-image: url(../images/icons/pattern-11.png);
   z-index: 2;
 }
 .call-to-action .inner-container {
@@ -7977,8 +7978,8 @@ Section Title
   position: absolute;
   left: 0px;
   bottom: 0;
-  height: 170px;
-  width: 170px;
+    height: 145px;
+    width: 135px;
   background-color: var(--bg-theme-color2);
   border-radius: 50%;
   content: "";

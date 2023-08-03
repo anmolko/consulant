@@ -38,7 +38,7 @@
             <div class="feature-block-three col-xl-4 col-lg-6 col-md-12 wow fadeInUp">
                 <div class="inner-box ">
                     <div class="content-box">
-                        <i class="icon flaticon-group"></i>
+                        <i class="far fa-flag"></i>
                         <h4 class="title"><a>Our Mission</a></h4>
                         <span class="sub-title"> {{ ucfirst(@$homepage_info->mission) }}</span>
                     </div>
@@ -48,7 +48,7 @@
             <div class="feature-block-three col-xl-4 col-lg-6 col-md-12 wow fadeInUp" data-wow-delay="400ms">
                 <div class="inner-box ">
                     <div class="content-box">
-                        <i class="far fa-flag"></i>
+                        <i class="icon flaticon-group"></i>
                         <h4 class="title"><a>Our Vision</a></h4>
                         <span class="sub-title">{{ ucfirst(@$homepage_info->vision) }}</span>
                     </div>
@@ -68,13 +68,14 @@
     </section>
 
     @if(!empty($homepage_info->welcome_description))
-        <section class="about-section-five">
+        <section class="about-section-three">
+            <div class="anim-icons">
+                <span class="icon icon-object-1"></span>
+                <span class="icon icon-object-4"></span>
+            </div>
             <div class="auto-container">
-                <div class="anim-icons">
-                    <span class="icon icon-object-3"></span>
-                </div>
                 <div class="row">
-                    <div class="content-column col-lg-6 col-md-12 order-2 wow fadeInRight" data-wow-delay="600ms">
+                    <div class="content-column col-xl-6 col-lg-7 col-md-12 col-sm-12 order-2 wow fadeInRight" data-wow-delay="600ms">
                         <div class="inner-column">
                             <div class="sec-title">
                                 <span class="sub-title">{{$homepage_info->welcome_subheading ?? ''}}</span>
@@ -84,21 +85,18 @@
                                 </div>
                             </div>
                             @if(@$homepage_info->welcome_link)
-                                <div class="btn-box">
-                                    <a href="tel:{{@$setting_data->phone ?? $setting_data->mobile ?? ''}}" class="info-btn">
-                                        <i class="icon fa fa-phone"></i>
-                                        <small>Call Anytime</small> {{@$setting_data->phone ?? $setting_data->mobile  ?? ''}}
-                                    </a>
-                                    <a href="{{@$homepage_info->welcome_link}}" class="theme-btn btn-style-one"><span class="btn-title">  {{ @$homepage_info->welcome_button }}</span></a>
+                                <div class="content-box">
+                                    <a href="{{@$homepage_info->welcome_link}}" class="theme-btn btn-style-one"><span class="btn-title">{{ @$homepage_info->welcome_button }}</span></a>
                                 </div>
                             @endif
                         </div>
                     </div>
+
                     <!-- Image Column -->
-                    <div class="image-column col-lg-6 col-md-12">
+                    <div class="image-column col-xl-6 col-lg-5 col-md-12 col-sm-12">
                         <div class="inner-column wow fadeInLeft">
-                            <figure class="image overlay-anim wow fadeInUp">
-                                <img class="lazy" data-src="{{ @$homepage_info->welcome_image ? asset('/images/home/welcome/'.@$homepage_info->welcome_image):''}}" alt=""></figure>
+                            <span class="icon-dots bounce-y"></span>
+                            <figure class="image-1 overlay-anim wow fadeInUp"><img class="lazy" data-src="{{ @$homepage_info->welcome_image ? asset('/images/home/welcome/'.@$homepage_info->welcome_image):''}}" alt=""></figure>
                         </div>
                     </div>
                 </div>
@@ -123,7 +121,7 @@
                                     <div class="image-box">
                                         <figure class="image">
                                             <a href="{{route('service.single',$service->slug)}}">
-                                                <img src="{{asset('/images/service/thumb/thumb_'.@$service->banner_image)}}" alt="">
+                                                <img class="lazy" data-src="{{asset('/images/service/thumb/thumb_'.@$service->banner_image)}}" alt="">
                                             </a>
                                         </figure>
                                         <div class="info-box">
@@ -191,7 +189,7 @@
                             <div class="inner-box">
                                 <div class="image-box">
                                     <figure class="image"><a href="{{ route('study-abroad.single', $latest->slug) }}">
-                                            <img src="{{ @$latest->image ? asset('/images/course/'.@$latest->image):''}}" alt=""></a>
+                                            <img class="lazy" data-src="{{ @$latest->image ? asset('/images/course/'.@$latest->image):''}}" alt=""></a>
                                     </figure>
                                     <div class="icon-box"><i class="icon fa fa-graduation-cap"></i></div>
                                 </div>
@@ -240,7 +238,7 @@
                                     <div class="image-box">
                                         <figure class="image">
                                             <a href="{{ route('test-preparation.single', $latest->slug) }}">
-                                                <img src="{{ @$latest->image ? asset('/images/test_preparation/thumb/thumb_'.@$latest->image):''}}" alt=""></a>
+                                                <img class="lazy" data-src="{{ @$latest->image ? asset('/images/test_preparation/thumb/thumb_'.@$latest->image):''}}" alt=""></a>
                                         </figure>
                                         <div class="info-box">
                                             <h5 class="title"><a href="{{ route('test-preparation.single', $latest->slug) }}">
@@ -275,7 +273,7 @@
                             @foreach($chunk as $client)
                                 <li class="slide-item">
                                     <a href="{{ $client->link ?? '#' }}" target="{{ ($client->link !== null) ? '_blank':'' }}">
-                                        <img src="{{asset('/images/clients/'.@$client->image)}}" alt="">
+                                        <img class="lazy" data-src="{{asset('/images/clients/'.@$client->image)}}" alt="">
                                     </a>
                                 </li>
                             @endforeach
@@ -291,6 +289,85 @@
         </section>
     @endif
 
+    @if(!empty($homepage_info->why_heading))
+        <section class="about-section-four">
+        <div class="auto-container">
+            <div class="row">
+                <div class="content-column col-xl-6 col-lg-12 wow fadeInRight" data-wow-delay="600ms">
+                    <div class="inner-column">
+                        <div class="sec-title">
+                            <span class="sub-title">Why choose us</span>
+                            <h2>{{ @$homepage_info->why_heading ?? '' }}</h2>
+                            <div class="text">
+                                {{ucfirst(@$homepage_info->why_description)}}
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="about-block col-lg-6 col-md-6">
+                                <div class="inner">
+                                    <i class="icon flaticon-check-list"></i>
+                                    <div class="text"><strong>{{@$homepage_info->project_completed ?? '450'}}</strong> Project Completed</div>
+                                </div>
+                            </div>
+
+                            <div class="about-block col-lg-6 col-md-6">
+                                <div class="inner">
+                                    <i class="icon flaticon-rating"></i>
+                                    <div class="text"><strong>{{@$homepage_info->happy_clients ?? '660'}}</strong> Happy Clients</div>
+                                </div>
+                            </div>
+                            <div class="about-block col-lg-6 col-md-6">
+                                <div class="inner">
+                                    <i class="icon flaticon-passport-16"></i>
+                                    <div class="text"><strong>{{@$homepage_info->visa_approved ?? '340'}}</strong> Visa Approved</div>
+                                </div>
+                            </div>
+                            <div class="about-block col-lg-6 col-md-6">
+                                <div class="inner">
+                                    <i class="icon flaticon-cooperation"></i>
+                                    <div class="text"><strong>{{@$homepage_info->success_stories ?? '987'}}</strong> Success Stories</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <a href="{{ route('contact') }}" class="theme-btn btn-style-one"><span class="btn-title">Reach out</span></a>
+                    </div>
+                </div>
+
+                <!-- Image Column -->
+                <div class="image-column col-xl-6 col-lg-12">
+                    <div class="inner-column wow fadeInLeft">
+                        <figure class="image overlay-anim wow fadeInUp">
+                            <img src="{{asset('/images/home/welcome/'.@$homepage_info->what_image5)}}" alt="">
+                        </figure>
+                        @if($homepage_info->why_subheading)
+                            <div class="experience bounce-y">
+                                <div class="video-box">
+                                    <div class="inner">
+                                        <a href="{{ $homepage_info->why_subheading }}" class="play-now-two lightbox-image"><i class="icon fa fa-play"></i></a>
+                                        <h4 class="title style-font">Play Video</h4>
+                                        <span class="sub-title">Watch our video</span>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    @endif
+
+    <div class="call-to-action">
+        <div class="auto-container">
+            <div class="inner-container">
+                <h5 class="title">Want to get started with counselling ? Just Call us!</h5>
+                <a href="tel:{{ $setting_data->phone ?? $setting_data->mobile ?? ''  }}" class="info-btn"><i class="fa fa-phone"></i> {{ $setting_data->phone ?? $setting_data->mobile ?? ''  }}</a>
+            </div>
+        </div>
+    </div>
+
     @if(@$recruitments[0]->heading)
         <section class="process-section-two">
             <div class="anim-icons full-width">
@@ -303,55 +380,55 @@
                     <h2>Achieve your Dreams With These <br> Simple Steps.</h2>
                 </div>
                 <div class="row">
-                    <!-- Process block Two  -->
-                    <div class="process-block-two col-xl-3 col-lg-6 col-md-6 col-sm-12 wow fadeInUp">
-                        <div class="inner-box">
-                            <div class="icon-box">
-                                <i class="icon flaticon-interview-1"></i>
-                                <span class="count">01</span>
-                            </div>
-                            <div class="info-box">
-                                <h5 class="title">Interview</h5>
-                                <div class="text">Lorem Ipsum is simply dummy text of the new des printng and type.</div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Process block Two  -->
-                    <div class="process-block-two col-xl-3 col-lg-6 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay="400ms">
-                        <div class="inner-box">
-                            <div class="icon-box">
-                                <i class="icon flaticon-form"></i>
-                                <span class="count">02</span>
-                            </div>
-                            <div class="info-box">
-                                <h5 class="title">Fill Form</h5>
-                                <div class="text">Lorem Ipsum is simply dummy text of the new des printng and type.</div>
+                @foreach(@$recruitments as $index=>$recruitment)
+                        <div class="process-block-two col-xl-3 col-lg-6 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay="{{ $index+2  }}00ms">
+                            <div class="inner-box">
+                                <div class="icon-box">
+                                    <i class="icon {{ recruitment_process_icons($index) }}"></i>
+                                    <span class="count"> {{ $index+1 }} </span>
+                                </div>
+                                <div class="info-box">
+                                    <h5 class="title">{{@$recruitment->title}}</h5>
+                                    <div class="text"> {{ $recruitment->icon_description ?? '' }}</div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <!-- Process block Two  -->
-                    <div class="process-block-two col-xl-3 col-lg-6 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay="800ms">
-                        <div class="inner-box">
-                            <div class="icon-box">
-                                <i class="icon flaticon-documents"></i>
-                                <span class="count">03</span>
-                            </div>
-                            <div class="info-box">
-                                <h5 class="title">Documentation</h5>
-                                <div class="text">Lorem Ipsum is simply dummy text of the new des printng and type.</div>
-                            </div>
+                @endforeach
+                </div>
+            </div>
+        </section>
+    @endif
+
+    @if(count($testimonials) > 0)
+        <section class="testimonial-section-three">
+            <div class="bg-layer"></div>
+            <div class="auto-container">
+                <div class="row">
+                    <div class="title-column col-lg-4 col-md-12">
+                        <div class="sec-title">
+                            <span class="sub-title">Our Success Stories</span>
+                            <h2>Hear what our students say have to say.</h2>
                         </div>
                     </div>
-                    <!-- Process block Two -->
-                    <div class="process-block-two col-xl-3 col-lg-6 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay="1200ms">
-                        <div class="inner-box">
-                            <div class="icon-box">
-                                <i class="icon flaticon-visa-3"></i>
-                                <span class="count">04</span>
-                            </div>
-                            <div class="info-box">
-                                <h5 class="title">Get Visa</h5>
-                                <div class="text">Lorem Ipsum is simply dummy text of the new des printng and type.</div>
+                    <div class="testimonial-column col-lg-8 col-md-12">
+                        <div class="carousel-outer">
+                            <div class="testimonial-carousel-two owl-carousel owl-theme">
+                                @foreach($testimonials as $testimonial)
+                                    <div class="testimonial-block-three">
+                                        <div class="inner-box">
+                                            <div class="image-box">
+                                                <figure class="image"><img class="lazy" data-src="{{asset('/images/testimonial/'.@$testimonial->image)}}" alt=""></figure>
+                                            </div>
+                                            <div class="content-box">
+                                                <div class="text">{{ucfirst($testimonial->description)}}</div>
+                                                <div class="info-box">
+                                                    <h5 class="name">{{ucfirst($testimonial->name)}}</h5>
+                                                    <span class="designation">{{ucfirst($testimonial->position)}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -360,257 +437,55 @@
         </section>
     @endif
 
-    <!-- Testimonial Section Three-->
-    <section class="testimonial-section-three">
-        <div class="bg-layer"></div>
-        <div class="auto-container">
-            <div class="row">
-                <div class="title-column col-lg-4 col-md-12">
-                    <div class="sec-title">
-                        <span class="sub-title">Our testimonials</span>
-                        <h2>What They are Talking About Company.</h2>
-                    </div>
-                </div>
-                <div class="testimonial-column col-lg-8 col-md-12">
-                    <div class="carousel-outer">
-                        <div class="testimonial-carousel-two owl-carousel owl-theme">
-                            <!-- Testimonial Block Three -->
-                            <div class="testimonial-block-three">
-                                <div class="inner-box">
-                                    <div class="image-box">
-                                        <figure class="image"><img src="images/resource/testimonial-1.jpg" alt=""></figure>
-                                    </div>
-                                    <div class="content-box">
-                                        <div class="text">I was very impresed by the company service lore ipsum is simply
-                                            free text used by copy typing refreshing. Neque porro est qui dolorem ipsum
-                                            quia.</div>
-                                        <div class="info-box">
-                                            <h5 class="name">Kevin Martin</h5>
-                                            <span class="designation">Customers</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Testimonial Block Three -->
-                            <div class="testimonial-block-three">
-                                <div class="inner-box">
-                                    <div class="image-box">
-                                        <figure class="image"><img src="images/resource/testimonial-2.jpg" alt=""></figure>
-                                    </div>
-                                    <div class="content-box">
-                                        <div class="text">I was very impresed by the company service lore ipsum is simply
-                                            free text used by copy typing refreshing. Neque porro est qui dolorem ipsum
-                                            quia.</div>
-                                        <div class="info-box">
-                                            <h5 class="name">Aleesha Brown</h5>
-                                            <span class="designation">Customers</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Testimonial Block Three -->
-                            <div class="testimonial-block-three">
-                                <div class="inner-box">
-                                    <div class="image-box">
-                                        <figure class="image"><img src="images/resource/testimonial-1.jpg" alt=""></figure>
-                                    </div>
-                                    <div class="content-box">
-                                        <div class="text">I was very impresed by the company service lore ipsum is simply
-                                            free text used by copy typing refreshing. Neque porro est qui dolorem ipsum
-                                            quia.</div>
-                                        <div class="info-box">
-                                            <h5 class="name">Kevin Martin</h5>
-                                            <span class="designation">Customers</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Testimonial Block Three -->
-                            <div class="testimonial-block-three">
-                                <div class="inner-box">
-                                    <div class="image-box">
-                                        <figure class="image"><img src="images/resource/testimonial-2.jpg" alt=""></figure>
-                                    </div>
-                                    <div class="content-box">
-                                        <div class="text">I was very impresed by the company service lore ipsum is simply
-                                            free text used by copy typing refreshing. Neque porro est qui dolorem ipsum
-                                            quia.</div>
-                                        <div class="info-box">
-                                            <h5 class="name">Aleesha Brown</h5>
-                                            <span class="designation">Customers</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Testimonial Block Three -->
-                            <div class="testimonial-block-three">
-                                <div class="inner-box">
-                                    <div class="image-box">
-                                        <figure class="image"><img src="images/resource/testimonial-1.jpg" alt=""></figure>
-                                    </div>
-                                    <div class="content-box">
-                                        <div class="text">I was very impresed by the company service lore ipsum is simply
-                                            free text used by copy
-                                            typing refreshing. Neque porro est qui dolorem ipsum quia.</div>
-                                        <div class="info-box">
-                                            <h5 class="name">Kevin Martin</h5>
-                                            <span class="designation">Customers</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Testimonial Block Three -->
-                            <div class="testimonial-block-three">
-                                <div class="inner-box">
-                                    <div class="image-box">
-                                        <figure class="image"><img src="images/resource/testimonial-2.jpg" alt=""></figure>
-                                    </div>
-                                    <div class="content-box">
-                                        <div class="text">I was very impresed by the company service lore ipsum is simply
-                                            free text used by copy
-                                            typing refreshing. Neque porro est qui dolorem ipsum quia.</div>
-                                        <div class="info-box">
-                                            <h5 class="name">Aleesha Brown</h5>
-                                            <span class="designation">Customers</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+    @if(count($latestPosts) > 0)
+        <section class="news-section-two">
+            <span class="wide-map"></span>
+            <div class="anim-icons">
+                <span class="icon icon-object-1"></span>
+                <span class="icon icon-shape-4"></span>
+            </div>
+            <div class="auto-container">
+                <div class="row align-items-center">
+                    <div class="col-lg-8">
+                        <div class="sec-title">
+                            <span class="sub-title">recent news feed</span>
+                            <h2>Latest News & Articles <br>From the Blog.</h2>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- End Testimonial Section -->
-    <!-- Features Section Five -->
-    <section class="features-section-five">
-        <div class="auto-container">
-            <div class="row">
-                <div class="title-column col-xl-6 col-lg-12">
-                    <div class="title-box">
-                        <h4 class="title">Let’s Migrate to Your Favourite Destination</h4>
-                        <figure class="image"><img src="images/resource/feature-2.jpg" alt=""></figure>
+                    <div class="btn-column text-end col-lg-4">
+                        <a href="{{ route('blog.frontend') }}" class="theme-btn btn-style-one bg-theme-color4 mb-4"><span class="btn-title">View All news</span></a>
                     </div>
                 </div>
-                <div class="features-column col-xl-6 col-lg-12">
-                    <div class="inner-column">
-                        <div class="text">Lorem ipsum dolor sit conseng adipiscing elit vehicula est eget felis vehicula imperdiet non lacus at quam gravida porta usce.</div>
-                        <ul class="features-list">
-                            <li>Entering & Leaving From Country</li>
-                            <li>Visas</li>
-                            <li>Country Citizenship</li>
-                            <li>Settling In Country</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- End Features Section Two -->
-    <!-- News Section Three -->
-    <section class="news-section-three">
-        <div class="anim-icons">
-            <span class="icon icon-object-2"></span>
-        </div>
-        <div class="auto-container">
-            <div class="row align-items-center">
-                <div class="col-lg-8">
-                    <div class="sec-title">
-                        <span class="sub-title">recent news feed</span>
-                        <h2>Latest News & Articles <br>From the Blog.</h2>
-                    </div>
-                </div>
-                <div class="btn-column text-end col-lg-4">
-                    <a href="news-details.html" class="theme-btn btn-style-one bg-theme-color4 mb-4"><span class="btn-title">View All news</span></a>
-                </div>
-            </div>
-            <div class="row">
-                <div class="column col-xl-6 col-lg-5 col-md-12 col-sm-12 wow fadeInLeft">
-                    <!-- News Block -->
-                    <div class="news-block-three">
-                        <div class="inner-box">
-                            <div class="image-box">
-                                <figure class="image"><a href="news-details.html"><img src="images/resource/news-7.jpg" alt=""></a></figure>
-                            </div>
-                            <div class="content-box">
-                                <ul class="post-info">
-                                    <li><i class="fa fa-user-circle"></i> by Admin</li>
-                                    <li><i class="fa fa-comments"></i> 2 Comments</li>
-                                </ul>
-                                <h4 class="title"><a href="news-details.html">The Human Rights and Democracy Study Visa Programms</a></h4>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="column col-xl-6 col-lg-7 col-md-12 col-sm-12 wow fadeInUp" data-wow-delay="300ms">
-                    <!-- News Block -->
-                    <div class="news-block-four">
-                        <div class="inner-box">
-                            <div class="image-box">
-                                <figure class="image"><a href="news-details.html"><img src="images/resource/news-8.jpg" alt=""></a></figure>
-                            </div>
-                            <div class="content-box">
-                                <ul class="post-info">
-                                    <li><i class="fa fa-user-circle"></i> by Admin</li>
-                                    <li><i class="fa fa-comments"></i> 2 Comments</li>
-                                </ul>
-                                <h5 class="title"><a href="news-details.html">The Common Mistakes you Make in Application</a></h5>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- News Block -->
-                    <div class="news-block-four">
-                        <div class="inner-box">
-                            <div class="image-box">
-                                <figure class="image"><a href="news-details.html"><img src="images/resource/news-9.jpg" alt=""></a></figure>
-                            </div>
-                            <div class="content-box">
-                                <ul class="post-info">
-                                    <li><i class="fa fa-user-circle"></i> by Admin</li>
-                                    <li><i class="fa fa-comments"></i> 2 Comments</li>
-                                </ul>
-                                <h5 class="title"><a href="news-details.html">The Common Mistakes you Make in Application</a></h5>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- News Block -->
-                    <div class="news-block-four">
-                        <div class="inner-box">
-                            <div class="image-box">
-                                <figure class="image"><a href="news-details.html"><img src="images/resource/news-10.jpg" alt=""></a></figure>
-                            </div>
-                            <div class="content-box">
-                                <ul class="post-info">
-                                    <li><i class="fa fa-user-circle"></i> by Admin</li>
-                                    <li><i class="fa fa-comments"></i> 2 Comments</li>
-                                </ul>
-                                <h5 class="title"><a href="news-details.html">The Common Mistakes you Make in Application</a></h5>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!--End News Section -->
-    <!-- Clients Section -->
-    <section class="clients-section style-three">
-        <div class="auto-container">
-            <!-- Sponsors Outer -->
-            <div class="sponsors-outer">
-                <!--clients carousel-->
-                <ul class="clients-carousel owl-carousel owl-theme">
-                    <li class="slide-item"> <img src="images/resource/client-2.png" alt=""> </li>
-                    <li class="slide-item"> <img src="images/resource/client-2.png" alt=""> </li>
-                    <li class="slide-item"> <img src="images/resource/client-2.png" alt=""> </li>
-                    <li class="slide-item"> <img src="images/resource/client-2.png" alt=""> </li>
-                    <li class="slide-item"> <img src="images/resource/client-2.png" alt=""> </li>
-                </ul>
-            </div>
-        </div>
-    </section>
 
+                <div class="row">
+                    @foreach(@$latestPosts as $index=>$post)
+                        <div class="news-block-two col-lg-4 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay="{{$index+2}}00ms">
+                            <div class="inner-box">
+                                <div class="image-box">
+                                    <figure class="image">
+                                        <a href="{{route('blog.single',$post->slug)}}">
+                                            <img class="lazy" data-src="{{asset('/images/blog/thumb/thumb_'.@$post->image)}}" alt="">
+                                        </a>
+                                    </figure>
+                                    <span class="date"><b>{{date('d', strtotime($post->created_at))}}</b> {{date('M Y', strtotime($post->created_at))}}</span>
+                                </div>
+                                <div class="content-box">
+                                    <ul class="post-info">
+                                        <li><i class="fa fa-list"></i> {{ucfirst(@$post->category->name)}} </li>
+                                    </ul>
+                                    <h4 class="title">
+                                        <a href="{{route('blog.single',@$post->slug)}}">
+                                            {{ucfirst(@$post->title)}}
+                                        </a>
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </section>
+    @endif
 @endsection
 @section('js')
     <script src="{{asset('assets/common/lazyload.js')}}"></script>

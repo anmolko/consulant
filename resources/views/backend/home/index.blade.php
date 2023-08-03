@@ -111,12 +111,12 @@
                                             </a>
                                         </li>
 
-                                        <li class="nav-item">
-                                            <a class="nav-link fw-semibold" data-bs-toggle="tab" href="#status-overview"
-                                               role="tab">
-                                                General Grievance
-                                            </a>
-                                        </li>
+{{--                                        <li class="nav-item">--}}
+{{--                                            <a class="nav-link fw-semibold" data-bs-toggle="tab" href="#status-overview"--}}
+{{--                                               role="tab">--}}
+{{--                                                General Grievance--}}
+{{--                                            </a>--}}
+{{--                                        </li>--}}
 {{--                                        <li class="nav-item">--}}
 {{--                                            <a class="nav-link fw-semibold" data-bs-toggle="tab" href="#simple-what-makes-us-action"--}}
 {{--                                               role="tab">--}}
@@ -257,7 +257,7 @@
 
                            @include('backend.home.includes.recruitment_process')
 
-                           @include('backend.home.includes.status')
+{{--                           @include('backend.home.includes.status')--}}
 
                         @endif
 

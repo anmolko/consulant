@@ -128,6 +128,7 @@
 <script src="{{ asset('assets/frontend/js/select2.min.js') }}"></script>
 <script src="{{ asset('assets/frontend/js/owl.js') }}"></script>
 <script src="{{ asset('assets/frontend/js/script.js') }}"></script>
+<script src="{{asset('assets/common/lazyload.js')}}"></script>
 @yield('js')
 @stack('scripts')
 </body>

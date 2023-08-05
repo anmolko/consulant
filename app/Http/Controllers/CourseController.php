@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Models\Course;
+use App\Models\CourseDescription;
 use App\Models\Job;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -59,53 +60,67 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
+        DB::beginTransaction();
+        try {
+            $data = [
+                'title'                 => $request->input('title'),
+                'slug'                  => $this->model->changeToSlug($request->input('title')),
+                'code'                  => strtok($request['title'], " ").'-COR-'.rand(1,500),
+                'description'           => $request->input('description'),
+                'status'                => $request->input('status'),
+                'image'                 => $request->input('image'),
+                'meta_title'            => $request->input('meta_title'),
+                'meta_tags'             => $request->input('meta_tags'),
+                'meta_description'      => $request->input('meta_description'),
+                'created_by'            => Auth::user()->id,
+            ];
 
-        $data = [
-            'title'                 => $request->input('title'),
-            'slug'                  => $this->model->changeToSlug($request->input('title')),
-            'code'                  => strtok($request->input('title'), " ").'-COR-'.rand(1,500),
-            'description'           => $request->input('description'),
-            'living'                => $request->input('living'),
-            'entry_requirement'     => $request->input('entry_requirement'),
-            'visa_requirement'      => $request->input('visa_requirement'),
-            'education_cost'        => $request->input('education_cost'),
-            'after_graduation'      => $request->input('after_graduation'),
-            'useful_links'          => $request->input('useful_links'),
-            'image'                 => $request->input('image'),
-            'meta_title'            => $request->input('meta_title'),
-            'meta_tags'             => $request->input('meta_tags'),
-            'meta_description'      => $request->input('meta_description'),
-            'created_by'            => Auth::user()->id,
-        ];
+            if(!empty($request->file('image'))){
+                $image        = $request->file('image');
+                $name         = uniqid().'_job_'.$image->getClientOriginalName();
+                if (!is_dir($this->path)) {
+                    mkdir($this->path, 0777);
+                }
+                if (!is_dir($this->thumbpath)) {
+                    mkdir($this->thumbpath, 0777);
+                }
+                $thumb         = 'thumb_'.$name;
+                $path          = base_path().'/public/images/course/';
+                $thumb_path    = base_path().'/public/images/course/thumb/';
+                $moved         = Image::make($image->getRealPath())->orientate()->save($path.$name);
+                $thumb         = Image::make($image->getRealPath())->fit(370, 190)->orientate()->save($thumb_path.$thumb);
 
-        if(!empty($request->file('image'))){
-            $image        = $request->file('image');
-            $name         = uniqid().'_job_'.$image->getClientOriginalName();
-            if (!is_dir($this->path)) {
-                mkdir($this->path, 0777);
+                if ($moved && $thumb){
+                    $data['image']= $name;
+                }
             }
-            if (!is_dir($this->thumbpath)) {
-                mkdir($this->thumbpath, 0777);
-            }
-            $thumb         = 'thumb_'.$name;
-            $path          = base_path().'/public/images/course/';
-            $thumb_path    = base_path().'/public/images/course/thumb/';
-            $moved         = Image::make($image->getRealPath())->orientate()->save($path.$name);
-            $thumb         = Image::make($image->getRealPath())->fit(370, 190)->orientate()->save($thumb_path.$thumb);
 
-            if ($moved && $thumb){
-                $data['image']= $name;
+            $course = $this->model->create($data);
+            if(count($request['detail_title']) > 0) {
+                $this->createCourseDetails($course, $request);
             }
-        }
 
-            $status = $this->model->create($data);
-        if($status){
+            DB::commit();
             Session::flash('success','Course details Created Successfully');
-        }
-        else{
+        }catch (\Exception $e){
+            DB::rollBack();
             Session::flash('error','Course details Creation Failed');
         }
+
         return redirect()->route('course.index');
+    }
+
+
+
+    public function createCourseDetails($course, $request)
+    {
+        foreach ($request['detail_title'] as $index=>$title){
+            CourseDescription::create([
+                'course_id'     => $course->id,
+                'title'         => $title,
+                'description'   => $request['detail_description'][$index] ?? null,
+            ]);
+        }
     }
 
     /**
@@ -148,12 +163,7 @@ class CourseController extends Controller
             $course->code                  = strtok($request->input('title'), " ").'-COR-'.rand(1,500);
             $course->slug                  = $this->model->changeToSlug($request->input('title'));
             $course->description           = $request->input('description');
-            $course->living                = $request->input('living');
-            $course->entry_requirement     = $request->input('entry_requirement');
-            $course->visa_requirement      = $request->input('visa_requirement');
-            $course->education_cost        = $request->input('education_cost');
-            $course->after_graduation      = $request->input('after_graduation');
-            $course->useful_links          = $request->input('useful_links');
+            $course->status                = $request->input('status');
             $course->meta_title            = $request->input('meta_title');
             $course->meta_tags             = $request->input('meta_tags');
             $course->meta_description      = $request->input('meta_description');
@@ -184,11 +194,37 @@ class CourseController extends Controller
 
             $course->update();
 
+            if(count($request['detail_title']) > 0) {
+
+                $db_values = $course->courseDescription ? $course->courseDescription->pluck('id'):[];
+
+                foreach ($request['detail_title'] as $index=>$title){
+                    $data = [
+                        'course_id'     => $course->id,
+                        'title'         => $title,
+                        'description'   => $request['detail_description'][$index] ?? null,
+                    ];
+                    if($request['detail_id'][$index]){
+                        $course_description = CourseDescription::find($request['detail_id'][$index]);
+                        $course_description->update($data);
+                    }else{
+                        CourseDescription::create($data);
+                    }
+                }
+
+                foreach ($db_values as $key=>$value){
+                    if(!in_array($value,$request->input('detail_id'))){
+                        $delete_element = CourseDescription::find($value);
+                        $status         = $delete_element->delete();
+                    }
+                }
+            }
+
+
             DB::commit();
             Session::flash('success','Course details was updated Successfully');
         } catch (\Exception $e) {
             DB::rollback();
-            dd($e);
             Session::flash('error','Course details was not updated. Something went wrong.');
         }
 

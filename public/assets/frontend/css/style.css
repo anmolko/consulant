@@ -6424,7 +6424,9 @@ Section Title
   width: 100%;
   max-width: 750px;
 }
-
+.training-section .bottom-text a{
+    color: #ffffff;
+}
 .training-block {
   position: relative;
 }
@@ -8852,12 +8854,12 @@ Section Title
   text-transform: uppercase;
   color: #1e2434;
   text-align: center;
-  padding: 14px 30px;
+  padding: 6px 25px;
   background-color: #fff;
   border: 1px solid #e1e8e4;
   cursor: pointer;
-  margin: 0px 8.5px;
-  margin-bottom: 15px;
+  margin: 5px 8.5px;
+  margin-bottom: 0px;
   -webkit-transition: all 500ms ease;
   transition: all 500ms ease;
 }
@@ -13287,4 +13289,10 @@ Sidebar
 
 .custom-description blockquote::after{
     content: '';
+}
+
+.thumbnail{
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
 }

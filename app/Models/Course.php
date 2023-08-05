@@ -17,4 +17,8 @@ class Course extends Model
         return Str::slug(base64_encode($name), '-');
     }
 
+    public function courseDescription(){
+        return $this->hasMany(CourseDescription::class,'course_id','id');
+    }
+
 }

@@ -66,57 +66,9 @@
                                     <option value="draft" @if(@$edit->status == "draft") selected @endif>Draft</option>
                                 </select>
                             </div>
-
                             <div class="mb-3">
-                                <label>Why description</label>
-
+                                <label>Description</label>
                                 <textarea class="form-control" id="ckeditor-classic-blog" name="description" placeholder="Enter description" rows="3">{{ @$edit->description }}</textarea>
-                                <div class="invalid-tooltip">
-                                    Please enter description
-                                </div>
-
-                            </div>
-
-                            <div class="mb-3">
-                                <label>living description</label>
-
-                                <textarea class="form-control" id="living" name="living" placeholder="Enter living description" rows="3">{{ @$edit->living }}</textarea>
-                                <div class="invalid-tooltip">
-                                    Please enter description
-                                </div>
-
-                            </div>
-                            <div class="mb-3">
-                                <label>Entry requirement description</label>
-                                <textarea class="form-control" id="entry_requirement" name="entry_requirement" placeholder="Enter entry requirements description" rows="3">{{ @$edit->entry_requirement }}</textarea>
-                                <div class="invalid-tooltip">
-                                    Please enter description
-                                </div>
-                            </div>
-                            <div class="mb-3">
-                                <label>Visa requirement description</label>
-                                <textarea class="form-control" id="visa_requirement" name="visa_requirement" placeholder="Enter visa requirement" rows="3">{{ @$edit->visa_requirement }}</textarea>
-                                <div class="invalid-tooltip">
-                                    Please enter description
-                                </div>
-                            </div>
-                            <div class="mb-3">
-                                <label>Education cost description</label>
-                                <textarea class="form-control" id="education_cost" name="education_cost" placeholder="Enter education cost description" rows="3">{{ @$edit->education_cost }}</textarea>
-                                <div class="invalid-tooltip">
-                                    Please enter description
-                                </div>
-                            </div>
-                            <div class="mb-3">
-                                <label>After graduation description</label>
-                                <textarea class="form-control" id="after_graduation" name="after_graduation" placeholder="Enter after graduation description" rows="3">{{ @$edit->after_graduation }}</textarea>
-                                <div class="invalid-tooltip">
-                                    Please enter description
-                                </div>
-                            </div>
-                            <div class="mb-3">
-                                <label>Useful Link description</label>
-                                <textarea class="form-control" id="useful_links" name="useful_links" placeholder="Enter useful links description" rows="3">{{ @$edit->useful_links }}</textarea>
                                 <div class="invalid-tooltip">
                                     Please enter description
                                 </div>
@@ -124,6 +76,78 @@
                         </div>
                     </div>
                     <!-- end card -->
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title mb-0">Additional Information</h4>
+                            <h6 class="card-subtitle font-14 mt-1 text-muted">Create upto 8 different description section for your courses</h6>
+                        </div>
+                        <!-- end card header -->
+                        <div class="card-body">
+                            <div id="multi-field-wrapper">
+
+                                @if($edit->courseDescription && count($edit->courseDescription)>0)
+
+                                    <div id="multi-fields">
+                                        @foreach($edit->courseDescription as $key=>$row)
+                                            <div class="multi-field custom-card mt-3" style="border-bottom: double #e3e3e3; ">
+                                            <label>Title </label>
+                                            <div class="input-group mb-3">
+                                                <input type="hidden" class="form-control" name="detail_id[]" value="{{$row->id}}"/>
+                                                <input type="text" class="form-control" id="detail_title" name="detail_title[]"  value="{{@$row->title}}" required/>
+                                                <button class="btn btn-danger remove-field {{$loop->first ? 'add-disabled':''}}"><i class="ri-delete-bin-line" aria-hidden="true"></i></button>
+                                                <div class="invalid-feedback">
+                                                    Please enter a title.
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3 attribute-values" id="addValues">
+                                                <div class="col-md-12 col-6">
+                                                    <label for="icon_description" class="text-heading">Description<span class="text-muted text-danger">*</span></label>
+                                                    <textarea class="form-control" id="icon_description_{{$key}}" maxlength="600" name="detail_description[]">{!! $row->description ?? '' !!}</textarea>
+                                                    <div class="invalid-feedback">
+                                                        Please enter a description.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @endforeach
+                                    </div>
+                                @else
+                                    <div id="multi-fields">
+                                        <div class="multi-field custom-card mt-3" style="border-bottom: double #e3e3e3; ">
+                                            <label>Title </label>
+                                            <div class="input-group mb-3">
+                                                <input type="text" class="form-control" id="detail_title" name="detail_title[]" required/>
+                                                <input type="hidden" class="form-control" name="detail_id[]"/>
+                                                <button class="btn btn-danger remove-field"><i class="ri-delete-bin-line" aria-hidden="true"></i></button>
+                                                <div class="invalid-feedback">
+                                                    Please enter a title.
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3 attribute-values" id="addValues">
+                                                <div class="col-md-12 col-6">
+                                                    <label for="icon_description" class="text-heading">Description<span class="text-muted text-danger">*</span></label>
+                                                    <textarea class="form-control" id="icon_description" maxlength="600" name="detail_description[]">
+
+                                                </textarea>
+                                                    <div class="invalid-feedback">
+                                                        Please enter a description.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endif
+
+
+                                <div class="text-end mt-3 mb-3">
+                                    <a href="javascript:void(0)" class="btn btn-success" id="add-field"><i class="ri-add-line" aria-hidden="true"></i> Add More </a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end card body -->
+                    </div>
+
 
 
                     <div class="card">
@@ -233,56 +257,18 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="{{asset('assets/backend/custom_js/blog_credit.js')}}"></script>
 
-    <script type="text/javascript">
-        function createEditor ( elementId ) {
-            return ClassicEditor
-                .create( document.querySelector( '#' + elementId ), {
-                    toolbar : {
-                        items: [
-                            'heading', '|',
-                            'bold', 'italic', 'link', '|',
-                            'outdent', 'indent', '|',
-                            'bulletedList', 'numberedList', '|',
-                            'insertTable', 'blockQuote', '|',
-                            'undo', 'redo'
-                        ],
-                    },
-                    link: {
-                        // Automatically add target="_blank" and rel="noopener noreferrer" to all external links.
-                        addTargetToExternalLinks: true,
-
-                        // Let the users control the "download" attribute of each link.
-                        decorators: [
-                            {
-                                mode: 'manual',
-                                label: 'Downloadable',
-                                attributes: {
-                                    download: 'download'
-                                }
-                            }
-                        ]
-                    },
-                } )
-                .then( editor => {
-                    window.editor = editor;
-                    editor.model.document.on( 'change:data', () => {
-                        $( '#' + elementId).text(editor.getData());
-                    } );
-
-                } )
-                .catch( err => {
-                    console.error( err.stack );
-                } );
-        }
+    @include('backend.course.includes.script')
+    <script>
         $(document).ready(function () {
-            createEditor('living');
-            createEditor('entry_requirement');
-            createEditor('visa_requirement');
-            createEditor('education_cost');
-            createEditor('after_graduation');
-            createEditor('useful_links');
+            let description = [];
+            <?php if ($edit->courseDescription){foreach(@$edit->courseDescription as $key => $val){ ?>
+            description.push('<?php echo $val->id; ?>');
+            <?php }} ?>
+
+            $.each( description, function( key, value ) {
+                let id = 'icon_description_'+key;
+                createEditor(id);
+            });
         });
-
-
     </script>
 @endsection

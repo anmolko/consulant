@@ -1,5 +1,5 @@
 @extends('frontend.layouts.master')
-@section('title') Services @endsection
+@section('title') Study Abroad @endsection
 @section('css')
     <style>
 
@@ -11,53 +11,50 @@
 @endsection
 @section('content')
 
-    <!-- Breadcrumbs Start -->
-    <div class="rs-breadcrumbs img4">
-        <div class="container">
-            <div class="breadcrumbs-inner">
-                <h1 class="page-title">Study Abroad</h1>
+    <section class="page-title" style="background-image: url({{ asset('assets/frontend/images/background/page-title.jpg') }});">
+        <div class="auto-container">
+            <div class="title-outer">
+                <h1 class="title">Study Abroad</h1>
+                <ul class="page-breadcrumb">
+                    <li><a href="/">Home</a></li>
+                    <li>Course List</li>
+                </ul>
             </div>
         </div>
-    </div>
-    <!-- Breadcrumbs End -->
-    <div class="rs-services style2  pt-100 pb-100 md-pt-70 md-pb-70">
-        <div class="container custom">
-            <div class="row">
-                <div class="col-lg-4 col-md-12 order-last">
-                    @include('frontend.pages.services.sidebar')
-                </div>
-                <div class="col-lg-8 pr-35 md-pr-15 md-mt-50">
-                    <div class="row">
-                        @foreach(@$allservices as $index=>$service)
-                            <div class="col-lg-6 col-md-6 mb-20">
-                                <div class="service-wrap">
-                                    <div class="image-part">
-                                        <img class="lazy" data-src="{{asset('/images/service/thumb/thumb_'.@$service->banner_image)}}" alt="" />
-                                    </div>
-                                    <div class="content-part">
-                                        <h3 class="title"><a href="{{route('service.single',$service->slug)}}">
-                                                {{ucwords(@$service->title)}}
-                                            </a></h3>
-                                        <div class="desc">{{ elipsis(strip_tags($service->description))}}</div>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
+    </section>
 
-                        <div class="col-lg-12">
-                            <div class="pagination-area">
-                                {{ $allservices->links('vendor.pagination.default') }}
+    <section class="">
+        <div class="container">
+            <div class="row">
+                @foreach(@$rows as $index=>$latest)
+                    <div class="service-block col-lg-4 col-md-6 col-sm-12 wow fadeInUp">
+                        <div class="inner-box">
+                            <div class="image-box">
+                                <figure class="image"><a href="{{ route('study-abroad.single', $latest->slug) }}">
+                                        <img class="lazy" data-src="{{ @$latest->image ? asset('/images/course/'.@$latest->image):''}}" alt=""></a>
+                                </figure>
+                                <div class="icon-box"><i class="icon fa fa-graduation-cap"></i></div>
+                            </div>
+                            <div class="content-box">
+                                <h5 class="title"><a href="{{ route('study-abroad.single', $latest->slug) }}">
+                                        {{ $latest->title ?? '' }}
+                                    </a></h5>
+                                <div class="text">
+                                    {{ elipsis( strip_tags($latest->description ?? '') )}}
+                                </div>
+                                <a href="{{ route('study-abroad.single',$latest->slug) }}" class="read-more">Read More <i class="fa fa-long-arrow-alt-right"></i></a>
                             </div>
                         </div>
                     </div>
+                @endforeach
+                <div class="service-block col-lg-12 col-md-12 col-sm-12 wow fadeInUp" data-wow-delay="300ms">
+                    {{ $rows->links('vendor.pagination.simple-bootstrap-4') }}
                 </div>
-
             </div>
         </div>
-    </div>
+    </section>
 
-    </div>
-    <!-- Main content End -->
+
 
 
 @endsection

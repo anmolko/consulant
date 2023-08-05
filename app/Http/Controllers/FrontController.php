@@ -472,8 +472,7 @@ class FrontController extends Controller
     }
 
     public function studyAbroad(){
-        $rows    = Course::orderBy('created_at', 'desc')->paginate(9);
-
+        $rows           = Course::orderBy('created_at', 'desc')->paginate(9);
         return view('frontend.pages.course.index',compact('rows'));
     }
 

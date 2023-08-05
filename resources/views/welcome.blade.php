@@ -206,6 +206,9 @@
                         </div>
                     @endforeach
                 </div>
+                <div class="training-section pb-0">
+                    <div class="bottom-text"><a href="{{ route('study-abroad.list') }}">View all of our programme here</a> </div>
+                </div>
             </div>
         </section>
     @endif

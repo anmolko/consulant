@@ -8,75 +8,59 @@
 </style>
 @endsection
 @section('content')
-
-    <!-- Breadcrumbs Start -->
-    <div class="rs-breadcrumbs img4">
-        <div class="container">
-            <div class="breadcrumbs-inner">
-                <h1 class="page-title">{{ucwords($cat_name)}}</h1>
-                <span class="sub-text">
-                    Blog Category
-                </span>
+    <section class="page-title" style="background-image: url({{ asset('assets/frontend/images/background/page-title.jpg') }});">
+        <div class="auto-container">
+            <div class="title-outer">
+                <h1 class="title"> {{ucwords($cat_name)}}  </h1>
+                <ul class="page-breadcrumb">
+                    <li><a href="/">Home</a></li>
+                    <li> Blog category </li>
+                </ul>
             </div>
         </div>
-    </div>
-    <!-- Breadcrumbs End -->
+    </section>
 
-    <!-- Blog Section Start -->
-    <div class="rs-inner-blog pt-100 pb-100 md-pt-70 md-pb-70">
-        <div class="container custom">
+    <!--Blog Details Start-->
+    <section class="blog-details">
+        <div class="container">
             <div class="row">
-                <div class="col-lg-4 col-md-12 order-last">
-                    @include('frontend.pages.blogs.sidebar')
-                </div>
-                <div class="col-lg-8 pr-35 md-pr-15 md-mt-50">
+                <div class="col-xl-8 col-lg-7">
                     <div class="row">
-                        @foreach($allPosts as $post)
-                            <div class="col-lg-6 col-md-12 mb-50">
-                                <div class="blog-item">
-                                    <div class="blog-img">
-                                        <a href="{{route('blog.single',$post->slug)}}">
-                                            <img class="lazy" data-src="{{asset('/images/blog/'.@$post->image) }}"  alt=""></a>
-                                        <ul class="post-categories">
-                                            <li><a href="{{route('blog.single',$post->slug)}}">{{ucfirst(@$post->category->name)}}</a></li>
-                                        </ul>
+                        @foreach($allPosts as $index=>$post)
+                            <div class="news-block-two col-lg-6 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay="{{$index+2}}00ms">
+                                <div class="inner-box">
+                                    <div class="image-box">
+                                        <figure class="image">
+                                            <a href="{{route('blog.single',$post->slug)}}">
+                                                <img class="lazy" data-src="{{asset('/images/blog/thumb/thumb_'.@$post->image)}}" alt="">
+                                            </a>
+                                        </figure>
+                                        <span class="date"><b>{{date('d', strtotime($post->created_at))}}</b> {{date('M Y', strtotime($post->created_at))}}</span>
                                     </div>
-                                    <div class="blog-content">
-                                        <h3 class="blog-title"><a href="{{route('blog.single',$post->slug)}}">
-                                                {{@$post->title}}</a></h3>
-                                        <div class="blog-meta">
-                                            <ul class="btm-cate">
-                                                <li>
-                                                    <div class="blog-date">
-                                                        <i class="fa fa-calendar-check-o"></i>{{date('d M Y', strtotime($post->created_at))}}
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="blog-desc">
-                                            {{ elipsis( strip_tags(@$post->description)) }}
-                                        </div>
-                                        <div class="blog-button">
-                                            <a class="blog-btn" href="{{route('blog.single',$post->slug)}}">Continue Reading</a>
-                                        </div>
+                                    <div class="content-box">
+                                        <ul class="post-info">
+                                            <li><i class="fa fa-list"></i> {{ucfirst(@$post->category->name)}} </li>
+                                        </ul>
+                                        <h4 class="title">
+                                            <a href="{{route('blog.single',@$post->slug)}}">
+                                                {{ucfirst(@$post->title)}}
+                                            </a>
+                                        </h4>
                                     </div>
                                 </div>
                             </div>
                         @endforeach
-
-                        <div class="col-lg-12">
-                            <div class="pagination-area">
-                                {{ $allPosts->links('vendor.pagination.default') }}
-                            </div>
+                        <div class="news-block-two col-lg-12 col-md-12 col-sm-12 wow fadeInUp" data-wow-delay="300ms">
+                            {{ $allPosts->links('vendor.pagination.simple-bootstrap-4') }}
                         </div>
                     </div>
                 </div>
-
+                <div class="col-xl-4 col-lg-5">
+                    @include('frontend.pages.blogs.sidebar')
+                </div>
             </div>
         </div>
-    </div>
-    <!-- Blog Section End -->
-    </div>
-
+    </section>
+    <!--Blog Details End-->
 
 @endsection

@@ -72,18 +72,18 @@ class FrontController extends Controller
 
     public function index()
     {
-        $clients            = $this->client->orderBy('created_at', 'asc')->take(15)->get();
+        $clients            = $this->client->latest()->take(15)->get();
         $latestServices     = $this->service->latest()->take(4)->get();
         $countries          = CountryState::getCountries();
-        $sliders            = $this->slider->where('status','active')->orderBy('created_at', 'asc')->get();
+        $sliders            = $this->slider->where('status','active')->latest()->get();
         $homepage_info      = $this->home_page->first();
-        $testimonials       = Testimonial::orderBy('created_at', 'asc')->get();
-        $latestPosts        = $this->blog->inRandomOrder()->take(3)->get();
+        $testimonials       = Testimonial::latest()->get();
+        $latestPosts        = $this->blog->latest()->take(3)->get();
         $recruitments       = RecruitmentProcess::all();
         $director           = ManagingDirector::orderBy('order', 'asc')->get();
         $today              = date('Y-m-d');
-        $latestcourses      = Course::orderBy('created_at', 'DESC')->take(6)->get();
-        $latesttests        = TestPreparation::orderBy('created_at', 'DESC')->take(6)->get();
+        $latestcourses      = Course::latest()->take(6)->get();
+        $latesttests        = TestPreparation::latest()->take(6)->get();
         $recuruitment_index = [3,7,11,15];
         $legal_data         = get_legal_documents();
 
@@ -296,9 +296,9 @@ class FrontController extends Controller
     }
 
     public function blogs(){
-        $bcategories = $this->bcategory->withCount('blogs')->having('blogs_count', '>', 0)->get();
-        $allPosts = $this->blog->orderBy('created_at', 'DESC')->where('status','publish')->paginate(6);
-        $latestPosts = $this->blog->orderBy('created_at', 'DESC')->where('status','publish')->take(3)->get();
+        $bcategories    = $this->bcategory->withCount('blogs')->having('blogs_count', '>', 0)->get();
+        $allPosts       = $this->blog->orderBy('created_at', 'DESC')->where('status','publish')->paginate(6);
+        $latestPosts    = $this->blog->orderBy('created_at', 'DESC')->where('status','publish')->take(3)->get();
 
         return view('frontend.pages.blogs.index',compact('allPosts','latestPosts','bcategories'));
     }
@@ -311,7 +311,7 @@ class FrontController extends Controller
         }
         $catid = $singleBlog->blog_category_id;
         $bcategories = $this->bcategory->withCount('blogs')->having('blogs_count', '>', 0)->get();
-        $latestPosts = $this->blog->orderBy('created_at', 'DESC')->where('status','publish')->take(3)->get();
+        $latestPosts = $this->blog->orderBy('created_at', 'DESC')->where('status','publish')->whereNotIn('id',[$singleBlog->id])->take(3)->get();
         return view('frontend.pages.blogs.single',compact('singleBlog','bcategories','latestPosts'));
     }
 
@@ -370,7 +370,9 @@ class FrontController extends Controller
             );
 
             if(!app()->environment('local')){
-                Mail::to($theme_data->email)->send(new ContactDetail($data));
+                if($theme_data->email){
+                    Mail::to($theme_data->email)->send(new ContactDetail($data));
+                }
             }
 
             Session::flash('success','Your message was submitted successfully');
@@ -398,42 +400,6 @@ class FrontController extends Controller
         $latestServices = $this->service->orderBy('created_at', 'DESC')->take(5)->get();
 
         return view('frontend.pages.services.single',compact('singleService','latestPosts','latestServices'));
-    }
-
-    public function jobs(){
-        $today      = date('Y-m-d');
-        $alljobs    = Job::orderBy('created_at', 'DESC')->where('start_date','<=',$today)->paginate(6);
-        $category   = JobCategory::all();
-        $latestJobs = Job::orderBy('created_at', 'DESC')->where('start_date','<=',$today)->take(3)->get();
-
-        return view('frontend.pages.jobs.index',compact('today','alljobs','latestJobs','category'));
-    }
-
-
-    public function jobSingle($slug){
-
-        $singleJob = Job::where('slug', $slug)->first();
-        if (!$singleJob) {
-            return abort(404);
-        }
-
-        $today = date('Y-m-d');
-        $countries  = CountryState::getCountries();
-        $latestJobs = Job::orderBy('created_at', 'DESC')->where('start_date','<=',$today)->take(3)->get();
-
-        return view('frontend.pages.jobs.single',compact('today','countries','singleJob','latestJobs'));
-    }
-
-    public function searchJob(Request $request)
-    {
-        $today = date('Y-m-d');
-        $title = $request->s;
-        $alljobs = Job::where('name', 'LIKE', '%' . $title . '%')->orderBy('name', 'asc')
-            ->where('start_date','<=',$today)
-            ->paginate(6);
-        $latestJobs = Job::orderBy('created_at', 'DESC')->where('start_date','<=',$today)->take(3)->get();
-
-        return view('frontend.pages.jobs.search',compact('today','alljobs','title','latestJobs'));
     }
 
     public function clients()

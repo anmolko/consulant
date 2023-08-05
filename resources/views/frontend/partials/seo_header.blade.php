@@ -5,39 +5,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
-    <link rel="canonical" href="https://careerlinkrecruitment.com" />
+{{--    <link rel="canonical" href="https://careerlinkrecruitment.com" />--}}
 
     @yield('seo')
 
     <link rel="shortcut icon" type="image/x-icon" href="{{ (@$setting_data->favicon) ? asset('/images/settings/'.@$setting_data->favicon):asset('assets/backend/images/canosoft-favicon.png') }}">
 
-    <!-- Bootstrap v4.4.1 css -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/frontend/css/bootstrap.min.css') }}">
-    <!-- font-awesome css -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/frontend/css/font-awesome.min.css') }}">
-    <!-- flaticon css -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/frontend/fonts/flaticon.css') }}">
-    <!-- animate css -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/frontend/css/animate.css') }}">
-    <!-- owl.carousel css -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/frontend/css/owl.carousel.css') }}">
-    <!-- off canvas css -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/frontend/css/off-canvas.css') }}">
-    <!-- magnific popup css -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/frontend/css/magnific-popup.css') }}">
-    <!-- Main Menu css -->
-    <link rel="stylesheet" href="{{ asset('assets/frontend/css/rsmenu-main.css') }}">
-    <!-- nivo slider CSS -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/frontend/inc/custom-slider/css/nivo-slider.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/frontend/inc/custom-slider/css/preview.css') }}">
-    <!-- spacing css -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/frontend/css/rs-spacing.css') }}">
-    <!-- style css -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/frontend/css/style.css') }}">
-    <!-- This stylesheet dynamically changed from style.less -->
-    <!-- responsive css -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/frontend/css/responsive.css') }}">
-    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+    <link href="{{ asset('assets/frontend/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/frontend/css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/frontend/css/responsive.css') }}" rel="stylesheet">
+    <!-- Responsive -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script><![endif]-->
+<!--[if lt IE 9]><script src="{{asset('assets/frontend/js/respond.js')}}"></script><![endif]-->
     <script async src="https://www.googletagmanager.com/gtag/js?id={{@$setting_data->google_analytics}}"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -46,346 +28,218 @@
 
         gtag('config', '{{@$setting_data->google_analytics}}');
     </script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     @yield('css')
     @stack('styles')
 </head>
 
-<body>
+<div class="page-wrapper">
+    <!-- Preloader -->
+    <div class="preloader"></div>
+    <!-- Main Header-->
+    <header class="main-header header-style-three">
 
-<body class="defult-home">
-
-<div class="offwrap"></div>
-
-<!--Preloader start here-->
-<div id="pre-load">
-    <div id="loader" class="loader">
-        <div class="loader-container">
-            <div class='loader-icon'><img class="lazy" data-src="{{ (@$setting_data->favicon) ? asset('/images/settings/'.@$setting_data->favicon):asset('assets/backend/images/canosoft-favicon.png') }}" alt="Careerlink"></div>
-        </div>
-    </div>
-</div>
-<!--Preloader area end here-->
-
-<!-- Main content Start -->
-<div class="main-content">
-
-
-    <!--Full width header Start-->
-    <div class="full-width-header">
-        <!--Header Start-->
-        <header id="rs-header" class="rs-header style2 header-transparent">
-            <!-- Topbar Area Start -->
-            <div class="topbar-area style1 style3">
-                <div class="container custom">
-                    <div class="row y-middle">
-                        <div class="col-lg-7">
-                            <div class="topbar-contact">
-                                <ul>
-                                    <li>
-                                        <i class="flaticon-email"></i>
-                                        <a href="mailto:{{@$setting_data->email ?? ''}}" target="_blank">{{@$setting_data->email ?? ''}}</a>
-                                    </li>
-                                    <li>
-                                        <i class="flaticon-call"></i>
-                                        <a href="tel:{{@$setting_data->phone ?? $setting_data->mobile ?? ''}}" target="_blank"> {{@$setting_data->phone ?? $setting_data->mobile  ?? ''}}</a>
-                                    </li>
-                                    <li>
-                                        <i class="flaticon-location"></i>
-                                        {{@$setting_data->address ?? ''}}
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-lg-5 text-right">
-                            <div class="toolbar-sl-share">
-                                <ul>
-                                    @if(@$setting_data->facebook)
-                                        <li>
-                                            <a href="{{@$setting_data->facebook}}" target="_blank">
-                                                <i class="fa-brands fa-facebook-f"></i>
-                                            </a>
-                                        </li>
-                                    @endif
-                                    @if(@$setting_data->youtube)
-                                        <li>
-                                            <a href="{{@$setting_data->youtube}}" target="_blank">
-                                                <i class="fa-brands fa-youtube"></i>
-                                            </a>
-                                        </li>
-                                    @endif
-                                    @if(@$setting_data->instagram)
-                                        <li><a href="{{@$setting_data->instagram}}" target="_blank">
-                                                <i class="fa-brands fa-instagram"></i>
-                                            </a></li>
-                                    @endif
-                                    @if(@$setting_data->linkedin)
-                                        <li><a href="{{@$setting_data->linkedin}}" target="_blank">
-                                                <i class="fa-brands fa-linkedin"></i>
-                                            </a>
-                                        </li>
-                                    @endif
-                                    @if(!empty(@$setting_data->ticktock))
-                                        <li>
-                                            <a href="{{@$setting_data->ticktock}}" target="_blank">
-                                                <i class="fa-brands fa-tiktok"></i>
-                                            </a>
-                                        </li>
-                                    @endif
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Topbar Area End -->
-
-            <!-- Menu Start -->
-            <div class="menu-area menu-sticky">
-                <div class="container custom">
-                    <div class="row-table">
-                        <div class="col-cell header-logo">
-                            <div class="logo-area">
-                                <a href="/">
-                                    <img class="lazy" data-src="{{$setting_data->logo ? asset('/images/settings/'.@$setting_data->logo):''}}" alt="logo">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-cell">
-                            <div class="rs-menu-area">
-                                <div class="main-menu">
-                                    <nav class="rs-menu hidden-md">
-                                        <ul class="nav-menu">
-                                            <li class="current-menu-item">
-                                                <a href="/">Home</a>
-                                            </li>
-                                            @if(!empty($top_nav_data))
-                                                @foreach($top_nav_data as $nav)
-                                                    @if(!empty($nav->children[0]))
-                                                        <li class="menu-item-has-children">
-                                                            <a href="#">{{ @$nav->name ?? @$nav->title }}</a>
-                                                            <ul class="sub-menu">
-                                                                @foreach($nav->children[0] as $childNav)
-                                                                    <li class="{{!empty($childNav->children[0]) ? 'last-item menu-item-has-children':''}}">
-                                                                        <a href="{{get_menu_url($childNav->type, $childNav)}}">{{ @$childNav->name ?? @$childNav->title ??''}}</a>
-                                                                        @if(!empty($childNav->children[0]))
-                                                                            <ul class="sub-menu">
-                                                                                @foreach($childNav->children[0] as $key => $lastchild)
-                                                                                    <li>
-                                                                                        <a href="{{get_menu_url($lastchild->type, $lastchild)}}" target="{{@$lastchild->target ? '_blank':''}}">
-                                                                                            {{ @$lastchild->name ?? @$lastchild->title ?? ''}}
-                                                                                        </a>
-                                                                                    </li>
-                                                                                @endforeach
-                                                                            </ul>
-                                                                        @endif
-                                                                    </li>
-                                                                @endforeach
-                                                            </ul>
-                                                        </li>
-                                                    @else
-                                                        <li>
-                                                            <a class="nav-item" href="{{get_menu_url(@$nav->type, @$nav)}}" target="{{@$nav->target ? '_blank':''}}">
-                                                                {{ @$nav->name ?? @$nav->title ??''}}
-                                                            </a>
-                                                        </li>
-                                                    @endif
-                                                @endforeach
-                                            @endif
-                                        </ul>
-                                    </nav>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-cell">
-                            <div class="expand-btn-inner">
-                                <ul>
-                                    <li class="search-parent">
-                                        <a class="hidden-xs rs-search" data-bs-toggle="modal"
-                                           data-bs-target="#searchModal" href="#">
-                                            <i class="flaticon-search"></i>
-                                        </a>
-                                    </li>
-                                    <li class="humburger">
-                                        <a id="nav-expander" class="nav-expander bar" href="#">
-                                            <div class="bar">
-                                                <span class="dot1"></span>
-                                                <span class="dot2"></span>
-                                                <span class="dot3"></span>
-                                                <span class="dot4"></span>
-                                                <span class="dot5"></span>
-                                                <span class="dot6"></span>
-                                                <span class="dot7"></span>
-                                                <span class="dot8"></span>
-                                                <span class="dot9"></span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Menu End -->
-            <!-- Canvas Menu start -->
-            <nav class="right_menu_togle hidden-md">
-                <div class="close-btn">
-                    <a id="nav-close" class="nav-close">
-                        <div class="line">
-                            <span class="line1"></span>
-                            <span class="line2"></span>
-                        </div>
-                    </a>
-                </div>
-                <div class="canvas-logo">
-                    <a href="/"><img class="lazy" data-src="{{$setting_data->logo ? asset('/images/settings/'.@$setting_data->logo):''}}" alt="logo"></a>
-                </div>
-                <div class="offcanvas-text text-justify">
-                    <p>{!! $setting_data->website_description ?? '' !!}</p>
-                </div>
-                <div class="canvas-contact">
-                    <div class="address-area">
-                        <div class="address-list">
-                            <div class="info-icon">
-                                <i class="flaticon-location"></i>
-                            </div>
-                            <div class="info-content">
-                                <h4 class="title">Address</h4>
-                                <em>{{@$setting_data->address ?? ''}}</em>
-                            </div>
-                        </div>
-                        <div class="address-list">
-                            <div class="info-icon">
-                                <i class="flaticon-email"></i>
-                            </div>
-                            <div class="info-content">
-                                <h4 class="title">Email</h4>
-                                <em><a href="mailto:{{@$setting_data->email ?? ''}}" target="_blank">{{@$setting_data->email ?? ''}}</a></em>
-                            </div>
-                        </div>
-                        <div class="address-list">
-                            <div class="info-icon">
-                                <i class="flaticon-call"></i>
-                            </div>
-                            <div class="info-content">
-                                <h4 class="title">Phone</h4>
-                                <em>{{@$setting_data->phone ?? $setting_data->mobile ?? ''}}</em>
-                            </div>
-                        </div>
-                    </div>
-                    <ul class="social">
-                        @if(@$setting_data->facebook)
-                            <a href="{{@$setting_data->facebook}}" target="_blank">
-                                <i class="fa-brands fa-facebook-f"></i>
-                            </a>
-                        @endif
-                        @if(@$setting_data->youtube)
-                            <a href="{{@$setting_data->youtube}}" target="_blank">
-                                <i class="fa-brands fa-youtube"></i>
-                            </a>
-                        @endif
-                        @if(@$setting_data->instagram)
-                            <a href="{{@$setting_data->instagram}}" target="_blank">
-                                <i class="fa-brands fa-instagram"></i>
-                            </a>
-                        @endif
-                        @if(@$setting_data->linkedin)
-                            <a href="{{@$setting_data->linkedin}}" target="_blank">
-                                <i class="fa-brands fa-linkedin"></i>
-                            </a>
-                        @endif
-                        @if(!empty(@$setting_data->ticktock))
-                            <a href="{{@$setting_data->ticktock}}" target="_blank">
-                                <i class="fa-brands fa-tiktok"></i>
-                            </a>
-                        @endif
+        <div class="header-top">
+            <div class="inner-container">
+                <div class="top-left">
+                    <!-- Info List -->
+                    <ul class="list-style-one">
+                        <li><i class="fa fa-envelope"></i> <a href="mailto:{{@$setting_data->email ?? ''}}">{{@$setting_data->email ?? ''}}</a></li>
+                        <li><i class="fa fa-map-marker"></i> {{@$setting_data->address ?? ''}}</li>
                     </ul>
                 </div>
-            </nav>
-            <!-- Canvas Menu end -->
+            </div>
 
-            <!-- Canvas Mobile Menu start -->
-            <nav class="right_menu_togle mobile-navbar-menu" id="mobile-navbar-menu">
-                <div class="close-btn">
-                    <a id="nav-close2" class="nav-close">
-                        <div class="line">
-                            <span class="line1"></span>
-                            <span class="line2"></span>
-                        </div>
+            <div class="outer-box">
+                <ul class="social-icon-one">
+                    @if(@$setting_data->facebook)
+                        <li><a href="{{ @$setting_data->facebook }}"><span class="fab fa-twitter"></span></a></li>
+                    @endif
+                    @if(@$setting_data->youtube)
+                        <li><a href="{{ @$setting_data->youtube }}"><span class="fab fa-facebook-square"></span></a></li>
+                    @endif
+                    @if(@$setting_data->instagram)
+                        <li><a href="{{ @$setting_data->instagram }}"><span class="fab fa-pinterest-p"></span></a></li>
+                    @endif
+                    @if(@$setting_data->linkedin)
+                        <li><a href="{{ @$setting_data->linkedin }}"><span class="fab fa-instagram"></span></a></li>
+                    @endif
+                    @if(!empty(@$setting_data->ticktock))
+                        <li><a href="{{ @$setting_data->ticktock }}"><span class="fa-brands fa-tiktok"></span></a></li>
+                    @endif
+                </ul>
+            </div>
+        </div>
+
+        <!-- Main box -->
+        <div class="main-box">
+            <div class="logo-box">
+                <div class="logo">
+                    <a href="/">
+                        <img class="lazy" style="width: 200px;"
+                             data-src="{{$setting_data->logo ? asset('/images/settings/'.@$setting_data->logo):''}}" alt="" />
                     </a>
                 </div>
-                <ul class="nav-menu">
-                    <li><a href="/">Home</a></li>
-                    @if(!empty($top_nav_data))
-                        @foreach($top_nav_data as $nav)
-                            @if(!empty($nav->children[0]))
-                                <li class="menu-item-has-children">
-                                    <a href="#">{{ @$nav->name ?? @$nav->title }}</a>
-                                    <ul class="sub-menu">
-                                        @foreach($nav->children[0] as $childNav)
-                                            <li class="{{!empty($childNav->children[0]) ? 'last-item menu-item-has-children':''}}">
-                                                <a href="{{get_menu_url($childNav->type, $childNav)}}">{{ @$childNav->name ?? @$childNav->title ??''}}</a>
-                                                @if(!empty($childNav->children[0]))
-                                                    <ul class="sub-menu">
-                                                        @foreach($childNav->children[0] as $key => $lastchild)
-                                                            <li>
-                                                                <a href="{{get_menu_url($lastchild->type, $lastchild)}}" target="{{@$lastchild->target ? '_blank':''}}">
-                                                                    {{ @$lastchild->name ?? @$lastchild->title ?? ''}}
-                                                                </a>
-                                                            </li>
-                                                        @endforeach
-                                                    </ul>
-                                                @endif
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                </li>
-                            @else
-                                <li>
-                                    <a class="nav-item" href="{{get_menu_url(@$nav->type, @$nav)}}" target="{{@$nav->target ? '_blank':''}}">
-                                        {{ @$nav->name ?? @$nav->title ??''}}
-                                    </a>
-                                </li>
-                            @endif
-                        @endforeach
+            </div>
+            <!--Nav Box-->
+            <div class="nav-outer">
+                <nav class="nav main-menu">
+                    <ul class="navigation">
+                        <li class="current"><a href="/">Home</a></li>
+                        @if(!empty($top_nav_data))
+                            @foreach($top_nav_data as $nav)
+                                @if(!empty($nav->children[0]))
+                                    <li class="dropdown">
+                                        <a href="#">{{ @$nav->name ?? @$nav->title }}</a>
+                                        <ul>
+                                            @foreach($nav->children[0] as $childNav)
+                                                <li class="{{!empty($childNav->children[0]) ? 'dropdown':''}}">
+                                                    <a href="{{get_menu_url($childNav->type, $childNav)}}">
+                                                        {{ @$childNav->name ?? @$childNav->title ??''}}
+                                                    </a>
+                                                    @if(@$childNav->children[0])
+                                                        <ul>
+                                                            @foreach(@$childNav->children[0] as $key => $lastchild)
+                                                                <li>
+                                                                    <a href="{{get_menu_url($lastchild->type, $lastchild)}}" target="{{@$lastchild->target ? '_blank':''}}">
+                                                                        {{ @$lastchild->name ?? @$lastchild->title ?? ''}}
+                                                                    </a>
+                                                                </li>
+                                                            @endforeach
+                                                        </ul>
+                                                    @endif
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    </li>
+                                @else
+                                    <li>
+                                        <a href="{{get_menu_url(@$nav->type, @$nav)}}" target="{{@$nav->target ? '_blank':''}}">
+                                            {{ @$nav->name ?? @$nav->title ??''}}
+                                        </a>
+                                    </li>
+                                @endif
+                            @endforeach
+                        @endif
+                    </ul>
+                </nav>
+                <!-- Main Menu End-->
+            </div>
+            <div class="outer-box">
+                <a href="tel:{{@$setting_data->phone ?? $setting_data->mobile ?? ''}}" class="info-btn">
+                    <i class="icon fa fa-phone"></i>
+                    <small>Call Us</small><br> {{@$setting_data->phone ?? $setting_data->mobile  ?? ''}}
+                </a>
+                <div class="ui-btn-outer">
+                    <button class="ui-btn ui-btn search-btn">
+                        <span class="icon lnr lnr-icon-search"></span>
+                    </button>
+                </div>
+                <!-- Mobile Nav toggler -->
+                <div class="mobile-nav-toggler"><span class="icon lnr-icon-bars"></span></div>
+            </div>
+        </div>
+        <!-- End Main Box -->
+        <!-- Mobile Menu  -->
+        <div class="mobile-menu">
+            <div class="menu-backdrop"></div>
+            <!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header-->
+            <nav class="menu-box">
+                <div class="upper-box">
+                    <div class="nav-logo">
+                        <a href="/">
+                            <img class="lazy" data-src="{{$setting_data->logo ? asset('/images/settings/'.@$setting_data->logo):''}}" alt="" title="">
+                        </a>
+                    </div>
+                    <div class="close-btn"><i class="icon fa fa-times"></i></div>
+                </div>
+                <ul class="navigation clearfix">
+                    <!--Keep This Empty / Menu will come through Javascript-->
+                </ul>
+                <ul class="contact-list-one">
+                    <li>
+                        <!-- Contact Info Box -->
+                        <div class="contact-info-box">
+                            <i class="icon lnr-icon-phone-handset"></i>
+                            <span class="title">Call Us</span>
+                            <a href="tel:{{@$setting_data->phone ?? $setting_data->mobile ?? ''}}">
+                                {{@$setting_data->phone ?? $setting_data->mobile  ?? ''}}
+                            </a>
+                        </div>
+                    </li>
+                    <li>
+                        <!-- Contact Info Box -->
+                        <div class="contact-info-box">
+                            <span class="icon lnr-icon-envelope1"></span>
+                            <span class="title">Send Email</span>
+                            <a href="mailto:{{@$setting_data->email ?? ''}}">{{@$setting_data->email ?? ''}}</a>
+                        </div>
+                    </li>
+                    <li>
+                        <!-- Contact Info Box -->
+                        <div class="contact-info-box">
+                            <span class="icon lnr-icon-clock"></span>
+                            <span class="title">Our Address</span>
+                            {{@$setting_data->address ?? ''}}
+                        </div>
+                    </li>
+                </ul>
+                <ul class="social-links">
+                    @if(@$setting_data->facebook)
+                        <li><a href="{{ @$setting_data->facebook }}"><span class="fab fa-twitter"></span></a></li>
                     @endif
-                </ul> <!-- //.nav-menu -->
-                <div class="canvas-contact">
-                    <div class="address-area">
-                        <div class="address-list">
-                            <div class="info-icon">
-                                <i class="flaticon-location"></i>
+                    @if(@$setting_data->youtube)
+                        <li><a href="{{ @$setting_data->youtube }}"><span class="fab fa-facebook-square"></span></a></li>
+                    @endif
+                    @if(@$setting_data->instagram)
+                        <li><a href="{{ @$setting_data->instagram }}"><span class="fab fa-pinterest-p"></span></a></li>
+                    @endif
+                    @if(@$setting_data->linkedin)
+                        <li><a href="{{ @$setting_data->linkedin }}"><span class="fab fa-instagram"></span></a></li>
+                    @endif
+                    @if(!empty(@$setting_data->ticktock))
+                        <li><a href="{{ @$setting_data->ticktock }}"><span class="fa-brands fa-tiktok"></span></a></li>
+                    @endif
+                </ul>
+            </nav>
+        </div><!-- End Mobile Menu -->
+        <!-- Header Search -->
+        <div class="search-popup">
+            <span class="search-back-drop"></span>
+            <button class="close-search"><span class="fa fa-times"></span></button>
+            <div class="search-inner">
+                <form method="get" action="{{route('searchJob')}}">
+                    <div class="form-group">
+                        <input id="s" name="s" class="form-control" placeholder="Search for jobs.." type="text" oninvalid="this.setCustomValidity('Type a keyword')" oninput="this.setCustomValidity('')" required>
+                        <button type="submit"><i class="fa fa-search"></i></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- End Header Search -->
+        <!-- Sticky Header  -->
+        <div class="sticky-header">
+            <div class="auto-container">
+                <div class="inner-container">
+                    <!--Logo-->
+                    <div class="logo">
+                        <a href="/" title=""><img src="{{ (@$setting_data->favicon) ? asset('/images/settings/'.@$setting_data->favicon):asset('assets/backend/images/canosoft-favicon.png') }}" alt="" title=""></a>
+                    </div>
+                    <!--Right Col-->
+                    <div class="nav-outer">
+                        <!-- Main Menu -->
+                        <nav class="main-menu">
+                            <div class="navbar-collapse show collapse clearfix">
+                                <ul class="navigation clearfix">
+                                    <!--Keep This Empty / Menu will come through Javascript-->
+                                </ul>
                             </div>
-                            <div class="info-content">
-                                <h4 class="title">Address</h4>
-                                <em>{{@$setting_data->address ?? ''}}</em>
-                            </div>
-                        </div>
-                        <div class="address-list">
-                            <div class="info-icon">
-                                <i class="flaticon-email"></i>
-                            </div>
-                            <div class="info-content">
-                                <h4 class="title">Email</h4>
-                                <em><a href="mailto:{{@$setting_data->email ?? ''}}" target="_blank">{{@$setting_data->email ?? ''}}</a></em>
-                            </div>
-                        </div>
-                        <div class="address-list">
-                            <div class="info-icon">
-                                <i class="flaticon-call"></i>
-                            </div>
-                            <div class="info-content">
-                                <h4 class="title">Phone</h4>
-                                <em>{{@$setting_data->phone ?? $setting_data->mobile ?? ''}}</em>
-                            </div>
-                        </div>
+                        </nav><!-- Main Menu End-->
+                        <!--Mobile Navigation Toggler-->
+                        <div class="mobile-nav-toggler"><span class="icon lnr-icon-bars"></span></div>
                     </div>
                 </div>
-            </nav>
-            <!-- Canvas Menu end -->
-        </header>
-        <!--Header End-->
-    </div>
-    <!--Full width header End-->
+            </div>
+        </div><!-- End Sticky Menu -->
+    </header>
+    <!--End Main Header -->

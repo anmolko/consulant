@@ -1294,6 +1294,9 @@ Scroll To Top style
 .btn-style-one:hover .btn-title {
   color: #ffffff;
 }
+.btn-style-one:hover {
+  color: #ffffff;
+}
 .btn-style-one:hover:before {
   width: 100%;
   right: 0;
@@ -13202,4 +13205,86 @@ Sidebar
 }
 .footer-bottom .copyright-text a:hover {
   color: #ffffff;
+}
+.disabled-button{
+    pointer-events: none;
+}
+.center{
+    margin:auto;
+    width: 50%;
+}
+.custom-description{
+    text-align: justify;
+}
+.custom-description ul li, .custom-description ol li{
+    position: relative;
+    display: block;
+    border: 1px solid #e1e8e4;
+    padding: 16px 30px 16px 53px;
+    margin-bottom: 20px;
+    -webkit-transition: all 600ms ease;
+    transition: all 600ms ease;
+    font-size: 16px;
+    line-height: 32px;
+    font-weight: 600;
+    color: var(--headings-color);
+    font-family: var(--title-font);
+}
+.custom-description ul li:before{
+    color: var(--theme-color1);
+    position: absolute;
+    left: 20px;
+    top: 16px;
+    font-size: 18px;
+    -webkit-transition: all 600ms ease;
+    transition: all 600ms ease;
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    content: "\f058";
+}
+.custom-description ol li:before{
+    color: var(--theme-color1);
+    position: absolute;
+    left: 20px;
+    top: 16px;
+    font-size: 18px;
+    -webkit-transition: all 600ms ease;
+    transition: all 600ms ease;
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    content: "\f105";
+}
+.custom-description ul li:hover, .custom-description ol li:hover {
+    background-color: var(--theme-color2);
+    color: var(--text-color-bg-theme-color2);
+}
+.custom-description ul li:hover::before,.custom-description ol li:hover::before  {
+    color: var(--text-color-bg-theme-color2);
+}
+
+
+.custom-description blockquote{
+    font-size: 1.4em;
+    padding:1.2em 30px 1.2em 75px;
+    border-left:8px solid var(--theme-color2) ;
+    position: relative;
+    background-color: var(--bg-theme-color4);
+}
+.custom-description blockquote p{
+    font-size: 18px;
+    line-height:1.6;
+    color: var(--theme-color1);
+}
+.custom-description blockquote::before{
+    font-family:Arial;
+    content: "\201C";
+    color:var(--theme-color2);
+    font-size:4em;
+    position: absolute;
+    left: 20px;
+    top: 45px;
+}
+
+.custom-description blockquote::after{
+    content: '';
 }

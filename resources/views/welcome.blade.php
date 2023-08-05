@@ -459,7 +459,7 @@
 
                 <div class="row">
                     @foreach(@$latestPosts as $index=>$post)
-                        <div class="news-block-two col-lg-6 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay="{{$index+2}}00ms">
+                        <div class="news-block-two col-lg-4 col-md-4 col-sm-12 wow fadeInUp" data-wow-delay="{{$index+2}}00ms">
                             <div class="inner-box">
                                 <div class="image-box">
                                     <figure class="image">

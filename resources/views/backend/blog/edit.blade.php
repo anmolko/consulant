@@ -66,7 +66,7 @@
                                 <div class="mb-3">
                                     <label>Blog Description</label>
 
-                                    <textarea class="form-control" id="ckeditor-classic" name="description" placeholder="Enter blog description" rows="3" required>{{@$edit->description}}</textarea>
+                                    <textarea class="form-control" id="ckeditor-classic-blog" name="description" placeholder="Enter blog description" rows="3" required>{{@$edit->description}}</textarea>
                                     <div class="invalid-tooltip">
                                         Please enter the post description.
                                     </div>
@@ -212,9 +212,11 @@
 @endsection
 
 @section('js')
-@include('backend.ckeditor')
+{{--@include('backend.ckeditor')--}}
 <script src="{{asset('assets/backend/js/pages/form-validation.init.js')}}"></script>
     <!-- Sweet Alerts js -->
+<script src="{{asset('assets/backend/libs/@ckeditor/ckeditor5-build-classic/build/ckeditor.js')}}"></script>
+
 <script src="{{asset('assets/backend/libs/sweetalert2/sweetalert2.min.js')}}"></script>
 <script src="{{asset('assets/backend/custom_js/blog_credit.js')}}"></script>
 @endsection

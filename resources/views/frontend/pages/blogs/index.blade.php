@@ -21,7 +21,7 @@
                 <div class="col-xl-8 col-lg-7">
                     <div class="row">
                         @foreach($allPosts as $index=>$post)
-                            <div class="news-block-two col-lg-4 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay="{{$index+2}}00ms">
+                            <div class="news-block-two col-lg-6 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay="{{$index+2}}00ms">
                                 <div class="inner-box">
                                     <div class="image-box">
                                         <figure class="image">
@@ -44,6 +44,9 @@
                                 </div>
                             </div>
                         @endforeach
+                        <div class="news-block-two col-lg-12 col-md-12 col-sm-12 wow fadeInUp" data-wow-delay="300ms">
+                            {{ $allPosts->links('vendor.pagination.simple-bootstrap-4') }}
+                        </div>
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-5">

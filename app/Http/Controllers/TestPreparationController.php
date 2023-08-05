@@ -76,7 +76,7 @@ class TestPreparationController extends Controller
                 $thumb         = 'thumb_'.$name;
                 $path          = base_path().'/public/images/test_preparation/';
                 $thumb_path    = base_path().'/public/images/test_preparation/thumb/';
-                $moved         = Image::make($image->getRealPath())->orientate()->save($path.$name);
+                $moved         = Image::make($image->getRealPath())->fit(775, 400)->orientate()->save($path.$name);
                 $thumb         = Image::make($image->getRealPath())->fit(370, 238)->orientate()->save($thumb_path.$thumb);
 
                 if ($moved && $thumb){
@@ -145,7 +145,7 @@ class TestPreparationController extends Controller
                 $thumb                = 'thumb_'.$name;
                 $path                 = base_path().'/public/images/test_preparation/';
                 $thumb_path           = base_path().'/public/images/test_preparation/thumb/';
-                $moved                = Image::make($image->getRealPath())->orientate()->save($path.$name);
+                $moved                = Image::make($image->getRealPath())->fit(775, 400)->orientate()->save($path.$name);
                 $thumb                = Image::make($image->getRealPath())->fit(370, 238)->orientate()->save($thumb_path.$thumb);
 
                 if ($moved && $thumb){

@@ -485,8 +485,9 @@ class FrontController extends Controller
 
     public function testPreparation(){
         $rows    = TestPreparation::orderBy('created_at', 'desc')->paginate(9);
+        $latestTests        = TestPreparation::orderBy('created_at', 'DESC')->where('status','publish')->take(4)->get();
 
-        return view('frontend.pages.test_preparation.index',compact('rows'));
+        return view('frontend.pages.test_preparation.index',compact('rows','latestTests'));
     }
 
     public function testPreparationSingle($slug){

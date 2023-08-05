@@ -69,149 +69,37 @@
                                             <ul class="tab-btns tab-buttons clearfix">
 
                                                 @if($row->description)
-                                                    <li class="tab-btn active-btn" data-tab="#tab-1">Description</li>
+                                                    <li class="tab-btn active-btn" data-tab="#tab-description">Description</li>
                                                 @endif
-                                                @if($row->living)
-                                                    <li class="tab-btn" data-tab="#tab-2">Living</li>
+
+                                                @if($row->courseDescription)
+                                                    @foreach($row->courseDescription as $index=>$detail)
+                                                            <li class="tab-btn {{ $detail->description ? '': ($loop->first ? 'active-btn':'') }}" data-tab="#tab-{{$index}}">{{ $detail->title }}</li>
+                                                    @endforeach
                                                 @endif
-                                                @if($row->entry_requirement)
-                                                    <li class="tab-btn" data-tab="#tab-3">Entry Requirements</li>
-                                                @endif
-                                                @if($row->visa_requirement)
-                                                    <li class="tab-btn" data-tab="#tab-4">Visa Requirements</li>
-                                                @endif
-                                                @if($row->education_cost)
-                                                    <li class="tab-btn" data-tab="#tab-5">Education Cost</li>
-                                                @endif
-                                                @if($row->after_graduation)
-                                                    <li class="tab-btn" data-tab="#tab-6">After Graduation</li>
-                                                @endif
-                                                @if($row->useful_links)
-                                                    <li class="tab-btn" data-tab="#tab-7">Useful Links</li>
-                                                @endif
+
 
                                             </ul>
                                         </div>
                                         <div class="tabs-content">
-                                            <div class="tab active-tab" id="tab-1">
-                                                <div class="text">
-                                                    <h3 class="product-description__title">Description</h3>
-                                                    <p class="product-description__text1">Lorem ipsum dolor sit amet, cibo mundi ea duo, vim exerci
-                                                        phaedrum. There are many variations of passages of Lorem Ipsum available, but the majority have
-                                                        alteration in some injected or words which don't look even slightly believable. If you are going to
-                                                        use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrang hidden in the
-                                                        middle of text.
-                                                    </p>
-                                                    <div class="product-description__list">
-                                                        <ul class="list-unstyled">
-                                                            <li>
-                                                                <p><span class="fa fa-arrow-right"></span> Nam at elit nec neque suscipit gravida.</p>
-                                                            </li>
-                                                            <li>
-                                                                <p><span class="fa fa-arrow-right"></span> Aenean egestas orci eu maximus tincidunt.</p>
-                                                            </li>
-                                                            <li>
-                                                                <p><span class="fa fa-arrow-right"></span> Curabitur vel turpis id tellus cursus laoreet.
-                                                                </p>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <p class="product-description__tex2">All the Lorem Ipsum generators on the Internet tend to repeat
-                                                        predefined chunks as necessary, making this the first true generator on the Internet. It uses a
-                                                        dictionary of over 200 Latin words, combined with a handful of model sentence structures, to
-                                                        generate Lorem Ipsum which looks reasonable.
-                                                    </p>
-                                                </div>
-                                            </div>
-                                            <div class="tab" id="tab-2">
-                                                <div class="customer-comment">
-                                                    <div class="row clearfix">
-                                                        <div class="col-lg-6 col-md-6 col-sm-12 comment-column">
-                                                            <div class="single-comment-box">
-                                                                <div class="inner-box">
-                                                                    <figure class="comment-thumb"><img src="images/resource/testi-thumb-1.html" alt=""></figure>
-                                                                    <div class="inner">
-                                                                        <ul class="rating clearfix">
-                                                                            <li><i class="fas fa-star"></i></li>
-                                                                            <li><i class="fas fa-star"></i></li>
-                                                                            <li><i class="fas fa-star"></i></li>
-                                                                            <li><i class="fas fa-star"></i></li>
-                                                                            <li><i class="fas fa-star"></i></li>
-                                                                        </ul>
-                                                                        <h5>Jon D. William, <span>20 Sep, 2022 . 4:00 pm</span></h5>
-                                                                        <p>Aliquam hendrerit a augue insuscipit. Etiam aliquam massa quis des mauris commodo.</p>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-6 col-md-6 col-sm-12 comment-column">
-                                                            <div class="single-comment-box">
-                                                                <div class="inner-box">
-                                                                    <figure class="comment-thumb"><img src="images/resource/testi-thumb-2.html" alt=""></figure>
-                                                                    <div class="inner">
-                                                                        <ul class="rating clearfix">
-                                                                            <li><i class="fas fa-star"></i></li>
-                                                                            <li><i class="fas fa-star"></i></li>
-                                                                            <li><i class="fas fa-star"></i></li>
-                                                                            <li><i class="fas fa-star"></i></li>
-                                                                            <li><i class="fas fa-star"></i></li>
-                                                                        </ul>
-                                                                        <h5>Aleesha Brown, <span>22 Sep, 2022 . 8:00 pm</span></h5>
-                                                                        <p>Aliquam hendrerit a augue insuscipit. Etiam aliquam massa quis des mauris commodo.</p>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
+
+                                            @if($row->description)
+                                                <div class="tab active-tab" id="tab-description">
+                                                    <div class="text">
+                                                        <h3 class="product-description__title">Description</h3>
+                                                        <div class="product-description__text1 custom-description">
+                                                            {!! $row->description ?? '' !!}
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="comment-box">
-                                                    <h3>Add Your Comments</h3>
-                                                    <form id="contact_form" name="contact_form" class="" action="https://kodesolution.com/html/2022/vizox-html/includes/sendmail.php" method="post">
-                                                        <div class="mb-3">
-                                                            <textarea name="form_message" class="form-control required" rows="7" placeholder="Enter Message"></textarea>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col-sm-6">
-                                                                <div class="mb-3">
-                                                                    <input name="form_name" class="form-control" type="text" placeholder="Enter Name">
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-sm-6">
-                                                                <div class="mb-3">
-                                                                    <input name="form_email" class="form-control required email" type="email" placeholder="Enter Email">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-12 col-md-12 col-sm-12 column">
-                                                            <div class="review-box clearfix">
-                                                                <p>Your Review</p>
-                                                                <ul class="rating clearfix">
-                                                                    <li><i class="far fa-star"></i></li>
-                                                                    <li><i class="far fa-star"></i></li>
-                                                                    <li><i class="far fa-star"></i></li>
-                                                                    <li><i class="far fa-star"></i></li>
-                                                                    <li><i class="far fa-star"></i></li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-12 col-md-12 col-sm-12 column">
-                                                            <div class="form-group clearfix">
-                                                                <div class="custom-controls-stacked">
-                                                                    <label class="custom-control material-checkbox">
-                                                                        <input type="checkbox" class="material-control-input">
-                                                                        <span class="material-control-indicator"></span>
-                                                                        <span class="description">Save my name, email, and website in this browser for the next time I comment.</span>
-                                                                    </label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="mb-3">
-                                                            <input name="form_botcheck" class="form-control" type="hidden" value="" />
-                                                            <button type="submit" class="theme-btn btn-style-one" data-loading-text="Please wait..."><span class="btn-title">Submit Comment</span></button>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
+                                            @endif
+
+                                            @if($row->courseDescription)
+                                                @foreach($row->courseDescription as $index=>$detail)
+                                                    @include('frontend.pages.course.includes.course_description')
+                                                @endforeach
+                                            @endif
+
                                         </div>
                                     </div>
                                 </div>

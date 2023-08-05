@@ -87,7 +87,7 @@ class CourseController extends Controller
                 $thumb         = 'thumb_'.$name;
                 $path          = base_path().'/public/images/course/';
                 $thumb_path    = base_path().'/public/images/course/thumb/';
-                $moved         = Image::make($image->getRealPath())->orientate()->save($path.$name);
+                $moved         = Image::make($image->getRealPath())->fit(775, 400)->orientate()->save($path.$name);
                 $thumb         = Image::make($image->getRealPath())->fit(370, 190)->orientate()->save($thumb_path.$thumb);
 
                 if ($moved && $thumb){
@@ -177,7 +177,7 @@ class CourseController extends Controller
                 $thumb                = 'thumb_'.$name;
                 $path                 = base_path().'/public/images/course/';
                 $thumb_path           = base_path().'/public/images/course/thumb/';
-                $moved                = Image::make($image->getRealPath())->orientate()->save($path.$name);
+                $moved                = Image::make($image->getRealPath())->fit(775, 400)->orientate()->save($path.$name);
                 $thumb                = Image::make($image->getRealPath())->fit(370, 190)->orientate()->save($thumb_path.$thumb);
 
                 if ($moved && $thumb){
@@ -242,6 +242,7 @@ class CourseController extends Controller
         $delete       = Course::find($id);
         $rid          = $delete->id;
         $thumbimage   = 'thumb_'.$delete->image;
+
 
         if (!empty($delete->image) && file_exists(public_path().'/images/course/'.$delete->image)){
             @unlink(public_path().'/images/course/'.$delete->image);

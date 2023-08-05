@@ -189,7 +189,7 @@
                             <div class="inner-box">
                                 <div class="image-box">
                                     <figure class="image"><a href="{{ route('study-abroad.single', $latest->slug) }}">
-                                            <img class="lazy" data-src="{{ @$latest->image ? asset('/images/course/'.@$latest->image):''}}" alt=""></a>
+                                            <img class="lazy" data-src="{{ @$latest->image ? asset('/images/course/thumb/thumb_'.@$latest->image):''}}" alt=""></a>
                                     </figure>
                                     <div class="icon-box"><i class="icon fa fa-graduation-cap"></i></div>
                                 </div>

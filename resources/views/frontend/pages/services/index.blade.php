@@ -1,63 +1,46 @@
 @extends('frontend.layouts.master')
-@section('title') Services @endsection
+@section('title') Our Services @endsection
 @section('css')
-    <style>
 
-    .corpkit-content > .corpkit-content-inner {
-        padding-top: 0;
-        padding-bottom: 0;
-    }
-</style>
 @endsection
 @section('content')
 
-    <!-- Breadcrumbs Start -->
-    <div class="rs-breadcrumbs img4">
-        <div class="container">
-            <div class="breadcrumbs-inner">
-                <h1 class="page-title">Our Services</h1>
+
+    <section class="page-title" style="background-image: url({{ asset('assets/frontend/images/background/page-title.jpg') }});">
+        <div class="auto-container">
+            <div class="title-outer">
+                <h1 class="title">Our Services</h1>
+                <ul class="page-breadcrumb">
+                    <li><a href="/">Home</a></li>
+                    <li>Service</li>
+                </ul>
             </div>
         </div>
-    </div>
-    <!-- Breadcrumbs End -->
-    <div class="rs-services style2  pt-100 pb-100 md-pt-70 md-pb-70">
-        <div class="container custom">
-            <div class="row">
-                <div class="col-lg-4 col-md-12 order-last">
-                    @include('frontend.pages.services.sidebar')
-                </div>
-                <div class="col-lg-8 pr-35 md-pr-15 md-mt-50">
-                    <div class="row">
-                        @foreach(@$allservices as $index=>$service)
-                            <div class="col-lg-6 col-md-6 mb-20">
-                                <div class="service-wrap">
-                                    <div class="image-part">
-                                        <img class="lazy" data-src="{{asset('/images/service/thumb/thumb_'.@$service->banner_image)}}" alt="" />
-                                    </div>
-                                    <div class="content-part">
-                                        <h3 class="title"><a href="{{route('service.single',$service->slug)}}">
-                                                {{ucwords(@$service->title)}}
-                                            </a></h3>
-                                        <div class="desc">{{ elipsis(strip_tags($service->description))}}</div>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
+    </section>
 
-                        <div class="col-lg-12">
-                            <div class="pagination-area">
-                                {{ $allservices->links('vendor.pagination.default') }}
+    <section class="news-section">
+        <div class="auto-container">
+            <div class="row">
+                @foreach(@$allservices as $index=>$service)
+                    <div class="news-block col-lg-4 col-md-6 col-sm-12 wow fadeInUp">
+                        <div class="inner-box">
+                            <div class="image-box">
+                                <figure class="image"><a href="{{route('service.single',$service->slug)}}">
+                                        <img src="{{asset('/images/service/thumb/thumb_'.@$service->banner_image)}}" alt=""></a></figure>
+                            </div>
+                            <div class="content-box">
+                                <h4 class="title"><a href="{{route('service.single',$service->slug)}}">{{ucwords(@$service->title)}}</a></h4>
+                                <a href="{{route('service.single',$service->slug)}}" class="read-more">Read More <i class="fa fa-long-arrow-alt-right"></i></a>
                             </div>
                         </div>
                     </div>
+                @endforeach
+                <div class="service-block col-lg-12 col-md-12 col-sm-12 wow fadeInUp" data-wow-delay="300ms">
+                    {{ $allservices->links('vendor.pagination.simple-bootstrap-4') }}
                 </div>
-
             </div>
         </div>
-    </div>
-
-    </div>
-    <!-- Main content End -->
+    </section>
 
 
 @endsection

@@ -68,7 +68,7 @@ class TeamController extends Controller
                 mkdir($this->teampath, 0777);
             }
             $path         = base_path().'/public/images/teams/';
-            $moved        = Image::make($image->getRealPath())->fit(650, 650)->orientate()->save($path.$name);
+            $moved        = Image::make($image->getRealPath())->fit(220, 220)->orientate()->save($path.$name);
             if ($moved){
                 $data['image']= $name;
             }
@@ -143,7 +143,7 @@ class TeamController extends Controller
             $image                = $request->file('image');
             $name                 = uniqid().'_teams_'.$image->getClientOriginalName();
             $path                 = base_path().'/public/images/teams/';
-            $moved                = Image::make($image->getRealPath())->fit(650, 650)->orientate()->save($path.$name);
+            $moved                = Image::make($image->getRealPath())->fit(220, 220)->orientate()->save($path.$name);
             if ($moved){
                 $team->image = $name;
                 if (!empty($oldimage) && file_exists(public_path().'/images/teams/'.$oldimage)){

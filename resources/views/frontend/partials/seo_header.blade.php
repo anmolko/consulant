@@ -126,15 +126,7 @@
                 <!-- Main Menu End-->
             </div>
             <div class="outer-box">
-                <a href="tel:{{@$setting_data->phone ?? $setting_data->mobile ?? ''}}" class="info-btn">
-                    <i class="icon fa fa-phone"></i>
-                    <small>Call Us</small><br> {{@$setting_data->phone ?? $setting_data->mobile  ?? ''}}
-                </a>
-                <div class="ui-btn-outer">
-                    <button class="ui-btn ui-btn search-btn">
-                        <span class="icon lnr lnr-icon-search"></span>
-                    </button>
-                </div>
+                <a href="{{ route('contact') }}" class="theme-btn btn-style-one bg-theme-color3"><span class="btn-title">Book a consultation</span></a>
                 <!-- Mobile Nav toggler -->
                 <div class="mobile-nav-toggler"><span class="icon lnr-icon-bars"></span></div>
             </div>

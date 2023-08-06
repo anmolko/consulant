@@ -1261,8 +1261,8 @@ Scroll To Top style
   position: relative;
   font-size: 12px;
   line-height: 24px;
-  padding: 15px 50px;
-  font-weight: 400;
+    padding: 15px 25px 15px 25px;
+    font-weight: 400;
   letter-spacing: 0.1em;
   overflow: hidden;
   text-transform: uppercase;
@@ -2237,7 +2237,7 @@ Main Header
   height: 100%;
 }
 .main-header .outer-box .theme-btn {
-  margin-left: 40px;
+  margin-left: 26px;
   font-size: 12px;
   text-transform: uppercase;
 }

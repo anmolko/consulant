@@ -2,24 +2,21 @@
 @section('title')  Page Not Found @endsection
 @section('content')
 
-
-    <div class="rts-404-area rts-section-gap">
-        <div class="container">
+    <section class="">
+        <div class="auto-container pt-120 pb-70">
             <div class="row">
-                <div class="col-12">
-                    <div class="404wrapper text-center">
-                        <div class="thumbnail">
-                            <img class="lazy" data-src="{{ asset('assets/frontend/images/contact/shape/404.png') }}" alt="">
+                <div class="col-xl-12">
+                    <div class="error-page__inner">
+                        <div class="error-page__title-box">
+                            <img src="{{asset('assets/frontend/images/resource/404.jpg')}}" alt="">
+                            <h3 class="error-page__sub-title">Page not found!</h3>
                         </div>
-                        <h2 class="title mt--40">
-                            Oops! Nothing Was Found
-                        </h2>
-                        <p class="disc">Sorry, we could not find the page you where looking for. We suggest <br> that you
-                            return to homepage.</p>
-                        <a class="rts-btn btn-primary" href="/">Back To Homepage</a>
+                        <p class="error-page__text">Sorry we can't find that page! The page you are looking <br> for
+                            was moved or never existed.</p>
+                        <a href="/" class="theme-btn btn-style-one shop-now"><span class="btn-title">Back to Home</span></a>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 @endsection

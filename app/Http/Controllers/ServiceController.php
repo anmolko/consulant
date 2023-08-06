@@ -74,7 +74,7 @@ class ServiceController extends Controller
             }
             $path           = base_path().'/public/images/service/';
             $thumb          = base_path().'/public/images/service/thumb/';
-            $moved          = Image::make($image->getRealPath())->fit(850, 450)->orientate()->save($path.$name);
+            $moved          = Image::make($image->getRealPath())->fit(775, 400)->orientate()->save($path.$name);
             $thumb_moved    = Image::make($image->getRealPath())->fit(270, 360)->orientate()->save($thumb.$thumb_name);
 
             if ($moved && $thumb_moved){
@@ -148,7 +148,7 @@ class ServiceController extends Controller
             if (!is_dir($thumb_path)) {
                 mkdir($thumb_path, 0777);
             }
-            $moved        = Image::make($image->getRealPath())->fit(850, 567)->orientate()->save($path.$name1);
+            $moved        = Image::make($image->getRealPath())->fit(775, 400)->orientate()->save($path.$name1);
             $thumb_moved  = Image::make($image->getRealPath())->fit(270, 360)->orientate()->save($thumb_path.$thumb_name);
 
             if ($moved && $thumb_moved){

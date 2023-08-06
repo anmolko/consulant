@@ -1,121 +1,118 @@
-
 @extends('frontend.layouts.master')
 @section('title') Contact Us @endsection
 @section('css')
 @endsection
 @section('content')
-    <!-- Breadcrumbs Start -->
-    <div class="rs-breadcrumbs img9">
-        <div class="container">
-            <div class="breadcrumbs-inner">
-                <h1 class="page-title">Contact us</h1>
+
+    <section class="page-title" style="background-image: url({{ asset('assets/frontend/images/background/page-title.jpg') }});">
+        <div class="auto-container">
+            <div class="title-outer">
+                <h1 class="title">Contact Us</h1>
+                <ul class="page-breadcrumb">
+                    <li><a href="/">Home</a></li>
+                    <li>Contact</li>
+                </ul>
             </div>
         </div>
-    </div>
+    </section>
 
-    <div class="rs-contact contact-style2 bg9 pt-100 pb-100 md-pt-70 md-pb-70">
-        <div class="container">
+    <section class="contact-details">
+        <div class="container ">
             <div class="row">
-
-                <div class="col-lg-6 pr-40 md-pr-15 md-mb-50">
-                    @if(@$setting_data->google_map)
-                        <div class="contact-map">
-                            <iframe class="contact-map" src="{{@$setting_data->google_map}}"
-                                    style="border:0;" allowfullscreen="" loading="lazy"
-                                    referrerpolicy="no-referrer-when-downgrade"></iframe>
-                        </div>
-                    @endif
-                </div>
-                <div class="col-lg-6">
-                    <div class="sec-title mb-45 md-mb-25">
-                        <h2 class="title pb-20">
-                            Let us help your business to move <span>forward.</span>
-                        </h2>
+                <div class="col-xl-7 col-lg-6">
+                    <div class="sec-title">
+                        <span class="sub-title">Send us email</span>
+                        <h2>Feel free to message us</h2>
                     </div>
-                    <div class="contact-wrap">
-                        <div id="form-messages"></div>
-                        <form id="contact-form" name="contact" class="" action="{{route('contact.store')}}" method="post">
-                           @csrf
-                            <fieldset>
-                                <div class="row">
-                                    <div class="col-lg-6 col-md-6 col-sm-6 mb-30">
-                                        <input class="from-control" type="text" id="name" name="name"
-                                               placeholder="Name" required="">
-                                    </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-6 mb-30">
-                                        <input class="from-control" type="text" id="email" name="email"
-                                               placeholder="E-Mail" required="">
-                                    </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-6 mb-30">
-                                        <input class="from-control" type="text" id="phone" name="phone"
-                                               placeholder="Phone Number" required="">
-                                    </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-6 mb-30">
-                                        <input class="from-control" type="text" id="Website" name="subject"
-                                               placeholder="Your Website" required="">
-                                    </div>
-
-                                    <div class="col-lg-12 mb-35">
-                                            <textarea class="from-control" id="message" name="message"
-                                                      placeholder="Your message Here" required=""></textarea>
-                                    </div>
+                    <!-- Contact Form -->
+                    <form id="contact_form" name="contact_form" class="" action="{{route('contact.store')}}" method="post">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="mb-3">
+                                    <input name="name" class="form-control" type="text" placeholder="Enter Name" required>
                                 </div>
-                                <div class="btn-part">
-                                    <div class="form-group mb-0">
-                                        <input class="readon submit" type="submit" value="Submit Now">
-                                    </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="mb-3">
+                                    <input name="email" class="form-control required email" type="email" placeholder="Enter Email">
                                 </div>
-                            </fieldset>
-                        </form>
-                    </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="mb-3">
+                                    <input name="subject" class="form-control required" type="text" placeholder="Enter Subject">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="mb-3">
+                                    <input name="phone" class="form-control" type="text" placeholder="Enter Phone" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <textarea name="form_message" class="form-control required" rows="7" placeholder="Enter Message"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <input name="form_botcheck" class="form-control" type="hidden" value="" />
+                            <button type="submit" class="theme-btn btn-style-one" data-loading-text="Please wait..."><span class="btn-title">Send message</span></button>
+                            <button type="reset" class="theme-btn btn-style-one bg-theme-color5"><span class="btn-title">Reset</span></button>
+                        </div>
+                    </form>
+                    <!-- Contact Form Validation-->
                 </div>
-            </div>
-        </div>
-        <!-- Contact Icon Section Start -->
-        <div class="rs-contact main-home">
-            <div class="container">
-                <div class="contact-icons-style box-address pt-100 md-pt-70">
-                    <div class="row">
-                        <div class="col-lg-4 col-md-6 col-sm-6 md-mb-30">
-                            <div class="contact-item">
-                                <div class="contact-icon">
-                                    <img src="{{ asset('assets/frontend/images/contact/icons/1.png') }}" alt="images">
-                                </div>
-                                <div class="content-text">
-                                    <h2 class="title"><a>Office</a></h2>
-                                    <p class="services-txt">{{@$setting_data->address}}</p>
-                                </div>
-                            </div>
+                <div class="col-xl-5 col-lg-6">
+                    <div class="contact-details__right">
+                        <div class="sec-title">
+                            <span class="sub-title">Need any help?</span>
+                            <h2>Get in touch with us</h2>
+                            <div class="text">We are available to respond for any of your query or question. Help is just one click away.</div>
                         </div>
-                        <div class="col-lg-4 col-md-6 col-sm-6 xs-mb-30">
-                            <div class="contact-item">
-                                <div class="contact-icon">
-                                    <img src="{{ asset('assets/frontend/images/contact/icons/3.png') }}" alt="images">
+                        <ul class="list-unstyled contact-details__info">
+                            <li>
+                                <div class="icon bg-theme-color2">
+                                    <span class="lnr-icon-phone-plus"></span>
                                 </div>
-                                <div class="content-text">
-                                    <h2 class="title"><a href="mailto:{{@$setting_data->email}}">Email us</a></h2>
-                                    <a href="mailto:{{@$setting_data->email}}">{{@$setting_data->email}}</a><br>
+                                <div class="text">
+                                    <h6>Have any question?</h6>
+                                    <a href="tel:{{@$setting_data->phone ?? $setting_data->mobile  ?? ''}}"><span>Call</span>   {{@$setting_data->phone ?? $setting_data->mobile  ?? ''}}</a>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-sm-6">
-                            <div class="contact-item">
-                                <div class="contact-icon">
-                                    <img src="{{ asset('assets/frontend/images/contact/icons/4.png') }}" alt="images">
+                            </li>
+                            <li>
+                                <div class="icon">
+                                    <span class="lnr-icon-envelope1"></span>
                                 </div>
-                                <div class="content-text">
-                                    <h2 class="title"><a href="tel:{{@$setting_data->phone ?? $setting_data->mobile}}">Call us</a></h2>
-                                    <a href="tel:{{@$setting_data->phone}}">{{@$setting_data->phone}}</a><br>
-                                    <a href="tel:{{@$setting_data->mobile}}">{{@$setting_data->mobile}}</a>
+                                <div class="text">
+                                    <h6>Write email</h6>
+                                    <a href="mailto:{{@$setting_data->email ?? ''}}">{{@$setting_data->email ?? ''}}</a>
                                 </div>
-                            </div>
-                        </div>
+                            </li>
+                            <li>
+                                <div class="icon">
+                                    <span class="lnr-icon-location"></span>
+                                </div>
+                                <div class="text">
+                                    <h6>Our Office</h6>
+                                    <span>{{@$setting_data->address ?? ''}}</span>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- Contact Icon Section End -->
-    </div>
+    </section>
+
+    @if(@$setting_data->google_map)
+        <section>
+            <div class="container-fluid p-0">
+                <div class="row">
+                    <!-- Google Map HTML Codes -->
+                    <iframe src="{{@$setting_data->google_map}}" data-tm-width="100%" height="500" frameborder="0" allowfullscreen=""></iframe>
+                </div>
+            </div>
+        </section>
+    @endif
 @endsection
 @section('js')
     <!-- For Contact Form -->

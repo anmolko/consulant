@@ -96,11 +96,11 @@
                         <i class="ri-file-copy-2-line"></i> <span data-key="t-widgets">Pages</span>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link menu-link @if(\Request::route()->getName() == 'formbuilder::forms.index' || \Request::route()->getName() == 'formbuilder::forms.create' || \Request::route()->getName() == 'formbuilder::forms.edit') active @endif" href="{{route('formbuilder::forms.index')}}">
-                        <i class="ri-pages-line"></i> <span data-key="t-widgets">Forms</span>
-                    </a>
-                </li>
+{{--                <li class="nav-item">--}}
+{{--                    <a class="nav-link menu-link @if(\Request::route()->getName() == 'formbuilder::forms.index' || \Request::route()->getName() == 'formbuilder::forms.create' || \Request::route()->getName() == 'formbuilder::forms.edit') active @endif" href="{{route('formbuilder::forms.index')}}">--}}
+{{--                        <i class="ri-pages-line"></i> <span data-key="t-widgets">Forms</span>--}}
+{{--                    </a>--}}
+{{--                </li>--}}
                 <li class="nav-item">
                     <a class="nav-link menu-link @if(\Request::route()->getName() == 'alluser') active @endif" href="{{route('alluser')}}">
                         <i class="ri-account-circle-line"></i> <span data-key="t-widgets">User Mgmt.</span>
@@ -127,11 +127,11 @@
 {{--                        <i class=" ri-price-tag-2-line"></i> <span data-key="t-widgets">Service Categories</span>--}}
 {{--                    </a>--}}
 {{--                </li>--}}
-                <li class="nav-item">
-                    <a class="nav-link menu-link @if(\Request::route()->getName() == 'video.index') active @endif" href="{{route('video.index')}}">
-                        <i class="ri-video-chat-line"></i> <span data-key="t-widgets">Video Gallery</span>
-                    </a>
-                </li>
+{{--                <li class="nav-item">--}}
+{{--                    <a class="nav-link menu-link @if(\Request::route()->getName() == 'video.index') active @endif" href="{{route('video.index')}}">--}}
+{{--                        <i class="ri-video-chat-line"></i> <span data-key="t-widgets">Video Gallery</span>--}}
+{{--                    </a>--}}
+{{--                </li>--}}
                 <li class="nav-item">
                     <a class="nav-link menu-link @if(\Request::route()->getName() == 'album.index' || \Request::route()->getName() == 'album.show') active @endif" href="{{route('album.index')}}">
                         <i class="ri-gallery-line"></i> <span data-key="t-widgets">Albums</span>
@@ -143,11 +143,11 @@
                     </a>
                 </li>
 
-                <li class="nav-item">
-                    <a class="nav-link menu-link @if(\Request::route()->getName() == 'career.index') active @endif" href="{{route('career.index')}}">
-                        <i class="ri-medal-line"></i> <span data-key="t-widgets">Career</span>
-                    </a>
-                </li>
+{{--                <li class="nav-item">--}}
+{{--                    <a class="nav-link menu-link @if(\Request::route()->getName() == 'career.index') active @endif" href="{{route('career.index')}}">--}}
+{{--                        <i class="ri-medal-line"></i> <span data-key="t-widgets">Career</span>--}}
+{{--                    </a>--}}
+{{--                </li>--}}
 
                 <li class="nav-item">
                     <a class="nav-link menu-link @if(\Request::route()->getName() == 'sliders.index') active @endif" href="{{route('sliders.index')}}">

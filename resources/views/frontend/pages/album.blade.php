@@ -4,41 +4,49 @@
 @endsection
 @section('content')
 
-    <!-- Breadcrumbs Start -->
-    <div class="rs-breadcrumbs img10">
-        <div class="container">
-            <div class="breadcrumbs-inner">
-                <h1 class="page-title">Our Albums</h1>
+
+    <section class="page-title" style="background-image: url({{ asset('assets/frontend/images/background/page-title.jpg') }});">
+        <div class="auto-container">
+            <div class="title-outer">
+                <h1 class="title">Our Albums</h1>
+                <ul class="page-breadcrumb">
+                    <li><a href="/">Home</a></li>
+                    <li>Albums</li>
+                </ul>
             </div>
         </div>
-    </div>
+    </section>
 
-    <!-- Project Section Start -->
-    <div class="rs-project style3 pt-100 pb-100 md-pt-70 md-pb-70">
-        <div class="container">
+    <section class="news-section-two">
+        <div class="auto-container">
             <div class="row">
-                @foreach($albums as $album)
-                    <div class="col-lg-4 col-md-6 mb-30">
-                    <div class="project-item">
-                        <div class="project-img">
-                            <a href="{{route('album.gallery',$album->slug)}}">
-                                <img class="lazy" data-src="{{asset('/images/albums/'.@$album->cover_image)}}" alt="" />
-                            </a>
-                        </div>
-                        <div class="project-content">
-                            <div class="portfolio-inner">
-                                <span class="category"><a href="{{route('album.gallery',$album->slug)}}">Images: ({{count(@$album->gallery)}})</a></span>
-                                <h3 class="title"><a href="{{route('album.gallery',$album->slug)}}">{{ucwords(@$album->name)}}</a></h3>
+                @foreach($albums as $index=>$album)
+                    <div class="news-block-two col-lg-4 col-md-4 col-sm-12 wow fadeInUp" data-wow-delay="{{$index+2}}00ms">
+                        <div class="inner-box">
+                            <div class="image-box">
+                                <figure class="image">
+                                    <a href="{{route('album.gallery',$album->slug)}}">
+                                        <img class="lazy" data-src="{{asset('/images/albums/'.@$album->cover_image)}}" alt="">
+                                    </a>
+                                </figure>
+                            </div>
+                            <div class="content-box">
+                                <ul class="post-info">
+                                    <li><i class="fa fa-image"></i> Images: ({{count(@$album->gallery)}}) </li>
+                                </ul>
+                                <h4 class="title">
+                                    <a href="{{route('album.gallery',$album->slug)}}">
+                                        {{ ucfirst($album->name) }}
+                                    </a>
+                                </h4>
                             </div>
                         </div>
                     </div>
-                </div>
                 @endforeach
             </div>
         </div>
-    </div>
-    <!-- Project Section End -->
-    </div>
+    </section>
+
 @endsection
 
 

@@ -486,9 +486,16 @@ var THEMEMASCOT = {};
 		$('.lightbox-image').fancybox({
 			openEffect  : 'fade',
 			closeEffect : 'fade',
-			helpers : {
-				media : {}
-			}
+            buttons: [
+                "slideShow",
+                "thumbs",
+                "zoom",
+                "fullScreen",
+                "share",
+                "close"
+            ],
+            loop: false,
+            protect: true
 		});
 	}
 

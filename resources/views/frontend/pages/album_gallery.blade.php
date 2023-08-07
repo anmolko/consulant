@@ -2,63 +2,71 @@
 @section('title') {{ucwords(@$singleAlbum->name)}} | Album @endsection
 @section('css')
     <style>
-        .img-wrapper {
-            height: 270px;
-            object-fit: cover;
+        .card-image img {
+            width: 370px; /* Set your preferred maximum width */
+            height: 345px; /* Set your preferred maximum height */
+          object-fit: cover;
         }
-        #gallery img.img-responsive {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+
+        /*.card-image a:hover:after, .gallery-item a:hover:before {*/
+        /*    -webkit-transform: scale(1);*/
+        /*    transform: scale(1);*/
+        /*    opacity: 1;*/
+        /*    visibility: visible;*/
+        /*}*/
     </style>
-    <link rel="stylesheet" href="{{asset('assets/common/lightbox.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
 
 @endsection
 @section('content')
 
-    <div class="rs-breadcrumbs img10">
-        <div class="container">
-            <div class="breadcrumbs-inner">
-                <h1 class="page-title">{{ucwords(@$singleAlbum->name)}}'s Gallery</h1>
+    <section class="page-title" style="background-image: url({{ asset('assets/frontend/images/background/page-title.jpg') }});">
+        <div class="auto-container">
+            <div class="title-outer">
+                <h1 class="title">{{ucwords(@$singleAlbum->name)}}'s Gallery</h1>
+                <ul class="page-breadcrumb">
+                    <li><a href="/">Home</a></li>
+                    <li>Album Gallery</li>
+                </ul>
             </div>
         </div>
-    </div>
+    </section>
 
-
-
-    <!-- Project Section Start -->
-    <div class="rs-project style3 pt-100 pb-100 md-pt-70 md-pb-70">
-        <div class="container">
+    <section class="gallery-section">
+        <div class="auto-container">
             <div class="row">
-                @if(count(@$singleAlbum->gallery) > 0)
-                    <div id="gallery" style="padding: 0px 30px 0 30px;">
-                        <div id="image-gallery">
-                            <div class="row">
-                                @foreach($singleAlbum->gallery as $gallery)
-                                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 image">
-                                        <div class="img-wrapper">
-                                            <a href="{{asset('/images/albums/gallery/'.@$gallery->filename)}}">
-                                                <img data-src="{{asset('/images/albums/gallery/'.@$gallery->filename)}}" class="img-responsive lazy"></a>
-                                            <div class="img-overlay">
-                                                <i class="fa fa-plus-circle" aria-hidden="true"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endforeach
-                            </div><!-- End row -->
-                        </div><!-- End image gallery -->
-                    </div><!-- End container -->
-                @endif
+            @if(count(@$singleAlbum->gallery) > 0)
+                @foreach($singleAlbum->gallery as $index=>$gallery)
+                    <div class="col-lg-4 col-md-4 col-sm-12 mt-3 wow fadeInUp">
+                        <div class="card" style="border: none">
+                            <div class="card-image gallery-item">
+                                <a href="{{asset('/images/albums/gallery/'.@$gallery->filename)}}" data-fancybox="gallery">
+                                    <img src="{{asset('/images/albums/gallery/'.@$gallery->filename)}}" class="img-wrapper" alt="Image Gallery">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+             @endif
             </div>
         </div>
-    </div>
-    <!-- Project Section End -->
-    </div>
+    </section>
+
 
 
 
 @endsection
 @section('js')
-    <script src="{{asset('assets/common/lightbox.min.js')}}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+    <script>// Fancybox Config
+        $('[data-fancybox="gallery"]').fancybox({
+            buttons: [
+                "slideShow",
+                "zoom",
+                "close"
+            ],
+            loop: true,
+            protect: true
+        });
+    </script>
 @endsection

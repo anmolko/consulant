@@ -13300,3 +13300,7 @@ Sidebar
     height: 70px;
     object-fit: cover;
 }
+
+.text-justify{
+    text-align: justify;
+}

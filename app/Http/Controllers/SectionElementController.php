@@ -156,6 +156,7 @@ class SectionElementController extends Controller
         if($section_name == 'basic_section'){
             $data=[
                 'heading'                => $request->input('heading'),
+                'subheading'             => $request->input('subheading'),
                 'page_section_id'        => $section_id,
                 'description'            => $request->input('description'),
                 'list_image'             => $request->input('list_image'),
@@ -191,7 +192,6 @@ class SectionElementController extends Controller
             $data=[
                 'page_section_id'        => $section_id,
                 'heading'                => $request->input('heading'),
-                'subheading'             => $request->input('subheading'),
                 'button'                 => $request->input('button'),
                 'button_link'            => $request->input('button_link'),
                 'created_by'             => Auth::user()->id,
@@ -201,7 +201,6 @@ class SectionElementController extends Controller
             $data=[
                 'page_section_id'        => $section_id,
                 'heading'                => $request->input('heading'),
-                'subheading'             => $request->input('subheading'),
                 'button'                 => $request->input('button'),
                 'button_link'            => $request->input('button_link'),
                 'created_by'             => Auth::user()->id,
@@ -376,6 +375,7 @@ class SectionElementController extends Controller
         if($section_name == 'basic_section'){
             $basic                      = SectionElement::find($id);
             $basic->heading             = $request->input('heading');
+            $basic->subheading          = $request->input('subheading');
             $basic->page_section_id     = $section_id;
             $basic->list_image          = $request->input('list_image');
             $basic->description         = $request->input('description');
@@ -425,8 +425,6 @@ class SectionElementController extends Controller
             $action                      = SectionElement::find($id);
             $action->page_section_id     = $section_id;
             $action->heading             = $request->input('heading');
-            $action->subheading          = $request->input('subheading');
-            $action->description         = $request->input('description');
             $action->button              = $request->input('button');
             $action->button_link         = $request->input('button_link');
             $action->updated_by          = Auth::user()->id;

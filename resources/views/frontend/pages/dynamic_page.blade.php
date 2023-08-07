@@ -17,123 +17,120 @@
 
 @endsection
 @section('content')
-    <div class="rs-breadcrumbs" style="background:linear-gradient(rgb(246 184 51 / 29%), rgb(10 10 10 / 66%)), url( {{ $page_detail->image ? asset('images/page/'.$page_detail->image) : asset('assets/frontend/images/breadcrumbs/inr_1.jpg') }} ); margin-bottom:30px;">
-        <div class="container">
-            <div class="breadcrumbs-inner">
-                <h1 class="page-title">
-                    {{ucwords(@$page_detail->name)}}
-                </h1>
+    <section class="page-title" style="background-image: url({{ $page_detail->image ? asset('images/page/'.$page_detail->image) : asset('assets/frontend/images/background/page-title.jpg') }});">
+        <div class="auto-container">
+            <div class="title-outer">
+                <h1 class="title"> {{ucwords(@$page_detail->name)}}</h1>
+                <ul class="page-breadcrumb">
+                    <li><a href="/">Home</a></li>
+                    <li> {{ucwords(@$page_detail->name)}}</li>
+                </ul>
             </div>
         </div>
-    </div>
+    </section>
 
     @foreach($sections as $key=>$value)
 
         @if($value == "basic_section")
-            <div class="rs-about style2 pt-20 pb-30">
-                <div class="container">
+            <section class="about-section-five" style="padding: 120px 0 10px;">
+                <div class="auto-container">
+                    <div class="anim-icons">
+                        <span class="icon icon-object-3"></span>
+                    </div>
                     <div class="row">
-                        <div class="col-lg-6 pr-33 md-pr-15 md-mb-50">
-                            <div class="images-part">
-                                <img class="lazy" data-src="{{asset('/images/section_elements/basic_section/'.@$basic_elements->image) }}" alt="">
-                            </div>
-                        </div>
-                        <div class="col-lg-6 ">
-                            <div class="sec-title">
-                                <h2 class="title">
-                                    {{@$basic_elements->heading ?? ''}}
-                                </h2>
-                                <div class="margin-0 pt-10 text-justify"> {!! @$basic_elements->description !!}</div>
+                        <div class="content-column col-lg-6 col-md-12 order-2 wow fadeInRight animated" data-wow-delay="600ms">
+                            <div class="inner-column">
+                                <div class="sec-title" style="    margin-bottom: 20px;">
+                                    <span class="sub-title">About our company</span>
+                                    <h2>  {{@$basic_elements->heading ?? ''}}</h2>
+                                    <div class="text text-justify">{!! @$basic_elements->description !!}</div>
+                                </div>
                                 @if(@$basic_elements->button_link)
-                                    <div class="btn-part mt-3 md-mt-30">
-                                        <a class="readon consultant discover" href="{{@$basic_elements->button_link}}">
-                                            {{ucwords(@$basic_elements->button ?? 'Discover More')}}
-                                        </a>
+                                    <div class="btn-box">
+    {{--                                    <a href="tel:+92(8800)9806" class="info-btn">--}}
+    {{--                                        <i class="icon fa fa-phone"></i>--}}
+    {{--                                        <small>Call Anytime</small> + 88 ( 9800 ) 6802--}}
+    {{--                                    </a>--}}
+                                        <a href="{{@$basic_elements->button_link}}" class="theme-btn btn-style-one"><span class="btn-title">  {{ucwords(@$basic_elements->button ?? 'Discover More')}}</span></a>
                                     </div>
                                 @endif
                             </div>
                         </div>
+                        <!-- Image Column -->
+                        <div class="image-column col-lg-6 col-md-12">
+                            <div class="inner-column wow fadeInLeft animated">
+                                <figure class="image overlay-anim wow fadeInUp animated">
+                                    <img class="lazy" data-src="{{asset('/images/section_elements/basic_section/'.@$basic_elements->image) }}" alt="">
+                                </figure>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="rs-animation">
-                    <div class="animate-style">
-                        <img class="scale" src="{{asset('assets/frontend/images/about/tri-circle-1.png')}}" alt="About">
-                    </div>
-                </div>
-            </div>
+            </section>
         @endif
 
         @if($value == "call_to_action_1")
-            <div class="rs-cta style1 bg13 pt-70 pb-60 md-pt-70 md-pb-65">
-                <div class="container">
-                    <div class="row y-middle">
-                        <div class="col-lg-7 md-mb-30">
-                            <div class="sec-title2">
-                                <div class="sub-text">{{@$call1_elements->subheading ?? ''}}</div>
-                                <h2 class="title white-color margin-0">
-                                    <?php
-                                    $split = explode(" ", @$call1_elements->heading);?> {{preg_replace('/\W\w+\s*(\W*)$/', '$1', @$call1_elements->heading)."\n"}}
-                                    <span class="new-next"> {{$split[count($split)-1]}} </span>
-                                </h2>
+            <section class="call-to-action-two pull-up" style="background-image: url( http://localhost:8000/assets/frontend/images/cta/01.jpeg)">
+                <div class="auto-container">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <div class="title-box">
+                                <h2 class="title">{{ $call1_elements->heading }}</h2>
                             </div>
                         </div>
-                        <div class="col-lg-5">
-                            <div class="btn-part text-right md-left mt-3">
-                                <a class="readon consultant discover" href="{{@$call1_elements->button_link ?? '/contact-us'}}">
-                                    {{ucwords(@$call1_elements->button ?? 'Get Started')}}
-                                </a>
+                        <div class="col-lg-4">
+                            <div class="video-box">
+                                <div class="inner">
+                                    <a href="{{@$call1_elements->button_link ?? '/contact-us'}}" class="theme-btn btn-style-one light"><span class="btn-title"> {{ucwords(@$call1_elements->button ?? 'Get Started')}}</span></a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </section>
         @endif
 
         @if($value == "call_to_action_2")
-            <div class="rs-cta style1 bg22-cta relative pt-100 pb-100 md-pt-70 md-pb-70">
-                <div class="container">
-                    <div class="row rs-vertical-middle">
-                        <div class="col-lg-7">
-                            <div class="sec-title4">
-                                <div class="sub-title secondary-color mb-6" style="font-size: 20px;">{{@$call2_elements->subheading ?? ''}}</div>
-                                <h2 class="title white-color left-line-v margin-0" style="font-size: 32px;">
-                                    <div class="draw-line start-draw"></div>
-                                    {{ @$call2_elements->heading ?? '' }}
-                                </h2>
-                            </div>
-                        </div>
-                        <div class="col-lg-5 md-pt-30">
-                            <div class="cta-btn text-center text-md-left">
-                                <a class="readon2 hover-light" href="{{@$call2_elements->button_link ?? '/contact-us'}}">
-                                    {{ucwords(@$call2_elements->button ?? 'Reach Out')}} <div class="btn-arrow"></div></a>
-                            </div>
-                        </div>
+            <div class="call-to-action">
+                <div class="auto-container">
+                    <div class="inner-container" style="padding: 40px 0;">
+                        <h5 class="title">{{ @$call2_elements->heading ?? '' }}</h5>
+                        <a href="{{@$call2_elements->button_link ?? '/contact-us'}}" class="info-btn">{{ucwords(@$call2_elements->button ?? 'Reach Out')}}</a>
                     </div>
                 </div>
             </div>
         @endif
         @if($value == "background_image_section")
-            <div class="rs-about bg19 pt-40 pb-5 md-pb-70">
-                <div class="container">
-                    <div class="row y-middle">
-                        <div class="col-lg-6 pr-50 md-pr-15">
-                            <div class="sec-title">
-                                <h2 class="title title4 pb-30">
-                                    {{@$bgimage_elements->heading ?? ''}}
-                                </h2>
-                                <div class="margin-0 pb-30 text-justify">
-                                    {{ @$bgimage_elements->description }}
+            <section class="why-choose-us-three" style="padding: 120px 0 0;">
+                <div class="anim-icons">
+                    <span class="icon icon-object-1"></span>
+                </div>
+                <div class="auto-container">
+                    <div class="row">
+                        <!-- Content Column -->
+                        <div class="content-column col-lg-7 col-md-12">
+                            <div class="inner-column wow fadeInRight animated" style="visibility: visible; animation-name: fadeInRight;">
+                                <div class="sec-title">
+                                    <i class="sub-title">{{@$bgimage_elements->subheading ?? ''}}</i>
+                                    <h2> {{@$bgimage_elements->heading ?? ''}}</h2>
+                                    <div class="text text-justify">
+                                        {{ @$bgimage_elements->description }}
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-6">
-                            <div class="images-part">
-                                <img src="{{asset('/images/section_elements/bgimage_section/'.@$bgimage_elements->image)}}" alt="Images">
+                        <!-- Image Column -->
+                        <div class="image-column col-lg-5 col-md-12 col-sm-12">
+                            <div class="inner-column">
+                                <div class="image-box">
+                                    <figure class="bg-image"><img src="{{asset('assets/frontend/images/resource/image-6.jpg')}}" alt=""></figure>
+                                    <figure class="image"><img src="{{asset('/images/section_elements/bgimage_section/'.@$bgimage_elements->image)}}" alt=""></figure>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </section>
         @endif
 
         @if($value == "flash_cards")
@@ -167,32 +164,30 @@
         @endif
 
         @if($value == "simple_header_and_description")
-            <div class="rts-service-details-area rts-section-gap" style="padding: 0px!important;">
-               <div class="container">
-                   @if(@$header_descp_elements->heading!==null)
-                       <div class="sec-title2 text-center md-left mb-20">
-                           <div class="sub-text">
-                               {{@$header_descp_elements->subheading ?? ''}}
-                           </div>
-                           <h2 class="title mb-0 md-pb-20">
-                               <?php
-                               $split = explode(" ", @$header_descp_elements->heading);?> {{preg_replace('/\W\w+\s*(\W*)$/', '$1', @$header_descp_elements->heading)."\n"}}
-                               <span class="new-next"> {{$split[count($split)-1]}} </span>
-                           </h2>
-                       </div>
-                   @endif
+
+            <section class="blog-details">
+                <div class="container" style="padding-top:0">
                     <div class="row">
-                        <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                            <!-- service details left area start -->
-                            <div class="service-detials-step-1">
-                                <div class="disc custom-description text-justify">
-                                    {!! @$header_descp_elements->description !!}
+                        <div class="col-xl-12 col-lg-12">
+                            @if(@$header_descp_elements->heading!==null)
+                                <div class="sec-title text-center">
+                                    <span class="sub-title">  {{@$header_descp_elements->subheading ?? ''}}</span>
+                                    <h2>  <?php
+                                        $split = explode(" ", @$header_descp_elements->heading);?> {{preg_replace('/\W\w+\s*(\W*)$/', '$1', @$header_descp_elements->heading)."\n"}} <br> {{$split[count($split)-1]}}</h2>
+                                </div>
+                            @endif
+                            <div class="blog-details__left">
+                                <div class="blog-details__content">
+                                    <div class="blog-details__text-2 custom-description">
+                                        {!! @$header_descp_elements->description !!}
+                                    </div>
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
-            </div>
+            </section>
         @endif
 
         @if($value == "map_and_description")

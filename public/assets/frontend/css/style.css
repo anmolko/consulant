@@ -41,9 +41,9 @@ License: copyright commercial
 @import url("tm-bs-mp.css");
 @import url("tm-utility-classes.css");
 :root {
-  --theme-color1: #3a4848;
-  --theme-color2: #e0281e;
-  --theme-color3: #e29628;
+  --theme-color1: #004287;
+  --theme-color2: #e30a16;
+  --theme-color3: #3a4848;
   --theme-color4: #ecf0f4;
   --bg-theme-color1: var(--theme-color1);
   --bg-theme-color2: var(--theme-color2);
@@ -1258,19 +1258,22 @@ Scroll To Top style
 
 /*Btn Style One*/
 .btn-style-one {
-  position: relative;
-  font-size: 12px;
-  line-height: 24px;
+    position: relative;
+    font-size: 12px;
+    line-height: 24px;
     padding: 15px 25px 15px 25px;
-    font-weight: 400;
-  letter-spacing: 0.1em;
-  overflow: hidden;
-  text-transform: uppercase;
-  color: #ffffff;
-  background: var(--bg-theme-color2);
-  -webkit-transition: all 500ms ease;
-  transition: all 500ms ease;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    overflow: hidden;
+    border-radius: 8px;
+    text-transform: uppercase;
+    color: #ffffff;
+    background: var(--bg-theme-color2);
+    -webkit-transition: all 500ms ease;
+    transition: all 500ms ease;
+    box-shadow: 0px 17px 10px -10px rgba(0,0,0,0.4);
 }
+
 .btn-style-one:before, .btn-style-one:after {
   content: "";
   background-color: var(--bg-theme-color1);
@@ -1296,6 +1299,8 @@ Scroll To Top style
 }
 .btn-style-one:hover {
   color: #ffffff;
+    box-shadow: 0px 37px 20px -15px rgba(0,0,0,0.2);
+    transform: translate(0px, -10px);
 }
 .btn-style-one:hover:before {
   width: 100%;
@@ -1868,7 +1873,7 @@ Main Header
 .header-top {
   position: relative;
   padding-left: 50px;
-    background: white;
+    background: #f7f9fa;
   padding-right: 50px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1972,6 +1977,7 @@ Main Header
 }
 .main-header .main-box {
   position: relative;
+    background: white;
   left: 0px;
   top: 0px;
   display: -webkit-box;
@@ -2018,7 +2024,7 @@ Main Header
   position: relative;
   float: left;
   padding: 25px 0px;
-  margin-right: 55px;
+  margin-right: 35px;
   -webkit-transition: all 300ms ease;
   transition: all 300ms ease;
 }
@@ -2436,7 +2442,7 @@ Header Style One
 ***/
 .header-style-three {
   position: relative;
-  background-color: var(--bg-theme-color1);
+  background-color: #f4f7f9;
 }
 .header-style-three .main-box {
   padding: 0 80px;
@@ -2459,7 +2465,7 @@ Header Style One
   bottom: 40px;
 }
 .header-style-three .main-box .main-menu .navigation > li > a {
-  color: #fff;
+  color: #7f898a;
 }
 
 /***
@@ -2493,7 +2499,7 @@ Sticky Header
   padding: 10px 0;
 }
 .sticky-header .logo img {
-  max-height: 40px;
+  max-height: 70px;
 }
 .sticky-header .nav-outer {
   position: relative;
@@ -2514,7 +2520,7 @@ Sticky Header
 
 .sticky-header .main-menu .navigation > li {
   margin: 0;
-  margin-left: 40px;
+  margin-left: 35px;
   padding: 20px 0;
 }
 
@@ -4126,8 +4132,8 @@ Section Title
     position: absolute;
     left: -60px;
     top: 50px;
-    width: 470px;
-    height: 456px;
+    width: 540px;
+    height: 545px;
     border: 6px solid var(--border-theme-color2);
     z-index: 2;
     content: "";
@@ -6388,7 +6394,7 @@ Section Title
 ***/
 .training-section {
   position: relative;
-    padding: 0px 0px 80px;
+    padding: 80px 0px 80px;
 }
 .training-section .bg-layer {
   position: absolute;
@@ -6414,7 +6420,7 @@ Section Title
   font-size: 14px;
   line-height: 26px;
   color: #ffffff;
-  padding: 10px 30px;
+  padding: 15px 30px;
   text-align: center;
   text-transform: uppercase;
   font-weight: 500;
@@ -6423,6 +6429,14 @@ Section Title
   margin-top: 60px;
   width: 100%;
   max-width: 750px;
+    border-radius: 8px;
+    transition: all 500ms ease;
+    box-shadow: 0px 17px 10px -10px rgba(0,0,0,0.4);
+}
+.training-section .bottom-text:hover {
+    color: #ffffff;
+    box-shadow: 0px 37px 20px -15px rgba(0,0,0,0.2);
+    transform: translate(0px, -10px);
 }
 .training-section .bottom-text a{
     color: #ffffff;
@@ -6549,7 +6563,7 @@ Section Title
 ***/
 .training-section-two {
   position: relative;
-  padding: 0 0 90px;
+  padding: 60px 0 90px;
   z-index: 3;
 }
 .training-section-two .outer-box {

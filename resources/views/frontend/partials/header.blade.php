@@ -10,16 +10,16 @@
 
 
     @if (\Request::is('/'))
-        <title>{{ucwords(@$setting_data->website_name ?? 'Careerlink')}}</title>
+        <title>{{ucwords(@$setting_data->website_name ?? 'Unity Center')}}</title>
     @else
-        <title>@yield('title') | {{ucwords(@$setting_data->website_name ?? 'Careerlink')}} </title>
+        <title>@yield('title') | {{ucwords(@$setting_data->website_name ?? 'Unity Center')}} </title>
     @endif
 
-    <meta property="og:title" content=" {{ucwords(@$setting_data->meta_title ?? 'Careerlink')}}" />
+    <meta property="og:title" content=" {{ucwords(@$setting_data->meta_title ?? 'Unity Center')}}" />
     <meta property="og:type" content="Consultancy" />
     <meta property="og:url" content="https://unitycenter.com.np" />
     <meta property="og:site_name" content="Careerlink" />
-    <meta property="og:description" content=" {{ucwords(@$setting_data->meta_description ?? 'Careerlink')}}" />
+    <meta property="og:description" content=" {{ucwords(@$setting_data->meta_description ?? 'Unity Center')}}" />
 
     <link rel="shortcut icon" type="image/x-icon" href="{{ (@$setting_data->favicon) ? asset('/images/settings/'.@$setting_data->favicon):asset('assets/backend/images/canosoft-favicon.png') }}">
 
@@ -51,8 +51,11 @@
 
 <body>
 <div class="page-wrapper">
+
+    @if (\Request::is('/'))
+        <div class="preloader"></div>
+    @endif
     <!-- Preloader -->
-    <div class="preloader"></div>
     <!-- Main Header-->
     <header class="main-header header-style-three">
 
@@ -143,7 +146,7 @@
                 <!-- Main Menu End-->
             </div>
             <div class="outer-box">
-                <a href="{{ route('contact') }}" class="theme-btn btn-style-one bg-theme-color3"><span class="btn-title">Book a consultation</span></a>
+                <a href="{{ route('contact') }}" class="theme-btn btn-style-one bg-theme-color1"><span class="btn-title">Consultation</span></a>
                 <!-- Mobile Nav toggler -->
                 <div class="mobile-nav-toggler"><span class="icon lnr-icon-bars"></span></div>
             </div>
@@ -232,7 +235,7 @@
                 <div class="inner-container">
                     <!--Logo-->
                     <div class="logo">
-                        <a href="/" title=""><img src="{{ (@$setting_data->favicon) ? asset('/images/settings/'.@$setting_data->favicon):asset('assets/backend/images/canosoft-favicon.png') }}" alt="" title=""></a>
+                        <a href="/" title=""><img src="{{ (@$setting_data->logo) ? asset('/images/settings/'.@$setting_data->logo):'' }}" alt="" title=""></a>
                     </div>
                     <!--Right Col-->
                     <div class="nav-outer">

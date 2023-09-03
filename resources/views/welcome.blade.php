@@ -77,10 +77,10 @@
                 <div class="row">
                     <div class="content-column col-xl-6 col-lg-7 col-md-12 col-sm-12 order-2 wow fadeInRight" data-wow-delay="600ms">
                         <div class="inner-column">
-                            <div class="sec-title">
+                            <div class="sec-title" style="margin-bottom: 16px;">
                                 <span class="sub-title">{{$homepage_info->welcome_subheading ?? ''}}</span>
                                 <h2>{{  @$homepage_info->welcome_heading }}</h2>
-                                <div class="text">
+                                <div class="text text-justify">
                                     {{ ucfirst(@$homepage_info->welcome_description) }}
                                 </div>
                             </div>
@@ -103,6 +103,75 @@
             </div>
         </section>
     @endif
+
+    @if(count($latestcourses) > 0)
+        <section class="services-section pt-0">
+            <div class="anim-icons">
+                <span class="icon icon-object-2"></span>
+                <span class="icon icon-object-3"></span>
+            </div>
+            <div class="auto-container">
+                <div class="sec-title">
+                    <div class="row">
+                        <div class="col-lg-7">
+                            <span class="sub-title">Start your journey</span>
+                            <h2>Study Abroad with <br>our programme.</h2>
+                        </div>
+                        <div class="col-lg-5">
+                            <div class="text">Enrolling in Study Abroad Programs offers you the chance to embrace the world as your educational playground.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    @foreach(@$latestcourses as $index=>$latest)
+                        <div class="service-block col-lg-4 col-md-6 col-sm-12 wow fadeInUp d-flex align-items-stretch">
+                            <div class="inner-box">
+                                <div class="image-box">
+                                    <figure class="image"><a href="{{ route('study-abroad.single', $latest->slug) }}">
+                                            <img class="lazy" data-src="{{ @$latest->image ? asset('/images/course/thumb/thumb_'.@$latest->image):''}}" alt=""></a>
+                                    </figure>
+                                    <div class="icon-box"><i class="icon fa fa-graduation-cap"></i></div>
+                                </div>
+                                <div class="content-box">
+                                    <h5 class="title"><a href="{{ route('study-abroad.single', $latest->slug) }}">
+                                            {{ $latest->title ?? '' }}
+                                        </a></h5>
+                                    <div class="text">
+                                        {{ elipsis(  strip_tags($latest->description ?? ''), 9  )}}
+                                    </div>
+                                    <a href="{{ route('study-abroad.single',$latest->slug) }}" class="read-more">Read More <i class="fa fa-long-arrow-alt-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+                <div class="training-section pb-0 pt-0">
+                    <div class="bottom-text"><a href="{{ route('study-abroad.list') }}">View all of our programme here</a> </div>
+                </div>
+            </div>
+        </section>
+    @endif
+
+
+    <section class="call-to-action-two pull-up" style="background-image: url( {{ asset('assets/frontend/images/cta/01.jpeg') }})">
+        <div class="auto-container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="title-box">
+                        <h2 class="title">We provide counselling students <br>to get study visa</h2>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="video-box">
+                        <div class="inner">
+                            <a href="{{ route('contact') }}" class="theme-btn btn-style-one light"><span class="btn-title">Contact us</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     @if(count($latestServices) > 0)
         <section class="training-section">
@@ -145,73 +214,6 @@
         </section>
     @endif
 
-    <section class="call-to-action-two pull-up" style="background-image: url( {{ asset('assets/frontend/images/cta/01.jpeg') }})">
-        <div class="auto-container">
-            <div class="row">
-                <div class="col-lg-8">
-                    <div class="title-box">
-                        <h2 class="title">We provide counselling students <br>to get study visa</h2>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="video-box">
-                        <div class="inner">
-                            <a href="{{ route('contact') }}" class="theme-btn btn-style-one light"><span class="btn-title">Contact us</span></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    @if(count($latestcourses) > 0)
-        <section class="services-section">
-            <div class="anim-icons">
-                <span class="icon icon-object-2"></span>
-                <span class="icon icon-object-3"></span>
-            </div>
-            <div class="auto-container">
-                <div class="sec-title">
-                    <div class="row">
-                        <div class="col-lg-7">
-                            <span class="sub-title">Start your journey</span>
-                            <h2>Study Abroad with <br>our programme.</h2>
-                        </div>
-                        <div class="col-lg-5">
-                            <div class="text">Enrolling in Study Abroad Programs offers you the chance to embrace the world as your educational playground.</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    @foreach(@$latestcourses as $index=>$latest)
-                        <div class="service-block col-lg-4 col-md-6 col-sm-12 wow fadeInUp">
-                            <div class="inner-box">
-                                <div class="image-box">
-                                    <figure class="image"><a href="{{ route('study-abroad.single', $latest->slug) }}">
-                                            <img class="lazy" data-src="{{ @$latest->image ? asset('/images/course/thumb/thumb_'.@$latest->image):''}}" alt=""></a>
-                                    </figure>
-                                    <div class="icon-box"><i class="icon fa fa-graduation-cap"></i></div>
-                                </div>
-                                <div class="content-box">
-                                    <h5 class="title"><a href="{{ route('study-abroad.single', $latest->slug) }}">
-                                            {{ $latest->title ?? '' }}
-                                        </a></h5>
-                                    <div class="text">
-                                        {{ elipsis( strip_tags($latest->description ?? '') )}}
-                                    </div>
-                                    <a href="{{ route('study-abroad.single',$latest->slug) }}" class="read-more">Read More <i class="fa fa-long-arrow-alt-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-                <div class="training-section pb-0">
-                    <div class="bottom-text"><a href="{{ route('study-abroad.list') }}">View all of our programme here</a> </div>
-                </div>
-            </div>
-        </section>
-    @endif
 
     @if(count($latesttests) > 0)
         <section class="training-section-two">
@@ -463,7 +465,7 @@
     @endif
 
     @if(count($latestPosts) > 0)
-        <section class="news-section-two">
+        <section class="news-section-two pt-0">
             <span class="wide-map"></span>
             <div class="anim-icons">
                 <span class="icon icon-object-1"></span>

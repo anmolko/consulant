@@ -85,7 +85,7 @@
     <div class="footer-bottom">
         <div class="auto-container">
             <div class="inner-container">
-                <div class="copyright-text">&copy; Copyright 2023 by <a href="/">© 2023 {{$setting_data->website_name ?? 'Unity Center'}}</a>
+                <div class="copyright-text">© 2023  <a href="/">{{$setting_data->website_name ?? 'Unity Center'}}</a>
                     - by <a href="https://www.canosoft.com.np/" target="_blank">Canosoft Techonology</a> All Rights Reserved.
                 </div>
                 <ul class="social-icon-two">

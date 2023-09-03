@@ -35,8 +35,9 @@
 
 <div class="page-wrapper">
     <!-- Preloader -->
-    <div class="preloader"></div>
-    <!-- Main Header-->
+    @if (\Request::is('/'))
+        <div class="preloader"></div>
+@endif    <!-- Main Header-->
     <header class="main-header header-style-three">
 
         <div class="header-top">
@@ -126,7 +127,7 @@
                 <!-- Main Menu End-->
             </div>
             <div class="outer-box">
-                <a href="{{ route('contact') }}" class="theme-btn btn-style-one bg-theme-color3"><span class="btn-title">Book a consultation</span></a>
+                <a href="{{ route('contact') }}" class="theme-btn btn-style-one bg-theme-color1"><span class="btn-title">Consultation</span></a>
                 <!-- Mobile Nav toggler -->
                 <div class="mobile-nav-toggler"><span class="icon lnr-icon-bars"></span></div>
             </div>

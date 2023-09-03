@@ -262,6 +262,28 @@
         </section>
     @endif
 
+    @if(count($success_trails) > 0)
+        <section class="process-section-two pt-0">
+            <div class="auto-container">
+                <div class="sec-title text-center">
+                    <span class="sub-title">Our Success Trails</span>
+                    <h2>Follow these amazing success <br> Stories and Trails.</h2>
+                </div>
+                <div class="row">
+                    @foreach(@$success_trails as $index=>$latest)
+                        <div class="carousel-outer">
+                            <!--clients carousel-->
+                            <ul class="gallery-carousel owl-carousel owl-theme wow fadeInUp">
+                                <li class="gallery-item"> <a href="{{ asset('/images/success_trail/'.$latest->image) }}" class="lightbox-image">
+                                        <img src="{{ asset('/images/success_trail/'.$latest->image) }}" alt=""></a>
+                                </li>
+                            </ul>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </section>
+    @endif
     @if(count($clients) > 0)
         <section class="training-section-three">
             <div class="auto-container">

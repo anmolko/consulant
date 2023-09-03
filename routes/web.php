@@ -260,6 +260,14 @@ Route::group(['prefix' => 'auth', 'middleware' => ['auth']], function () {
 
     //End course
 
+    Route::get('/success-trail', 'App\Http\Controllers\SuccessTrailController@index')->name('success_trail.index');
+    Route::get('/success-trail/create', 'App\Http\Controllers\SuccessTrailController@create')->name('success_trail.create');
+    Route::post('/success-trail', 'App\Http\Controllers\SuccessTrailController@store')->name('success_trail.store');
+    Route::put('/success-trail/{success}', 'App\Http\Controllers\SuccessTrailController@update')->name('success_trail.update');
+    Route::delete('/success-trail/{success}', 'App\Http\Controllers\SuccessTrailController@destroy')->name('success_trail.destroy');
+    Route::get('/success-trail/{success}/edit', 'App\Http\Controllers\SuccessTrailController@edit')->name('success_trail.edit');
+
+
     //test preparations
 
     Route::get('/test-preparation', 'App\Http\Controllers\TestPreparationController@index')->name('test-preparation.index');
